@@ -41,4 +41,4 @@ After this course you should be able to:
 
 
 # Registration
-https://www.training.cam.ac.uk/event/3327123
+<a href="https://www.training.cam.ac.uk/event/3327123">https://www.training.cam.ac.uk/event/3327123</a>
