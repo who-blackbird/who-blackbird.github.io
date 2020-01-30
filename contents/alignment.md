@@ -1,11 +1,5 @@
 # Alignment
 
-* [Working directory](#wd)
-* [Data](#data)
-* [Reads QC](#reads-qc)
-* [Alignment](#alignment)
-* [Alignment QC](#alignment-qc)
-
 ## Working directory
 
 Open your terminal, and go to your working directory, 
