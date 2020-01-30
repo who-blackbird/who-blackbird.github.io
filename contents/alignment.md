@@ -1,4 +1,4 @@
-# Course
+# Alignment
 
 * [Working directory](#wd)
 * [Data](#data)
