@@ -44,8 +44,8 @@ After this course you should be able to:
 * Introduction to ONT
 * Sample preparation
 * Quality control
-* [Alignment](http://ouwehand-lab.github.io/contents/alignment.md)
-* [Variant calling](http://ouwehand-lab.github.io/contents/vcalling.md)
+* [Alignment](http://ouwehand-lab.github.io/contents/alignment)
+* [Variant calling](http://ouwehand-lab.github.io/contents/vcalling)
 * Phasing
 * Methylation
 
