@@ -1,5 +1,3 @@
-# Introduction to Long-read Sequencing Course
-
 13th and 14th February 2020, University of Cambridge, Cambridge, UK
 
 # Instructors
