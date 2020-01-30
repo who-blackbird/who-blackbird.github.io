@@ -39,6 +39,15 @@ After this course you should be able to:
 * Process reads and align them to a reference genome
 * Analyse and interpret long-read sequencing data for variant and stractural variant calling
 
+# Contents
+
+* Introduction to ONT
+* Sample preparation
+* Quality control
+* [Alignment](http://ouwehand-lab.github.io/contents/alignment.md)
+* [Variant calling](http://ouwehand-lab.github.io/contents/vcalling.md)
+* Phasing
+* Methylation
 
 # Registration
 <a href="https://www.training.cam.ac.uk/event/3327123">https://www.training.cam.ac.uk/event/3327123</a>
