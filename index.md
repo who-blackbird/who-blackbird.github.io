@@ -41,13 +41,13 @@ After this course you should be able to:
 
 # Contents
 
-* Introduction to ONT
-* Sample preparation
-* Quality control
-* [Alignment](http://ouwehand-lab.github.io/contents/alignment)
-* [Variant calling](http://ouwehand-lab.github.io/contents/vcalling)
-* Phasing
-* Methylation
+1. Introduction to ONT
+2. Sample preparation
+3. Quality control
+4. [Alignment](http://ouwehand-lab.github.io/contents/alignment)
+5. [Variant calling](http://ouwehand-lab.github.io/contents/vcalling)
+6. Phasing
+7. Methylation
 
 # Registration
 <a href="https://www.training.cam.ac.uk/event/3327123">https://www.training.cam.ac.uk/event/3327123</a>
