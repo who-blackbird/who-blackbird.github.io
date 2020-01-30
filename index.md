@@ -43,7 +43,7 @@ After this course you should be able to:
 2. Sample preparation
 3. Quality control
 4. [Alignment](http://ouwehand-lab.github.io/contents/alignment)
-5. [Variant calling](http://ouwehand-lab.github.io/contents/vcalling)
+5. [Variant calling](http://ouwehand-lab.github.io/contents/variant-calling)
 6. Phasing
 7. Methylation
 
