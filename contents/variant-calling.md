@@ -1,4 +1,4 @@
-# Variant calling
+# 5. Variant calling
 
 ## SNV/indel calling
 
