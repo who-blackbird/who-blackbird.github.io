@@ -44,7 +44,7 @@ After this course you should be able to:
 3. Quality control
 4. [Alignment](http://ouwehand-lab.github.io/contents/alignment)
 5. [Variant calling](http://ouwehand-lab.github.io/contents/variant-calling)
-6. Phasing
+6. Haplotype phasing
 7. Methylation
 
 # Registration
