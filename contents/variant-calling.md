@@ -1,8 +1,5 @@
 # Variant calling
 
-* [SNV/indel calling](#vcalling)
-* [SV calling](#svcalling)
-
 ## SNV/indel calling
 
 Variants are called and stored in [VCF](http://samtools.github.io/hts-specs/VCFv4.2.pdf) format. This contains a header, and then data lines each containing information about a position in the genome.
