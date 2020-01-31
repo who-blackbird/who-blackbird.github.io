@@ -21,7 +21,7 @@ The data we will be using is from [NA12878](http://github.com/nanopore-wgs-conso
 
 We have already prepared a subset of specific regions of NA12878 genome in a FASTQ file. [FASTQ](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2847217) format is a text-based format for storing both a biological sequence and its corresponding quality scores.
 
-<img src="//raw.githubusercontent.com/ouwehand-lab/ouwehand-lab.github.io/master/images/fastq.png" alt="img_1" class="inline"/>
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/fastq.png" alt="img_1" class="inline"/>
 
 A FASTQ file normally uses four lines per sequence: 
  1) Begins with a ‘@’ and is followed by a sequence identifier 
@@ -76,7 +76,7 @@ The standard format for aligned sequence data is [SAM](http://samtools.github.io
 
 SAM files have a header that contains information on alignment and contigs used, and the aligned reads:
 
-<img src="//raw.githubusercontent.com/ouwehand-lab/ouwehand-lab.github.io/master/images/sam.jpg" alt="img_2" class="inline"/>
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/sam.jpg" alt="img_2" class="inline"/>
 
 But because SAM files can be large, they are usually stored in the compressed version of them, [BAM](http://samtools.github.io/hts-specs/SAMv1.pdf) files.
 
