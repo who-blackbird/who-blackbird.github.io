@@ -42,8 +42,8 @@ After this course you should be able to:
 1. Introduction to ONT
 2. Sample preparation
 3. Quality control
-4. [Alignment](http://ouwehand-lab.github.io/contents/alignment)
-5. [Variant calling](http://ouwehand-lab.github.io/contents/variant-calling)
+4. [Alignment](http://who-blackbird.github.io/contents/alignment)
+5. [Variant calling](http://who-blackbird.github.io/contents/variant-calling)
 6. Haplotype phasing
 7. Methylation
 
