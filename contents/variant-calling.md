@@ -4,7 +4,7 @@
 
 Variants are called and stored in [VCF](http://samtools.github.io/hts-specs/VCFv4.2.pdf) format. This contains a header, and then data lines each containing information about a position in the genome.
 
-<img src="//raw.githubusercontent.com/ouwehand-lab/ouwehand-lab.github.io/master/images/vcf.png" alt="img_3" class="inline"/>
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/vcf.png" alt="img_3" class="inline"/>
 
 ## SV calling
 
