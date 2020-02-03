@@ -36,15 +36,15 @@ You can visualize the FASTQ file typing:
 less ../data/fastq/NA12878.ROI.fastq
 ```
 
-How many reads do we have?
+## Reads QC
+
+First we will calculate how many reads we have:
 
 ```
 awk '{s++}END{print s/4}' ../data/fastq/NA12878.ROI.fastq
 ```
 
-## Reads QC
-
-First we will get the read length for each read:
+You can then use awk to obtain the read length for each read:
 
 ```
 awk '{if(NR%4==2) print length($1)}' ../data/fastq/NA12878.ROI.fastq > stats/read_length.txt
