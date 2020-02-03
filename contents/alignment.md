@@ -13,6 +13,7 @@ and create the following directory structure:
 mkdir stats
 mkdir alignment
 mkdir variant_calling
+mkdir annotation
 ```
 
 ## Data
