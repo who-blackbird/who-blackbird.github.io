@@ -2,10 +2,10 @@
 
 # Instructors
 
-* Nick Gleadall (ng384@medschl.cam.ac.uk) 
-* Alba Sanchis-Juan (as2635@medschl.cam.ac.uk) 
-* Jonathan Stephens (Jonathan.stephens@bioresource.nihr.ac.uk)
-* Luca Stefanucci (ls760@medschl.cam.ac.uk) 
+- Nick Gleadall (ng384@medschl.cam.ac.uk)
+- Alba Sanchis-Juan (as2635@medschl.cam.ac.uk)
+- Jonathan Stephens (Jonathan.stephens@bioresource.nihr.ac.uk)
+- Luca Stefanucci (ls760@medschl.cam.ac.uk)
 
 # Description
 
@@ -15,31 +15,32 @@ The aim of this course is to familiarise participants with long read sequencing 
 # Prerequisites
 
 The course is suitable for complete beginners and assumes no prior programming experience.
-Basic knowledge of R and UNIX would be an advantage. An introduction to the the Unix system and shell is available 
+Basic knowledge of R and UNIX would be an advantage. An introduction to the the Unix system and shell is available
 <a href="https://swcarpentry.github.io/shell-novice/">here</a>
 
 # Detailed aims
 
 This course will provide:
-* Introduction to ONT devices
-* Wet lab preparation of libraries for Nanopore sequencing
-* Introduction to data processing of long-reads
-* Variant calling and quality control
-* Structural variant calling and quality control
-* Haplotype phasing
+
+- Introduction to ONT devices
+- Wet lab preparation of libraries for Nanopore sequencing
+- Introduction to data processing of long-reads
+- Variant calling and quality control
+- Structural variant calling and quality control
+- Haplotype phasing
 
 # Objectives
 
 After this course you should be able to:
 
-* Discuss advantages and limitations of the methods presented
-* Assess the quality of your sequencing run
-* Process reads and align them to a reference genome
-* Analyse and interpret long-read sequencing data for variant and stractural variant calling
+- Discuss advantages and limitations of the methods presented
+- Assess the quality of your sequencing run
+- Process reads and align them to a reference genome
+- Analyse and interpret long-read sequencing data for variant and stractural variant calling
 
 # Contents
 
-1. Introduction to ONT
+1. [Introduction to ONT](http://who-blackbird.github.io/contents/introduction_to_ONT.md)
 2. Sample preparation
 3. Quality control
 4. [Alignment](http://who-blackbird.github.io/contents/alignment)
@@ -48,4 +49,5 @@ After this course you should be able to:
 7. Methylation
 
 # Registration
+
 <a href="https://www.training.cam.ac.uk/event/3327123">https://www.training.cam.ac.uk/event/3327123</a>
