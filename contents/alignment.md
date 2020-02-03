@@ -88,7 +88,7 @@ Multiple algorithms have been developed to align long reads to a genome of refer
 -	NGMLR: [http://github.com/philres/ngmlr](http://github.com/philres/ngmlr)
 -	minimap2: [http://github.com/lh3/minimap2](http://github.com/lh3/minimap2)
 
-Here we will use minimap2. First we will map the reads to the genome of reference (GRCh37), and convert the SAM output to BAM format.
+Here we will use minimap2 to map the reads to the genome of reference (GRCh37), and convert the SAM output to BAM format.
 
 ```
 minimap2 -x map-ont --MD -a ~/Course_Materials/human_g1k_v37.fasta.gz ../data/fastq/NA12878.ROI.fastq > alignment/NA12878.ROI.sam
@@ -119,7 +119,6 @@ As a first QC, we can run samtools stats:
 
 ```
 samtools stats alignment/NA12878.ROI.sort.bam > stats/stats.txt
-head -n40 stats/stats.txt
 ```
 
 -	How many reads were mapped?
@@ -159,3 +158,13 @@ p + geom_vline(xintercept=median(coverage$cov), colour = "red")
 ```
 
 However, this is a very specific subset, and is not a representation of the coverage of NA12878’s genome. If you want to compare this with the coverage distribution across the whole genome, you can do the same steps but for the [NA12878](http://github.com/nanopore-wgs-consortium/NA12878/blob/master/Genome.md).
+
+## Alignment visualisation
+
+To inspect the alignment, we will use [Integrative Genomics Viewer](https://software.broadinstitute.org/software/igv/).
+
+Open IGV and check that hg19/GRCh37 human genome of reference is selected. Then, load your BAM file in
+
+alignment/NA12878.ROI.sort.bam
+
+
