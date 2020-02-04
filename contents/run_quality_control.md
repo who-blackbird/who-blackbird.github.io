@@ -51,11 +51,13 @@ You should see something like this:
 
 ```
 .
-└── data
-    └── 20180521_FAH88251
+└── 20180830_PAD01151
+    └── data
         └── reads
             ├── 0
             └── 1
+
+5 directories
 ```
 
 This is what a raw directory structure will look like if you **dont** let the ONT software cal it for you!
@@ -63,14 +65,14 @@ This is what a raw directory structure will look like if you **dont** let the ON
 Lets take a closer look at the reads/ directory. This is where the sequencer writes raw data.
 
 ```
-ls ./data/20180521_FAH88251/reads/
+ls 20180830_PAD01151/data/reads/
 ```
 
 You should see two directories: 0/ and 1/
 
-ON machines write reads in batches, here batch size is 8000. This is to keep the number of files in each directory resonable for the computers filesystem
+ON machines write reads in batches, here batch size is 500 files. Normally, batch size would be around 5000 to 8000. This is to keep the number of files in each directory resonable for the computers filesystem.
 
-Take a look into a read directory!
+Take a look into read directory 0/!
 
 ```
 ls ./data/20180521_FAH88251/reads/0/
@@ -93,7 +95,7 @@ This is where electronic signal data from the sequencer is storred.
 Lets look at the structure of a FAST5 file using h5ls:
 
 ```
-h5ls data/20180521_FAH88251/reads/0 GXB01206_20180518_FAH88251_GA40000_mux_scan_MK_43023_read_103_ch_219_strand.fast5
+h5ls 20180830_PAD01151/data/reads/0/PCT0045_20180830_0004A30B002402F4_2_E3_H3_sequencing_run_Cam_6_90217_read_100_ch_1023_strand.fast5
 ```
 
 This shows the top level data keys:
@@ -117,8 +119,8 @@ Outputs:
 /PreviousReadInfo        Group
 /Raw                     Group
 /Raw/Reads               Group
-/Raw/Reads/Read_103      Group
-/Raw/Reads/Read_103/Signal Dataset {8483/Inf}
+/Raw/Reads/Read_100      Group
+/Raw/Reads/Read_100/Signal Dataset {25746/Inf}
 /UniqueGlobalKey         Group
 /UniqueGlobalKey/channel_id Group
 /UniqueGlobalKey/context_tags Group
@@ -128,9 +130,44 @@ Outputs:
 We can also dump and view the entire contents of a FAST5 to text:
 
 ```
-h5dump reads/0/GXB01206_20180518_FAH88225_GA50000_sequencing_run_CD3_92236_read_9998_ch_295_strand.fast5 | less
+h5dump 20180830_PAD01151/data/reads/0/PCT0045_20180830_0004A30B002402F4_2_E3_H3_sequencing_run_Cam_6_90217_read_100_ch_1023_strand.fast5 | less
 ```
 
 (**Hint 1**: use the mouse wheel to scroll up and down the file)
 
 (**Hint 2**: press q to exit less, a text reading program)
+
+## 4. Basecalling
+
+This is the process of translating raw electrical signal data from an ON sequencer to DNA sequence. Basecalling is a critical step in the analysis workflow as poor basecalling results in poor sequence data.
+
+Many basecallers exist - but for now we will be using Guppy v3.4.5developed by ON.
+
+For basecalling it is important to know which Flow Cell and Library Prep Kit was used.
+
+To see all the combinations which Guppy can handle use:
+
+```
+guppy_basecaller --print_workflows | head -n 10
+```
+
+This will list all the supported combinations of **flowcell** and **library prep kit** that Guppy can basecall.
+
+```
+Available flowcell + kit combinations are:
+flowcell   kit        barcoding config_name
+FLO-FLG001 SQK-RNA003           rna_r9.4.1_120bps_hac
+FLO-MIN106 SQK-RNA003           rna_r9.4.1_120bps_hac
+FLO-MIN107 SQK-RNA003           rna_r9.4.1_120bps_hac
+FLO-MIN107 SQK-DCS108           dna_r9.5_450bps
+FLO-MIN107 SQK-DCS109           dna_r9.5_450bps
+FLO-MIN107 SQK-LRK001           dna_r9.5_450bps
+FLO-MIN107 SQK-LSK108           dna_r9.5_450bps
+FLO-MIN107 SQK-LSK109           dna_r9.5_450bps
+```
+
+So lets basecall!
+
+```
+guppy_basecaller --input_path 20180830_PAD01151/data/reads/ --recursive -s 20180830_PAD01151/data/basecalled --fast5_out --flowcell FLO-PRO002 --kit SQK-LSK109
+```
