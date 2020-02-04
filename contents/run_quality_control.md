@@ -32,7 +32,7 @@ But... before we get too technical, lets take a look at how Nanopore's machines 
 All nanopore data is written to a specific run directory. Open up a terminal and change to the example directory below…
 
 ```
-cd ~/Desktop/quality_control/example_runs/example_1_20191202_PAE13924
+cd /Users/nickgleadall/Desktop/quality_control/example_runs/example_run_1
 ```
 
 ... and check it out using tree!
@@ -43,6 +43,22 @@ tree .
 
 _note: **.** is a shortcut for the current directory you are in_
 _note2: at home mac users might need to install the tree command!_
+
+You should see something like this:
+
+```
+.
+└── example_sample
+    └── 20191202_1317_1-E11-H11_PAE13924_73938d1f
+        └── fast5
+            ├── PAE13924_3a68f5baa685d37c37fb291fde3b6f0c6b02573c_0.fast5
+            ├── PAE13924_3a68f5baa685d37c37fb291fde3b6f0c6b02573c_29.fast5
+            ├── PAE13924_3a68f5baa685d37c37fb291fde3b6f0c6b02573c_787.fast5
+            ├── PAE13924_3a68f5baa685d37c37fb291fde3b6f0c6b02573c_86.fast5
+            └── PAE13924_3a68f5baa685d37c37fb291fde3b6f0c6b02573c_991.fast5
+
+3 directories, 5 files
+```
 
 #########################################
 
@@ -55,3 +71,7 @@ Basecalling is a critical step in the analysis workflow as poor basecalling make
 As this is a 'introduction' course, we recommened that you enable 'on board' or 'real time' basecalling. In laymans terms, this means letting nanopores software automatically base call for you.
 
 Infact, this is what we use as a group.
+
+## References & Links
+
+Nanopore software: https://community.nanoporetech.com/downloads
