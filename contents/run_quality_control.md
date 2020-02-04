@@ -288,3 +288,73 @@ Notice that the input file points to a version of the **sequencing_summary.txt**
 We are going to leave this alone for now!
 
 The second file we are interested in is the **Nanopore_SumStatQC.Rmd** file. Click it and Rstudio should open up.
+
+Press the "Knitr" button at the top of the page and wait for magic!!
+
+_**Disclaimer**: If magic does not happen, R should have printed a .html file - open it by pasting the below in the terminal!_
+
+```
+open Nanopore_SumStatQC.html
+```
+
+## 7. Interpret this data
+
+We can read through the report to get an understanding of QC metrics!
+
+## 8. Bonus step - a real run!
+
+Lambda controls are so boring. Lets take a look at the QC report of a PromethION run from a patient with a rare bleeding disorder!!!
+
+Tree the following directory:
+
+```
+tree ../example_runs/2.promethion_run
+```
+
+_Hint: "**..** is a shortcut for "one directory up"_
+
+You should see:
+
+```
+../example_runs/2.promethion_run
+└── VWD1108
+    └── 20191202_1317_1-E11-H11_PAE13924_73938d1f
+        ├── PCT0099_20191202_131743_PAE13924_promethion_sequencing_run_VWD1108_duty_time.csv
+        ├── PCT0099_20191202_131743_PAE13924_promethion_sequencing_run_VWD1108_sequencing_summary.txt
+        ├── PCT0099_20191202_131743_PAE13924_promethion_sequencing_run_VWD1108_throughput.csv
+        ├── fast5_fail
+        │   ├── PAE13924_3a68f5baa685d37c37fb291fde3b6f0c6b02573c_29.fast5
+        │   └── PAE13924_3a68f5baa685d37c37fb291fde3b6f0c6b02573c_86.fast5
+        ├── fast5_pass
+        │   ├── PAE13924_3a68f5baa685d37c37fb291fde3b6f0c6b02573c_787.fast5
+        │   └── PAE13924_3a68f5baa685d37c37fb291fde3b6f0c6b02573c_991.fast5
+        ├── fast5_skip
+        │   └── PAE13924_3a68f5baa685d37c37fb291fde3b6f0c6b02573c_0.fast5
+        ├── fastq_fail
+        │   ├── PAE13924_3a68f5baa685d37c37fb291fde3b6f0c6b02573c_433.fastq
+        │   └── PAE13924_3a68f5baa685d37c37fb291fde3b6f0c6b02573c_490.fastq
+        ├── fastq_pass
+        │   ├── PAE13924_3a68f5baa685d37c37fb291fde3b6f0c6b02573c_816.fastq
+        │   └── PAE13924_3a68f5baa685d37c37fb291fde3b6f0c6b02573c_991.fastq
+        ├── final_summary.txt
+        ├── report.md
+        └── report.pdf
+```
+
+This is what a "run" directory looks like when you let the sequencer take care of data processing.
+
+You will notice that **.fast5** and **.fastq** files have beeen automatically separated into **pass** and **fail** directories.
+
+There is also a "report.pdf" which the sequencer prints off, however the R script we used before gives us much more information (feel free to take a look though!).
+
+Lets produce the report for this run now. Open up the **config.yaml** file and edit the line:
+
+```
+inputFile: "./RawData/lambda_sequencing_summary.txt.bz2"
+```
+
+So that it reads:
+
+```
+inputFile: "./example_runs/2.promethion_run/VWD1108/20191202_1317_1-E11-H11_PAE13924_73938d1f/PCT0099_20191202_131743_PAE13924_promethion_sequencing_run_VWD1108_sequencing_summary.txt"
+```
