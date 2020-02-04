@@ -4,7 +4,7 @@
 
 ## The run completed successfully - so now what?
 
-#### What you need to understand:
+### What you need to understand:
 
 1. Signal to sequence workflow
 2. Run directory structure
@@ -13,7 +13,7 @@
 5. Fastq
 6. Summary reports created
 
-#### Learn to:
+### Learn to:
 
 starting
 
