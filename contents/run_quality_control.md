@@ -41,7 +41,8 @@ cd ~/Desktop/quality_control/example_runs/example_1_20191202_PAE13924
 tree .
 ```
 
-_note: . is a shortcut for the current directory you are in_
+_note: **.** is a shortcut for the current directory you are in_
+_note2: at home mac users might need to install the tree command!_
 
 #########################################
 
