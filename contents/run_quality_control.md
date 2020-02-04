@@ -371,4 +371,6 @@ tutorialText: FALSE
 
 _**Hint**: copy and paste._
 
+Save the file.
+
 Now press the "Knitr" button again the top of the page and wait for magic!!
