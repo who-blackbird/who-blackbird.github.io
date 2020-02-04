@@ -41,8 +41,8 @@ cd /Users/nickgleadall/Desktop/quality_control/example_runs/1.raw_data
 tree -d .
 ```
 
-_(**Hint**: "**.**" is a shortcut for the current directory you are in)_
-_(**Hint 2**: "**-d**" means the tree command lists directories only)_
+_(**Hint**: "**.**" is a shortcut for the current directory you are in)_  
+_(**Hint 2**: "**-d**" means the tree command lists directories only)_  
 _(**Hint 3**: at home mac users might need to install the tree command!)_
 
 You should see something like this:
