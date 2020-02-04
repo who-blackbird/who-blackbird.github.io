@@ -25,9 +25,9 @@ The below image represents the process of translating raw electrical signal data
 
 We are going to learn how to do this!!
 
-## 2. Run directory structure
+But... before we get too technical, lets take a look at how Nanopore's machines write data!
 
-Before we get too technical, lets take a look at how Nanopore's machines write data!
+## 2. Run directory structure
 
 All nanopore data is written to a specific run directory. Open up a terminal and change to the example directory below…
 
@@ -35,7 +35,17 @@ All nanopore data is written to a specific run directory. Open up a terminal and
 cd ~/Desktop/quality_control/example_runs/example_1_20191202_PAE13924
 ```
 
-This process is called basecalling.
+... and check it out using tree!
+
+```
+tree .
+```
+
+_note: . is a shortcut for the current directory you are in_
+
+#########################################
+
+This process is called **basecalling**.
 
 Basecalling is a critical step in the analysis workflow as poor basecalling makes poor sequence data.
 
