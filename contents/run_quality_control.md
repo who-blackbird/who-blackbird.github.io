@@ -141,7 +141,7 @@ h5dump 20180830_PAD01151/data/reads/0/PCT0045_20180830_0004A30B002402F4_2_E3_H3_
 
 This is the process of translating raw electrical signal data from an ON sequencer to DNA sequence. Basecalling is a critical step in the analysis workflow as poor basecalling results in poor sequence data.
 
-Many basecallers exist - but for now we will be using Guppy v3.4.5developed by ON.
+Many basecallers exist - but for now we will be using Guppy v3.4.5 developed by ON.
 
 For basecalling it is important to know which Flow Cell and Library Prep Kit was used.
 
