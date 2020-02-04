@@ -224,7 +224,7 @@ This is a standard format fastq file which can now be analysed downstream. We wi
 
 Another important file is **sequencing_summary.txt**
 
-This contains **ALOT** of data about the sequencing run. Lets take a look.
+This contains **A LOT** of data about the sequencing run. Lets take a look.
 
 ```
 less 20180830_PAD01151/data/basecalled/sequencing_summary.txt
