@@ -251,7 +251,7 @@ What dont we know:
 
 ### Back to work!!
 
-### 6. Take a run summary file and extract QC data
+## 6. Take a run summary file and extract QC data
 
 Many tools for run QC have been developed by the Nanopore sequening community. We will now learn how to use one of these tools!
 
