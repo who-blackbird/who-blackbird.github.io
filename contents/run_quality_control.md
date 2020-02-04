@@ -1,8 +1,8 @@
 # 3. Quality control
 
-<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/qc.starting_point.png" alt="img_1" class="inline"/>
-
 ### The run completed successfully - so now what?\*\*
+
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/qc.starting_point.png" alt="img_1" class="inline"/>
 
 ### In this section we will cover:
 
@@ -42,9 +42,7 @@ tree -d .
 ```
 
 _(**Hint**: "**.**" is a shortcut for the current directory you are in)_
-
 _(**Hint 2**: "**-d**" means the tree command lists directories only)_
-
 _(**Hint 3**: at home mac users might need to install the tree command!)_
 
 You should see something like this:
@@ -248,7 +246,7 @@ What **dont** we know:
 
 - How do we interpret this data?
 
-## Back to work!!
+Now, back to work!!
 
 ## 6. Take a run summary file and extract QC data
 
