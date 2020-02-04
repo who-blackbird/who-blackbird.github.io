@@ -90,7 +90,7 @@ FAST5 files are infact HDF5 files. These are compressed binary files which store
 
 This is where electronic signal data from the sequencer is storred.
 
-<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/qc.basecalling.png" alt="img_2" class="inline"/>
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/qc.squiggle_data.png" alt="img_2" class="inline"/>
 
 Lets look at the structure of a FAST5 file using h5ls:
 
