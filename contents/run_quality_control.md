@@ -23,7 +23,7 @@ The below image represents the process of translating raw electrical signal data
 
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/qc.basecalling.png" alt="img_2" class="inline"/>
 
-We are going to learn how to do this!!
+We are going to learn how to do this!
 
 But... before we get too technical, lets take a look at how Nanopore's machines write data!
 
@@ -60,23 +60,23 @@ You should see something like this:
 
 This is what a raw directory structure will look like if you **dont** let the ONT software cal it for you!
 
-Lets take a closer look at the **reads/** directory. This is where the sequencer writes raw data.
+Lets take a closer look at the **reads/** directory. This is where the sequencer writes raw data:
 
 ```
 ls 20180830_PAD01151/data/reads/
 ```
 
-You should see two directories: **0/** and **1/**
+You should see two directories: **0/** and **1/**.
 
 ON machines write reads in batches, here batch size is **100** files. Normally, batch size would be around **5000** to **8000**. This is to keep the number of files in each directory resonable for the computers filesystem.
 
-Take a look into read directory **0/**!
+Take a look into read directory **0/**:
 
 ```
 ls ./data/20180521_FAH88251/reads/0/
 ```
 
-You should see a **HUGE** list of files ending with **.fast5**
+You should see a list of files ending with **.fast5**.
 
 ## 3. FAST5 files
 
@@ -131,15 +131,14 @@ We can also dump and view the entire contents of a **.fast5** to text:
 h5dump 20180830_PAD01151/data/reads/0/PCT0045_20180830_0004A30B002402F4_2_E3_H3_sequencing_run_Cam_6_90217_read_100_ch_1023_strand.fast5 | less
 ```
 
-(**Hint 1**: use the up and down arrows to scroll through the file)
-
+(**Hint 1**: use the up and down arrows to scroll through the file)  
 (**Hint 2**: press **q** to exit less, a text reading program)
 
 ## 4. Basecalling
 
 This is the process of translating raw electrical signal data from an ON sequencer to DNA sequence. Basecalling is a critical step in the analysis workflow as poor basecalling results in poor sequence data.
 
-Many basecallers exist - but for now we will be using **Guppy v3.4.5** developed by ON.
+Many basecallers exist - but for now we will be using **Guppy v3.4.5** developed by Oxford Nanopore.
 
 For basecalling it is important to know which **Flow Cell** and **Library Prep Kit** was used.
 
@@ -170,7 +169,7 @@ So lets basecall!
 guppy_basecaller --input_path 20180830_PAD01151/data/reads/ --recursive -s 20180830_PAD01151/data/basecalled --fast5_out --flowcell FLO-PRO002 --kit SQK-LSK109
 ```
 
-(**Interesting fact**: You have just started up a machine learning algorithm. Guppy, alongside almost all current nanopore basecallers have a neural network at their core)
+**Interesting fact**: You have just started up a machine learning algorithm. Guppy, alongside almost all current nanopore basecallers have a neural network at their core.
 
 ## 4.i. A comment about basecallers
 
@@ -194,22 +193,23 @@ _Further reading_: A great comparison of basecallers exists [here](https://githu
 
 ## 5. Basecalling results
 
-Lets take a look inside the new **basecalled/** directory we just created
+Lets take a look inside the new **basecalled/** directory we just created:
 
 ```
 ls -l 20180830_PAD01151/data/basecalled
-```
 
-Our freshly called "sequence" data now sits in the file: **fastq_runid_5f42e62fe05de2c3f4e892def6936adeb53cf710_0_0.fastq**
+```
 
 ```
 total 4024
--rw-r-----  1 nickgleadall  staff  1797686  4 Feb 15:52 fastq_runid_5f42e62fe05de2c3f4e892def6936adeb53cf710_0_0.fastq
--rw-r-----  1 nickgleadall  staff   121579  4 Feb 15:52 guppy_basecaller_log-2020-02-04_15-47-12.log
--rw-r-----  1 nickgleadall  staff    57128  4 Feb 15:52 sequencing_summary.txt
--rw-r-----  1 nickgleadall  staff    65669  4 Feb 15:52 sequencing_telemetry.js
-drwxr-x---  4 nickgleadall  staff      128  4 Feb 15:47 workspace
+-rw-r----- 1 nickgleadall staff 1797686 4 Feb 15:52 fastq_runid_5f42e62fe05de2c3f4e892def6936adeb53cf710_0_0.fastq
+-rw-r----- 1 nickgleadall staff 121579 4 Feb 15:52 guppy_basecaller_log-2020-02-04_15-47-12.log
+-rw-r----- 1 nickgleadall staff 57128 4 Feb 15:52 sequencing_summary.txt
+-rw-r----- 1 nickgleadall staff 65669 4 Feb 15:52 sequencing_telemetry.js
+drwxr-x--- 4 nickgleadall staff 128 4 Feb 15:47 workspace
 ```
+
+Our freshly called "sequence" data now sits inside **fastq_runid_5f42e62fe05de2c3f4e892def6936adeb53cf710_0_0.fastq**.
 
 Lets take a quick look at it:
 
@@ -217,12 +217,10 @@ Lets take a quick look at it:
 less 20180830_PAD01151/data/basecalled/fastq_runid_5f42e62fe05de2c3f4e892def6936adeb53cf710_0_0.fastq
 ```
 
-This is a standard format fastq file which can now be analysed downstream. We will cover fastq's in greater detail later!
+This is a standard format fastq file which can now be analysed downstream. We will cover fastq's in greater detail later!  
 (_**Hint**: press q to exit less, that text reading program from before!_)
 
-Another important file is **sequencing_summary.txt**
-
-This contains **A LOT** of data about the sequencing run. Lets take a look.
+Another important file is **sequencing_summary.txt**. This contains **A LOT** of data about the sequencing run. Lets take a look.
 
 ```
 less 20180830_PAD01151/data/basecalled/sequencing_summary.txt
@@ -230,7 +228,7 @@ less 20180830_PAD01151/data/basecalled/sequencing_summary.txt
 
 ## Quick breather!!!
 
-What **should** I know at this point???:
+What **should** I know at this point?:
 
 - We are now at the point where we understand how raw squiggle data is converted into to A's T's C's and G's.
 
@@ -242,15 +240,15 @@ What **should** I know at this point???:
 
 What **dont** we know:
 
-- How can we access the data contained in **sequencing_summary.txt**
+- How can we access the data contained in **sequencing_summary.txt**.
 
 - How do we interpret this data?
 
-Now, back to work!!
+Now, back to work!
 
 ## 6. Take a run summary file and extract QC data
 
-Many tools for run QC have been developed by the Nanopore sequening community. We will now learn how to use one of these tools!
+Many tools for run QC have been developed by the Nanopore sequening community. We will now learn how to use one of them!
 
 Before we begin, lets change directory.
 
@@ -287,7 +285,7 @@ We are going to leave this alone for now!
 
 The second file we are interested in is the **Nanopore_SumStatQC.Rmd** file. Click it and Rstudio should open up.
 
-Press the "Knitr" button at the top of the page and wait for magic!!
+Press the "Knitr" button at the top of the page and wait for magic!
 
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/qc.rhelp.png" alt="img_2" class="inline"/>
 
@@ -371,9 +369,11 @@ _**Hint**: copy and paste._
 
 Save the file.
 
-Now press the "**Knitr**" button again the top of the page and wait for some _...slightly slow..._ magic!!
+Now press the "**Knitr**" button again the top of the page and wait for some _...slightly slow..._ magic!
 
 You can print these reports to **.pdf** used the standard browser method if required.
+
+If you want to make youre own QC pipeline or just see how this one works, read through the **Nanopore_SumStatQC.Rmd** script.
 
 ## Final Comment
 
