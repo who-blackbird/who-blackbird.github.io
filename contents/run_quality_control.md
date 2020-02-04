@@ -2,7 +2,7 @@
 
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/qc.starting_point.png" alt="img_1" class="inline"/>
 
-**The run completed successfully - so now what?**
+### The run completed successfully - so now what?\*\*
 
 ### In this section we will cover:
 
