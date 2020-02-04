@@ -220,8 +220,7 @@ less 20180830_PAD01151/data/basecalled/fastq_runid_5f42e62fe05de2c3f4e892def6936
 ```
 
 This is a standard format fastq file which can now be analysed downstream. We will cover fastq's in greater detail later!
-
-(**Hint 2**: press q to exit less, that text reading program from before!)
+(_**Hint**: press q to exit less, that text reading program from before!_)
 
 Another important file is **sequencing_summary.txt**
 
@@ -231,9 +230,9 @@ This contains **ALOT** of data about the sequencing run. Lets take a look.
 less 20180830_PAD01151/data/basecalled/sequencing_summary.txt
 ```
 
-### Quick breather!!!
+## Quick breather!!!
 
-What should I know at this point???:
+What **should** I know at this point???:
 
 - We are now at the point where we understand how raw squiggle data is converted into to A's T's C's and G's.
 
@@ -243,13 +242,13 @@ What should I know at this point???:
 
 - It is also recommended that you let the sequencing software handle this automatically for you.
 
-What dont we know:
+What **dont** we know:
 
 - How can we access the data contained in **sequencing_summary.txt**
 
 - How do we interpret this data?
 
-### Back to work!!
+## Back to work!!
 
 ## 6. Take a run summary file and extract QC data
 
@@ -285,3 +284,7 @@ tutorialText: FALSE
 ```
 
 Notice that the input file points to a version of the **sequencing_summary.txt**
+
+We are going to leave this alone for now!
+
+The second file we are interested in is the **Nanopore_SumStatQC.Rmd** file. Click it and Rstudio should open up.
