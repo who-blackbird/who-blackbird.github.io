@@ -390,3 +390,5 @@ Oxford Nanopore downloads: https://community.nanoporetech.com/downloads
 Oxford Nanopore tutorials: https://community.nanoporetech.com/knowledge/bioinformatics/
 
 Specific QC tutorial: https://github.com/nanoporetech/ont_tutorial_basicqc
+
+How are Phred scores calculated: https://en.wikipedia.org/wiki/Phred_quality_score
