@@ -178,6 +178,18 @@ guppy_basecaller --input_path 20180830_PAD01151/data/reads/ --recursive -s 20180
 
 As previously mentioned many basecallers are available.
 
-The main performance marker of a basecaller that we care about is the overall Assembly Identity (how much a final alignment matches the reference).
+The main performance marker of a basecaller that we care about is the overall **Assembly Identity** or how much a final alignment matches the reference.
 
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/qc.basecaller_comparison.png" alt="img_2" class="inline"/>
+
+We can also take a look at the **assembly length bias** which tells us if a given basecaller is prone to reference insertions or deletions.
+
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/qc.assembly_length_bias.png" alt="img_2" class="inline"/>
+
+_Further reading_: A great comparison of basecallers exists [here](https://github.com/rrwick/Basecalling-comparison/)
+
+## 4.ii. So what do we recommend?
+
+**In our group we have never used anything other than the most up to date ON basecalling algorithm (i.e. Guppy).**
+
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/qc.workflow.png" alt="img_2" class="inline"/>
