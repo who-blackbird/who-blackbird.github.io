@@ -21,7 +21,7 @@
 
 The below image represents the process of translating raw electrical signal data from an ON sequencer to DNA sequence.
 
-<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/qc.basecalling.png" alt="img_1" class="inline"/>
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/qc.basecalling.png" alt="img_2" class="inline"/>
 
 We are going to learn how to do this!!
 
