@@ -16,6 +16,15 @@ mkdir variant_calling
 mkdir annotation
 ```
 
+## Variables
+
+First, define your variables:
+
+```
+fastq=~/Course_Materials/nanopore_practical/data/Viehweger_Jena/minion/fastq/2017-09-29_coronavirus_SL2.rna.fastq.gz
+ref=~/Course_Materials/nanopore_practical/data/reference_genome/HCov-229E.fasta
+```
+
 ## Data
 
 The data we will be using is from [NA12878](http://github.com/nanopore-wgs-consortium/NA12878/blob/master/Genome.md) human genome reference standard on the Oxford Nanopore MinION using 1D ligation kits (450 bp/s) and R9.4 chemistry (FLO-MIN106).
@@ -33,7 +42,7 @@ A FASTQ file normally uses four lines per sequence:
 You can visualize the FASTQ file typing:
 
 ```
-less ../data/fastq/NA12878.ROI.fastq
+less -S $fastq
 ```
 
 ## Reads QC
@@ -41,13 +50,13 @@ less ../data/fastq/NA12878.ROI.fastq
 First we will calculate how many reads we have:
 
 ```
-awk '{s++}END{print s/4}' ../data/fastq/NA12878.ROI.fastq
+awk '{s++}END{print s/4}' $fastq
 ```
 
 You can then use awk to obtain the read length for each read:
 
 ```
-awk '{if(NR%4==2) print length($1)}' ../data/fastq/NA12878.ROI.fastq > stats/read_length.txt
+awk '{if(NR%4==2) print length($1)}' $fastq > stats/read_length.txt
 ```
 
 And look at the read length distribution. For that, you can start R from the command-line:
@@ -88,29 +97,29 @@ Multiple algorithms have been developed to align long reads to a genome of refer
 -	NGMLR: [http://github.com/philres/ngmlr](http://github.com/philres/ngmlr)
 -	minimap2: [http://github.com/lh3/minimap2](http://github.com/lh3/minimap2)
 
-Here we will use minimap2 to map the reads to the genome of reference (GRCh37), and convert the SAM output to BAM format.
+Here we will use minimap2 to map the reads to the genome of reference, and convert the SAM output to BAM format.
 
 ```
-minimap2 -x map-ont --MD -a ~/Course_Materials/human_g1k_v37.fasta.gz ../data/fastq/NA12878.ROI.fastq > alignment/NA12878.ROI.sam
-samtools view alignment/NA12878.ROI.sam -O BAM -o alignment/NA12878.ROI.bam
+minimap2 -x map-ont --MD -a $ref $fastq > alignment/SL2_CoV.sam
+samtools view alignment/SL2_CoV.sam -O BAM -o alignment/SL2_CoV.bam
 ```
 
 Then, we will sort it by mapping coordinate and save it as BAM.
 
 ```
-samtools sort alignment/NA12878.ROI.bam > alignment/NA12878.ROI.sort.bam
+samtools sort alignment/SL2_CoV.bam > alignment/SL2_CoV.sort.bam
 ```
 
 Finally we will index the BAM file to run samtools subtools later.
 
 ```
-samtools index alignment/NA12878.ROI.sort.bam
+samtools index alignment/SL2_CoV.sort.bam
 ```
 
 To visualise the BAM file:
 
 ```
-samtools view alignment/NA12878.ROI.sort.bam | less -S
+samtools view alignment/SL2_CoV.sort.bam | less -S
 ```
 
 ## Alignment QC
@@ -118,53 +127,66 @@ samtools view alignment/NA12878.ROI.sort.bam | less -S
 As a first QC, we can run samtools stats:
 
 ```
-samtools stats alignment/NA12878.ROI.sort.bam > stats/stats.txt
+samtools stats alignment/SL2_CoV.sort.bam > stats/SL2_samtools_stats.txt
 ```
 
 -	How many reads were mapped?
 -	Which was the average length of the reads? And the maximum read length?
 
+Additionally, NanoStat can also be used:
+
+```
+NanoStat --bam alignment/SL2_CoV.sort.bam > stats/SL2_nanostat_stats.txt
+```
+
 Now we will get the coverage per base using samtools depth.
 
 ```
-samtools depth alignment/NA12878.ROI.sort.bam > stats/coverage.txt
+samtools depth alignment/SL2_CoV.sort.bam > stats/coverage.txt
 ```
 
-And look at the coverage distribution in R. For that, you can start R from the command-line:
+And look at the coverage of the SL2 sample across the entire reference genome. For that, you can start R from the command-line:
 
 ```
 R
 ```
 
 and then, type the following:
-
 ```
 library(ggplot2)
 coverage <-  read.table("stats/coverage.txt", header=FALSE, col.names = c("chrom", "pos", "cov"))
+p1 <- ggplot(coverage, aes(x = pos, y = cov)) + 
+      geom_line() + 
+      scale_y_log10()
+p1
+```
+
+Additionally, you can also look at the coverage distribution in R:
+
+```
 cov_percent <- data.frame(  "cov" = seq(1,max(coverage$cov)) 
                           , "percent" = sapply(seq(1,max(coverage$cov)), function(x) nrow(coverage[coverage$cov >= x,])/nrow(coverage)))
-p <- ggplot(cov_percent, aes(x = cov, y = percent)) + 
-     geom_line() + 
-     scale_x_continuous(breaks=seq(0,max(coverage$cov), 10)) + 
-     xlab("Coverage") + 
-     ylab("Percentage of bases")
-p
+p2 <- ggplot(cov_percent, aes(x = cov, y = percent)) + 
+      geom_line() + 
+      scale_x_continuous(breaks=seq(0,max(coverage$cov), 1000)) + 
+      xlab("Coverage") + 
+      ylab("Percentage of bases")
+p2
 ```
 
 You can also add a vertical line to the previous plot intercepting the median coverage:
 
 ```
-p + geom_vline(xintercept=median(coverage$cov), colour = "red")
+p2 + geom_vline(xintercept=median(coverage$cov), colour = "red") +
+     geom_text(aes(y = .5, x = 700, label = median(coverage$cov), colour = "red"))
 ```
-
-However, this is a very specific subset, and is not a representation of the coverage of NA12878’s genome. If you want to compare this with the coverage distribution across the whole genome, you can do the same steps but for the [NA12878](http://github.com/nanopore-wgs-consortium/NA12878/blob/master/Genome.md).
 
 ## Alignment visualisation
 
 To inspect the alignment, we will use [Integrative Genomics Viewer](https://software.broadinstitute.org/software/igv/).
 
-Open IGV and check that hg19/GRCh37 human genome of reference is selected. Then, load your BAM file in
+Open IGV and load the HCov-229E.fasta reference genome by selecting Genomes>Load from File or Genomes>Load from URL. The new genome will be added to the drop-down menu, and also loaded and displayed in the IGV window.
 
-alignment/NA12878.ROI.sort.bam
+Then, load your BAM file located in alignment/SL2_CoV.sort.bam
 
 
