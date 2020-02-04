@@ -10,7 +10,7 @@
 2. Run directory structure
 3. FAST5 files
 4. Basecalling
-5. Fastq
+5. Basecalling results
 
 #### You will learn to:
 
@@ -68,11 +68,11 @@ Lets take a closer look at the reads/ directory. This is where the sequencer wri
 ls 20180830_PAD01151/data/reads/
 ```
 
-You should see two directories: 0/ and 1/
+You should see two directories: **0/** and **1/**
 
 ON machines write reads in batches, here batch size is 100 files. Normally, batch size would be around 5000 to 8000. This is to keep the number of files in each directory resonable for the computers filesystem.
 
-Take a look into read directory 0/!
+Take a look into read directory **0/**!
 
 ```
 ls ./data/20180521_FAH88251/reads/0/
@@ -193,3 +193,7 @@ _Further reading_: A great comparison of basecallers exists [here](https://githu
 **In our group we have never used anything other than the most up to date ON basecalling algorithm (i.e. Guppy).**
 
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/qc.workflow.png" alt="img_2" class="inline"/>
+
+## 5. Basecalling results
+
+Lets take a look inside the new **basecalled/** directory we just created
