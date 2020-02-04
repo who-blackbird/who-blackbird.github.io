@@ -291,6 +291,8 @@ The second file we are interested in is the **Nanopore_SumStatQC.Rmd** file. Cli
 
 Press the "Knitr" button at the top of the page and wait for magic!!
 
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/qc.rhelp.png" alt="img_2" class="inline"/>
+
 _**Disclaimer**: If magic does not happen, R should have printed a .html file - open it by pasting the below in the terminal!_
 
 ```
@@ -368,3 +370,5 @@ tutorialText: FALSE
 ```
 
 _**Hint**: copy and paste._
+
+Now press the "Knitr" button again the top of the page and wait for magic!!
