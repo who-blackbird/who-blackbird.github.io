@@ -197,3 +197,91 @@ _Further reading_: A great comparison of basecallers exists [here](https://githu
 ## 5. Basecalling results
 
 Lets take a look inside the new **basecalled/** directory we just created
+
+```
+ls -l 20180830_PAD01151/data/basecalled
+```
+
+Our freshly called "sequence" data now sits in the file: **fastq_runid_5f42e62fe05de2c3f4e892def6936adeb53cf710_0_0.fastq**
+
+```
+total 4024
+-rw-r-----  1 nickgleadall  staff  1797686  4 Feb 15:52 fastq_runid_5f42e62fe05de2c3f4e892def6936adeb53cf710_0_0.fastq
+-rw-r-----  1 nickgleadall  staff   121579  4 Feb 15:52 guppy_basecaller_log-2020-02-04_15-47-12.log
+-rw-r-----  1 nickgleadall  staff    57128  4 Feb 15:52 sequencing_summary.txt
+-rw-r-----  1 nickgleadall  staff    65669  4 Feb 15:52 sequencing_telemetry.js
+drwxr-x---  4 nickgleadall  staff      128  4 Feb 15:47 workspace
+```
+
+Lets take a quick look at it:
+
+```
+less 20180830_PAD01151/data/basecalled/fastq_runid_5f42e62fe05de2c3f4e892def6936adeb53cf710_0_0.fastq
+```
+
+This is a standard format fastq file which can now be analysed downstream. We will cover fastq's in greater detail later!
+
+(**Hint 2**: press q to exit less, that text reading program from before!)
+
+Another important file is **sequencing_summary.txt**
+
+This contains **ALOT** of data about the sequencing run. Lets take a look.
+
+```
+less 20180830_PAD01151/data/basecalled/sequencing_summary.txt
+```
+
+### Quick breather!!!
+
+What should I know at this point???:
+
+- We are now at the point where we understand how raw squiggle data is converted into to A's T's C's and G's.
+
+- We can take some .fast5 files, run a basecaller, and find the results.
+
+- We have also learned that there are many different tools for basecalling the data. However, for general use Guppy from Oxford Nanopore is fine.
+
+- It is also recommended that you let the sequencing software handle this automatically for you.
+
+What dont we know:
+
+- How can we access the data contained in **sequencing_summary.txt**
+
+- How do we interpret this data?
+
+### Back to work!!
+
+### 6. Take a run summary file and extract QC data
+
+Many tools for run QC have been developed by the Nanopore sequening community. We will now learn how to use one of these tools!
+
+Before we begin, lets change directory.
+
+```
+cd ~/Desktop/quality_control/QC_script
+```
+
+We can then open up a file browser to make things easy.
+
+```
+open .
+```
+
+This should open up a directory, and we can see that there are multiple files in this "package".
+
+The first file we are interested in is the **config.yaml** file.
+_**Hint**: dont worry .yaml is just a fancy text file!_
+
+This file contains the configuration for the QC plotting tool.
+
+On opening the file you should see the following configuration lines at the top:
+
+```
+inputFile: "./RawData/lambda_sequencing_summary.txt.bz2"
+barcodeFile: "./RawData/lambda_barcoding_summary.txt.bz2"
+basecaller: "Guppy 2.1.3"
+flowcellId: "EXAMPLE_FLOWCELL"
+tutorialText: FALSE
+```
+
+Notice that the input file points to a version of the **sequencing_summary.txt**
