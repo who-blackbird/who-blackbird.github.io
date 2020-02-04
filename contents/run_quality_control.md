@@ -1,5 +1,7 @@
 # 3. Quality control
 
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/qc.starting_point.png" alt="img_1" class="inline"/>
+
 ## The run completed successfully - so now what?
 
 #### What you need to understand:
@@ -11,12 +13,14 @@
 5. Fastq
 6. Summary reports created
 
-Learn to:
+#### Learn to:
 
-1. Take a run summary file and extract QC data
-2. Interpret this data
+starting
 
-## Step 1 - The run directory strucutre
+7. Take a run summary file and extract QC data
+8. Interpret this data
+
+## Singal to sequence workflow
 
 !!!NOTE!!!
 
