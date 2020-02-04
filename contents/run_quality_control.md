@@ -70,7 +70,7 @@ ls 20180830_PAD01151/data/reads/
 
 You should see two directories: 0/ and 1/
 
-ON machines write reads in batches, here batch size is 500 files. Normally, batch size would be around 5000 to 8000. This is to keep the number of files in each directory resonable for the computers filesystem.
+ON machines write reads in batches, here batch size is 100 files. Normally, batch size would be around 5000 to 8000. This is to keep the number of files in each directory resonable for the computers filesystem.
 
 Take a look into read directory 0/!
 
@@ -171,3 +171,13 @@ So lets basecall!
 ```
 guppy_basecaller --input_path 20180830_PAD01151/data/reads/ --recursive -s 20180830_PAD01151/data/basecalled --fast5_out --flowcell FLO-PRO002 --kit SQK-LSK109
 ```
+
+(**Interesting fact**: You have just started up a machine learning algorithm. Guppy, alongside almost all current nanopore basecallers have a neural network at their core)
+
+## 4.i. A comment about basecallers
+
+As previously mentioned many basecallers are available.
+
+The main performance marker of a basecaller that we care about is the overall Assembly Identity (how much a final alignment matches the reference).
+
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/qc.basecaller_comparison.png" alt="img_2" class="inline"/>
