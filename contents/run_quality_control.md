@@ -2,9 +2,9 @@
 
 ## The run completed successfully - so now what?
 
-What you need to understand: 1) signal to sequence workflow 2) run directory structure 3) raw "fast5" data 4) basecalling 5) fastq 6) summary reports created
+What you need to understand: 1\) signal to sequence workflow 2\) run directory structure 3\) raw "fast5" data 4\) basecalling 5\) fastq 6\) summary reports created
 
-Learn to: 1) take a run summary file and extract QC data 2) interpret this data
+Learn to: 1\) take a run summary file and extract QC data 2\) interpret this data
 
 ## Step 1 - The run directory strucutre
 
