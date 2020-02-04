@@ -42,7 +42,7 @@ After this course you should be able to:
 
 1. [Introduction to ONT](http://who-blackbird.github.io/contents/introduction_to_ONT.md)
 2. Sample preparation
-3. [Quality control](http://who-blackbird.github.io/contents/introduction_to_ONT.md)
+3. [Quality control](http://who-blackbird.github.io/contents/quality_control.md)
 4. [Alignment](http://who-blackbird.github.io/contents/alignment)
 5. [Variant calling](http://who-blackbird.github.io/contents/variant-calling)
 6. Haplotype phasing
