@@ -27,17 +27,15 @@ ref=~/Course_Materials/nanopore_practical/data/reference_genome/HCov-229E.fasta
 
 ## Data
 
-The data we will be using is from [NA12878](http://github.com/nanopore-wgs-consortium/NA12878/blob/master/Genome.md) human genome reference standard on the Oxford Nanopore MinION using 1D ligation kits (450 bp/s) and R9.4 chemistry (FLO-MIN106).
-
-We have already prepared a subset of specific regions of NA12878 genome in a FASTQ file. [FASTQ](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2847217) format is a text-based format for storing both a biological sequence and its corresponding quality scores.
-
-<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/fastq.png" alt="img_1" class="inline"/>
+The data we will be using is from the coronavirus [(HCoV)-229E](http://www.ncbi.nlm.nih.gov/pubmed/?term=Viehweger+coronavirus), a member of the genus *Alphacoronavirus*, with a genome size of ~27,300nt. Sequencing was performed with Oxford Nanopore MinION using the DRS protocol (SQK-RNA--1) and R9.4 chemistry. Fast5 and Fastq files can be found [here](https://osf.io/up7b4/).
 
 A FASTQ file normally uses four lines per sequence: 
  1) Begins with a ‘@’ and is followed by a sequence identifier 
  2) Is the raw sequence letters
  3) Begins with a ‘+’ character 
  4) Encodes the quality values for the sequence in Line 2
+ 
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/fastq.png" alt="img_1" class="inline"/>
 
 You can visualize the FASTQ file typing:
 
