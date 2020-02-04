@@ -1,12 +1,61 @@
 # 4. Alignment
 
-## Working directory
+In this section we will cover:
+
+1. Data
+2. Set up your working directory
+3. Reads QC
+4. Alignment
+5. Alignemnt QC
+6. Alignment visualisation
+
+You will learn to:
+- Take the basecalled sequences in FASTQ format and align them to a genome of reference.
+- Perform quality control and visualise the alignment.
+
+## 1. Data
+
+The data we will be using is from Human Coronavirus 229E (HCoV-229E), one of the first coronavirus strains being described, with a genome size of ~27,300nt.
+
+In [this](http://www.ncbi.nlm.nih.gov/pubmed/?term=Viehweger+coronavirus) study, RNA sequencing was performed from Huh7 cells infected with serially passaged recombinant human coronaviruses, that we will refer to as:
+
+* WT RNA (wild-type HCoV-229E)
+* SL2 RNA (pool of recombinant virus, with the stem-loop structrue (SL2) in the 5'UTR replaced with the equivalent SL2 element from SARS-CoV and SARS-BCoV)
+
+Sequencing was performed with Oxford Nanopore MinION using the Direct RNA Sequencing protocol (SQK-RNA-1) and R9.4 chemistry. The source for the original FAST5 and FASTQ files can be found [here](https://osf.io/up7b4/).
+
+In this practical we will take these FASTQ files and align them to the consensus reference genome of HCov-229E ([NC_002645.1](https://www.ncbi.nlm.nih.gov/nuccore/NC_002645.1?report=genbank)). Then, we will assess the quality of the alignment and will visualise it.
+
+First of all, let's explore the FASTQ files!
+
+A FASTQ file normally uses four lines per sequence: 
+ 1) Begins with a '@' and is followed by a sequence identifier 
+ 2) Is the raw sequence letters
+ 3) Begins with a '+' character 
+ 4) Encodes the quality values for the sequence in Line 2
+ 
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/fastq.png" alt="img_1" class="inline"/>
+
+To visualise the WT FASTQ file, you can type:
+
+```
+less -S ~/Course_Materials/nanopore_practical/data/Viehweger_Jena/minion/fastq/2017-09-05_coronavirus_WT.rna.fastq.gz
+```
+
+and the SL2:
+
+```
+less -S ~/Course_Materials/nanopore_practical/data/Viehweger_Jena/minion/fastq/2017-09-29_coronavirus_SL2.rna.fastq.gz
+```
+
+## 2. Set up your working directory
 
 Open your terminal, and go to your working directory, 
 
 ```
 cd ~/Course_Materials/nanopore_practical/wd
 ```
+
 and create the following directory structure:
 
 ```
@@ -16,34 +65,7 @@ mkdir variant_calling
 mkdir annotation
 ```
 
-## Variables
-
-First, define your variables:
-
-```
-fastq=~/Course_Materials/nanopore_practical/data/Viehweger_Jena/minion/fastq/2017-09-29_coronavirus_SL2.rna.fastq.gz
-ref=~/Course_Materials/nanopore_practical/data/reference_genome/HCov-229E.fasta
-```
-
-## Data
-
-The data we will be using is from the coronavirus [(HCoV)-229E](http://www.ncbi.nlm.nih.gov/pubmed/?term=Viehweger+coronavirus), a member of the genus *Alphacoronavirus*, with a genome size of ~27,300nt. Sequencing was performed with Oxford Nanopore MinION using the DRS protocol (SQK-RNA--1) and R9.4 chemistry. Fast5 and Fastq files can be found [here](https://osf.io/up7b4/).
-
-A FASTQ file normally uses four lines per sequence: 
- 1) Begins with a ‘@’ and is followed by a sequence identifier 
- 2) Is the raw sequence letters
- 3) Begins with a ‘+’ character 
- 4) Encodes the quality values for the sequence in Line 2
- 
-<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/fastq.png" alt="img_1" class="inline"/>
-
-You can visualize the FASTQ file typing:
-
-```
-less -S $fastq
-```
-
-## Reads QC
+## 2. Reads QC
 
 First we will calculate how many reads we have:
 
@@ -98,6 +120,8 @@ Multiple algorithms have been developed to align long reads to a genome of refer
 Here we will use minimap2 to map the reads to the genome of reference, and convert the SAM output to BAM format.
 
 ```
+ref=~/Course_Materials/nanopore_practical/data/reference_genome/HCov-229E.fasta
+
 minimap2 -x map-ont --MD -a $ref $fastq > alignment/SL2_CoV.sam
 samtools view alignment/SL2_CoV.sam -O BAM -o alignment/SL2_CoV.bam
 ```
