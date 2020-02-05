@@ -46,7 +46,7 @@ After this course you should be able to:
 4. [Alignment](http://who-blackbird.github.io/contents/alignment)
 5. [Variant calling](http://who-blackbird.github.io/contents/variant-calling)
 6. Haplotype phasing
-7. Methylation
+7. [Methylation](http://who-blackbird.github.io/contents/methylation.md)
 
 # Registration
 
