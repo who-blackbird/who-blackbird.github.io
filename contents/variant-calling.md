@@ -1,15 +1,26 @@
 # 5. Variant calling
 
-## SNV/indel calling
+In this section we will cover:
+
+* [SNVcalling](#snvcalling)
+* [SVcalling](#svcalling)
+
+You will learn to:
+
+- Call SNVs/indels and SVs from nanopore data
+
+## SNVcalling
 
 Variants are called and stored in [VCF](http://samtools.github.io/hts-specs/VCFv4.2.pdf) format. This contains a header, and then data lines each containing information about a position in the genome.
 
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/vcf.png" alt="img_3" class="inline"/>
 
-## SV calling
+In this section we will identify SNVs/indels in both WT and SL2 samples using [Longshot](https://github.com/pjedge/longshot)
 
-Currently, there are different algorithms for calling SVs from long-read sequencing data, including:
--	[Sniffles](http://github.com/fritzsedlazeck/Sniffles): best used with NGMLR. 
+## SVcalling
+
+Algorithms for calling SVs from long-read sequencing data include:
+-	[Sniffles](http://github.com/fritzsedlazeck/Sniffles): best used with minimap2 or NGMLR. 
 -	[NanoSV](http://github.com/philres/ngmlr): best used with LAST.
 
 Since we used minimap2 for the alignment, now we will use sniffles for calling structural variants.
