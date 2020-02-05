@@ -51,7 +51,7 @@ less -S ~/Course_Materials/nanopore_practical/data/fastq/2017-09-29_coronavirus_
 
 ## WorkingDirectory
 
-First we will set up the working directory where we will do the analysis. Open your terminal, go to 
+Now, we will set up the working directory where we will do the analysis. Open your terminal, go to 
 
 ```
 cd ~/Course_Materials/nanopore_practical/wd
@@ -68,27 +68,46 @@ mkdir annotation
 
 ## ReadsQC
 
-We will now calculate how many reads we have in the FASTQ files:
+There are many approaches to assess the quality of the reads. For example, you can explore the:
+
+- Number of reads
+- Read lenght and quality distrubutions, including mean and median 
+- Read length N50
+
+For that we will use [NanoStat](https://github.com/wdecoster/nanostat). This calculates various statistics from a long read sequencing dataset in FASTQ, BAM or albacore sequencing summary format.
+
+From your wd, run
 
 ```
-awk '{s++}END{print s/4}' ~/Course_Materials/nanopore_practical/data/fastq/WT_CoV.fastq.gz
-awk '{s++}END{print s/4}' ~/Course_Materials/nanopore_practical/data/fastq/SL2_CoV.fastq.gz
+NanoStat --fastq ~/Course_Materials/nanopore_practical/data/fastq/WT_CoV.fastq.gz > WT_fastq_nanostats.txt
+NanoStat --fastq ~/Course_Materials/nanopore_practical/data/fastq/SL2_CoV.fastq.gz > SL2_fastq_nanostats.txt
 ```
 
-You can then use awk to obtain the read length for each read:
+- What are the mean and median read length and quality for the WT and SL2 samples?
+
+However, you may want to run your customised scripts, to answer your own questions... Here you have some ideas!
+
+For example, to calculate how many reads we have in the FASTQ files you can use `awk`:
 
 ```
-awk '{if(NR%4==2) print length($1)}' ~/Course_Materials/nanopore_practical/data/fastq/WT_CoV.fastq.gz > stats/WT_read_length.txt
-awk '{if(NR%4==2) print length($1)}' ~/Course_Materials/nanopore_practical/data/fastq/SL2_CoV.fastq.gz > stats/SL2_read_length.txt
+zcat ~/Course_Materials/nanopore_practical/data/fastq/WT_CoV.fastq.gz | awk '{s++}END{print s/4}' 
+zcat ~/Course_Materials/nanopore_practical/data/fastq/SL2_CoV.fastq.gz | awk '{s++}END{print s/4}'
 ```
 
-And look at the read length distribution. For that, you can start R from the command-line:
+As well as to obtain the read length for each read:
+
+```
+zcat ~/Course_Materials/nanopore_practical/data/fastq/WT_CoV.fastq.gz  | awk '{if(NR%4==2) print length($1)}' > stats/WT_read_length.txt
+zcat ~/Course_Materials/nanopore_practical/data/fastq/SL2_CoV.fastq.gz | awk '{if(NR%4==2) print length($1)}' > stats/SL2_read_length.txt
+```
+
+Then you can look at the read length distribution. For that, you can start R from the command-line:
 
 ```
 R
 ```
 
-and then, type the following:
+and type the following:
 
 ```
 #Load your libraries
@@ -116,6 +135,11 @@ For quitting R, just type:
 ```
 quit()
 ```
+
+
+
+
+
 
 ## Alignment
 
