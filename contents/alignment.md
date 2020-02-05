@@ -2,12 +2,12 @@
 
 In this section we will cover:
 
-1. Data
-2. Set up your working directory
-3. Reads QC
-4. Alignment
-5. Alignemnt QC
-6. Alignment visualisation
+* [Data](#data)
+* [Set up your working directory](#wd)
+* [Reads QC](#readsqc)
+* [Alignment](#alignment)
+* [Alignemnt QC](#alignmentqc)
+* [Alignment visualisation](#visualisation)
 
 You will learn to:
 - Take the basecalled sequences in FASTQ format and align them to a genome of reference
