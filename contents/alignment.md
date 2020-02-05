@@ -68,26 +68,22 @@ mkdir annotation
 
 ## ReadsQC
 
-There are many approaches to assess the quality of the reads. For example, you can explore the:
+There are many approaches to assess the quality of the reads. Here we will use [NanoStat](https://github.com/wdecoster/nanostat). This calculates various statistics from a long read sequencing dataset in FASTQ, BAM or albacore sequencing summary format.
 
-- Number of reads
-- Read lenght and quality distrubutions, including mean and median 
-- Read length N50
+For FASTQ files, it provides information for the number of reads, the read lenght and quality distrubutions (including mean and median) and the read length N50.
 
-For that we will use [NanoStat](https://github.com/wdecoster/nanostat). This calculates various statistics from a long read sequencing dataset in FASTQ, BAM or albacore sequencing summary format.
-
-From your wd, run
+From your wd, run:
 
 ```
-NanoStat --fastq ~/Course_Materials/nanopore_practical/data/fastq/WT_CoV.fastq.gz > WT_fastq_nanostats.txt
-NanoStat --fastq ~/Course_Materials/nanopore_practical/data/fastq/SL2_CoV.fastq.gz > SL2_fastq_nanostats.txt
+NanoStat --fastq ~/Course_Materials/nanopore_practical/data/fastq/WT_CoV.fastq.gz > stats/WT_fastq_nanostats.txt
+NanoStat --fastq ~/Course_Materials/nanopore_practical/data/fastq/SL2_CoV.fastq.gz > stats/SL2_fastq_nanostats.txt
 ```
 
 - What are the mean and median read length and quality for the WT and SL2 samples?
 
 However, you may want to run your customised scripts, to answer your own questions... Here you have some ideas!
 
-For example, to calculate how many reads we have in the FASTQ files you can use `awk`:
+For example, to calculate how many reads we have in the FASTQ files you can also use `awk`:
 
 ```
 zcat ~/Course_Materials/nanopore_practical/data/fastq/WT_CoV.fastq.gz | awk '{s++}END{print s/4}' 
@@ -124,10 +120,14 @@ SL2readLength$sample <- "SL2"
 #Merge the tables
 readLength <- rbind(WTreadLength, SL2readLength)
 
+#Reorder the groups
+readLength$sample <- factor(readLength$sample, levels = c('WT', 'SL2'))
+
 #Make the plot
-ggplot(data=readLength, aes(length, fill = sample)) + 
-    geom_histogram(color="#e9ecef", position = 'dodge', binwidth = 10) +
-    scale_fill_manual(values=c("#69b3a2", "#404080"))
+p1 <- ggplot(data=readLength, aes(length, fill = sample)) + 
+    geom_histogram(position = 'identity', alpha = 0.6, binwidth = 10) +
+    scale_x_continuous(breaks = seq(0, max(readLength$length), 1000))
+p1
 ```
 
 For quitting R, just type:
@@ -135,11 +135,6 @@ For quitting R, just type:
 ```
 quit()
 ```
-
-
-
-
-
 
 ## Alignment
 
@@ -160,29 +155,30 @@ Multiple algorithms have been developed to align long reads to a genome of refer
 -	Graphmap: [http://github.com/isovic/graphmap](http://github.com/isovic/graphmap)
 -	bwa mem -x l ont2d: [http://github.com/lh3/bwa](http://github.com/lh3/bwa)
 
-Here we will use **minimap2** to map the reads to the genome of reference. Then we will convert the SAM output to BAM format and sort it by mapping coordinate.
+Here we will use **minimap2** to map the reads to the genome of reference. We will start with the WT sample. Then we will convert the SAM output to BAM format and sort it by mapping coordinate.
 
 ```
 ##Align to the ref using minimap
-minimap2 -x map-ont --MD -u n -k 14 -a ~/Course_Materials/nanopore_practical/data/reference_genome/HCov-229E.fasta ~/Course_Materials/nanopore_practical/data/fastq/WT_CoV.fastq.gz > alignment/SL2_CoV.sam
+minimap2 -x map-ont --MD -u n -k 14 -a ~/Course_Materials/nanopore_practical/data/reference_genome/HCov-229E.fasta ~/Course_Materials/nanopore_practical/data/fastq/WT_CoV.fastq.gz > alignment/WT_CoV.sam
 
 ##Sort and output as BAM
-samtools sort alignment/SL2_CoV.sam -O BAM -o alignment/SL2_CoV.sort.bam
+samtools sort alignment/WT_CoV.sam -O BAM -o alignment/WT_CoV.sort.bam
 ```
 
-***Alternatively***, you can run these two steps using only one command line:
+***Alternatively***, you can run these two steps using only one command line. Below is the alignment for the SL2 sample:
 
 ```
-minimap2 -x map-ont --MD -u n -k 14 -a ~/Course_Materials/nanopore_practical/data/reference_genome/HCov-229E.fasta ~/Course_Materials/nanopore_practical/data/fastq/WT_CoV.fastq.gz | samtools sort - -O BAM -o alignment/SL2_CoV.sort.bam
+minimap2 -x map-ont --MD -u n -k 14 -a ~/Course_Materials/nanopore_practical/data/reference_genome/HCov-229E.fasta ~/Course_Materials/nanopore_practical/data/fastq/SL2_CoV.fastq.gz | samtools sort - -O BAM -o alignment/SL2_CoV.sort.bam
 ```
 
-Finally we will index the BAM file to run samtools subtools later.
+Finally we will index the BAM files to run samtools subtools later.
 
 ```
 samtools index alignment/SL2_CoV.sort.bam
+samtools index alignment/WT_CoV.sort.bam
 ```
 
-To visualise the BAM file:
+To visualise a BAM file:
 
 ```
 samtools view alignment/SL2_CoV.sort.bam | less -S
@@ -190,61 +186,90 @@ samtools view alignment/SL2_CoV.sort.bam | less -S
 
 ## AlignmentQC
 
-As a first QC, we can run samtools stats:
+As a first QC, we can run NanoStat on the BAM files:
 
 ```
+NanoStat --bam alignment/WT_CoV.sort.bam > stats/WT_bam_nanostat.txt
+NanoStat --bam alignment/SL2_CoV.sort.bam > stats/SL2_bam_nanostat.txt
+```
+Compare the
+- Mean and median aligned read length
+- Number of reads aligned
+- Read length N50
+- Quality cutoffs
+- Top highest quality and longest reads
+
+
+Another option is to run samtools stats:
+
+```
+samtools stats alignment/WT_CoV.sort.bam > stats/WT_samtools_stats.txt
 samtools stats alignment/SL2_CoV.sort.bam > stats/SL2_samtools_stats.txt
 ```
 
--	How many reads were mapped?
--	Which was the average length of the reads? And the maximum read length?
+-	How many reads were mapped and unmapped? Why do you think is that?
 
-Additionally, NanoStat can also be used:
-
-```
-NanoStat --bam alignment/SL2_CoV.sort.bam > stats/SL2_nanostat_stats.txt
-```
-
-Now we will get the coverage per base using samtools depth.
+To obtain the coverage per base, we can use `samtools depth`:
 
 ```
-samtools depth alignment/SL2_CoV.sort.bam > stats/coverage.txt
+samtools depth alignment/WT_CoV.sort.bam > stats/WT_samtools_depth.txt
+samtools depth alignment/SL2_CoV.sort.bam > stats/SL2_samtools_depth.txt
 ```
 
-And look at the coverage of the SL2 sample across the entire reference genome. For that, you can start R from the command-line:
+And look at the coverage of both samples across the entire reference genome. For that, you can start R from the command-line:
 
 ```
 R
 ```
 
 and then, type the following:
+
 ```
+#Load your libraries
 library(ggplot2)
-coverage <-  read.table("stats/coverage.txt", header=FALSE, col.names = c("chrom", "pos", "cov"))
-p1 <- ggplot(coverage, aes(x = pos, y = cov)) + 
-      geom_line() + 
-      scale_y_log10()
-p1
+
+#Read your data
+WTcov <- read.table("stats/WT_samtools_depth.txt", header=FALSE, col.names = c("chrom", "pos", "cov"))
+SL2cov <- read.table("stats/SL2_samtools_depth.txt", header=FALSE, col.names = c("chrom", "pos", "cov"))
+
+
+#Add a column for the sample id
+WTcov$sample <- "WT"
+SL2cov$sample <- "SL2"
+
+#Merge the tables
+coverage <- rbind(WTcov, SL2cov)
+
+#Make the plot
+p2 <- ggplot(data=coverage, aes(x = pos, y = cov, colour = sample)) + 
+    geom_line() + 
+    scale_y_log10() +
+    scale_x_continuous(breaks = seq(0, max(coverage$pos), 1000))
+p2
 ```
 
 Additionally, you can also look at the coverage distribution in R:
 
 ```
-cov_percent <- data.frame(  "cov" = seq(1,max(coverage$cov)) 
-                          , "percent" = sapply(seq(1,max(coverage$cov)), function(x) nrow(coverage[coverage$cov >= x,])/nrow(coverage)))
-p2 <- ggplot(cov_percent, aes(x = cov, y = percent)) + 
-      geom_line() + 
-      scale_x_continuous(breaks=seq(0,max(coverage$cov), 1000)) + 
-      xlab("Coverage") + 
-      ylab("Percentage of bases")
-p2
+percent_cov <- coverage %>% 
+    group_by(sample) %>% 
+    mutate(percent = (map_int(cov, ~ sum(cov >= .x)))/27317) %>% 
+    select(sample, cov, percent) %>% 
+    unique
+    
+#Make the plot
+p3 <- ggplot(data = percent_cov, aes(x = cov, y = percent*100, colour = sample)) + 
+    geom_line() + 
+    scale_x_continuous(breaks=seq(0,max(coverage$cov), 1000)) + 
+    xlab("Coverage") + 
+    ylab("Percentage of bases")
+p3
 ```
 
-You can also add a vertical line to the previous plot intercepting the median coverage:
+You can also add a vertical line to the previous plot intercepting with a minimum coverage of (let's say) 100x:
 
 ```
-p2 + geom_vline(xintercept=median(coverage$cov), colour = "red") +
-     geom_text(aes(y = .5, x = 700, label = median(coverage$cov), colour = "red"))
+p3 + geom_vline(xintercept = 100, colour = "red")
 ```
 
 ## Visualisation
@@ -254,5 +279,3 @@ To inspect the alignment, we will use [Integrative Genomics Viewer](https://soft
 Open IGV and load the HCov-229E.fasta reference genome by selecting Genomes>Load from File or Genomes>Load from URL. The new genome will be added to the drop-down menu, and also loaded and displayed in the IGV window.
 
 Then, load your BAM file located in alignment/SL2_CoV.sort.bam
-
-
