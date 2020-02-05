@@ -3,11 +3,11 @@
 In this section we will cover:
 
 * [Data](#Data)
-* [Set up your working directory](#Set up your working directory)
-* [Reads QC](#Reads QC)
+* [WorkingDirectory](#WorkingDirectory)
+* [ReadsQC](#ReadsQC)
 * [Alignment](#Alignment)
-* [Alignemnt QC](#Alignemnt QC)
-* [Alignment visualisation](#Alignment visualisation)
+* [AlignemntQC](#AlignemntQC)
+* [Visualisation](#Visualisation)
 
 You will learn to:
 - Take the basecalled sequences in FASTQ format and align them to a genome of reference
@@ -49,7 +49,7 @@ and the SL2:
 less -S ~/Course_Materials/nanopore_practical/data/fastq/2017-09-29_coronavirus_SL2.rna.fastq.gz
 ```
 
-## 2. Set up your working directory
+## 2. Working directory
 
 First we will set up the working directory where we will do the analysis. Open your terminal, go to 
 
