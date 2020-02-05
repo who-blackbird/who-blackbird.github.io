@@ -49,7 +49,7 @@ and the SL2:
 less -S ~/Course_Materials/nanopore_practical/data/fastq/2017-09-29_coronavirus_SL2.rna.fastq.gz
 ```
 
-## Working Directory
+## WorkingDirectory
 
 First we will set up the working directory where we will do the analysis. Open your terminal, go to 
 
