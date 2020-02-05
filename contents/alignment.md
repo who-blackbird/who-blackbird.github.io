@@ -13,7 +13,7 @@ You will learn to:
 - Take the basecalled sequences in FASTQ format and align them to a genome of reference
 - Perform quality control and visualise the alignment
 
-## 1. Data
+## Data
 
 The data we will be using is from Human Coronavirus 229E (HCoV-229E), one of the first coronavirus strains being described, with a genome size of ~27,300nt.
 
@@ -49,7 +49,7 @@ and the SL2:
 less -S ~/Course_Materials/nanopore_practical/data/fastq/2017-09-29_coronavirus_SL2.rna.fastq.gz
 ```
 
-## 2. Working directory
+## Working Directory
 
 First we will set up the working directory where we will do the analysis. Open your terminal, go to 
 
@@ -66,7 +66,7 @@ mkdir variant_calling
 mkdir annotation
 ```
 
-## 2. Reads QC
+## ReadsQC
 
 We will now calculate how many reads we have in the FASTQ files:
 
@@ -164,7 +164,7 @@ To visualise the BAM file:
 samtools view alignment/SL2_CoV.sort.bam | less -S
 ```
 
-## Alignment QC
+## AlignmentQC
 
 As a first QC, we can run samtools stats:
 
@@ -223,7 +223,7 @@ p2 + geom_vline(xintercept=median(coverage$cov), colour = "red") +
      geom_text(aes(y = .5, x = 700, label = median(coverage$cov), colour = "red"))
 ```
 
-## Alignment visualisation
+## Visualisation
 
 To inspect the alignment, we will use [Integrative Genomics Viewer](https://software.broadinstitute.org/software/igv/).
 
