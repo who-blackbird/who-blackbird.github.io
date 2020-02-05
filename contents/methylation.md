@@ -20,10 +20,10 @@ Deepsignal is quite straightforward tool. However, it needs to have some .... :
 
 #### Call 5mC modification
 
-```{include=TRUE, echo=TRUE}
+```{}
 deepsignal call_mods --input_path res/fast5_files/ --model_path res/model.CpG.R9.4_1D.human_hx1.bn17.sn360/bn_17.sn_360.epoch_7.ckpt --result_file Met_deepsignal.tsv --reference_path res/reference.fasta --corrected_group RawGenomeCorrected_000 --nproc 10 --is_gpu no
 ```
-estimate running time: 5-10 min
+
 
 This command call Cytosin modification straight from the Fast5 data. The output should be something like:
 
