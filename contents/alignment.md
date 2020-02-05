@@ -6,7 +6,7 @@ In this section we will cover:
 * [WorkingDirectory](#WorkingDirectory)
 * [ReadsQC](#ReadsQC)
 * [Alignment](#Alignment)
-* [AlignemntQC](#AlignemntQC)
+* [AlignmentQC](#AlignmentQC)
 * [Visualisation](#Visualisation)
 
 You will learn to:
