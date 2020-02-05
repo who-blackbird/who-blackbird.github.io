@@ -1,17 +1,3 @@
----
-title: "Oxford Nanopore Methylation Course"
-author: "Luca Stefanucci - ls760@cam.ac.uk"
-date: "14 Feb 2020"
-output:
-html_document: default
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
-
-***
-
 #  Oxford Nanopore - day 2 - Methylation
 
 #### [Methylation - DeepSignal](#Methylation-DeepSignal) <br>
