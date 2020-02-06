@@ -46,10 +46,10 @@ bcftools isec -p isec long_reads-SNVs.vcf.gz ../../data/day2/variant_calling/sho
 
 This will creat a folder named isec with the following files:
 
-isec/0000.vcf   for records private to the long_reads_VCF
-isec/0001.vcf   for records private to the short_reads_VCF
-isec/0002.vcf   for records from long_reads_VCF shared by both
-isec/0003.vcf   for records from short_reads_VCF shared by both
+* isec/0000.vcf   for records private to the long_reads_VCF
+* isec/0001.vcf   for records private to the short_reads_VCF
+* isec/0002.vcf   for records from long_reads_VCF shared by both
+* isec/0003.vcf   for records from short_reads_VCF shared by both
 
 - How many SNVs have been called by both technologies?
 - How many SNVs have been missed by short and/or long read sequencing?
