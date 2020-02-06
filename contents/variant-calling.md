@@ -7,7 +7,8 @@ In this section we will cover:
 
 You will learn to:
 
-- Call SNVs/indels and SVs from nanopore data
+- Call SNVs from nanopore data and compare them to short-read sequencing SNVs
+- Call SVs and interpret the results
 
 ## SNVcalling
 
@@ -15,9 +16,43 @@ Variants are called and stored in [VCF](http://samtools.github.io/hts-specs/VCFv
 
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/vcf.png" alt="img_3" class="inline"/>
 
-In this section we will identify SNVs/indels using [Longshot](https://github.com/pjedge/longshot)
+In this section we will identify SNVs from long-read sequencing data using [Longshot](https://github.com/pjedge/longshot).
 
-SNV - illumina comparison
+Go to your wd:
+
+```
+cd ~/Course_Materials/nanopore_practical/wd
+```
+
+And call SNVs in the nanopore aligment example as below:
+
+```
+longshot --bam ../../data/day2/alignment/long_reads.bam --ref ../../data/day2/reference_genome/Homo_sapiens.GRCh38.dna.fasta --out long_reads-SNVs.vcf
+```
+
+Compress and index the VCF file:
+
+
+```
+bgzip long_reads-SNVs.vcf
+tabix -p vcf long_reads-SNVs.vcf.gz
+```
+
+Now you can compare the instersection between both using bcftools:
+
+```
+bcftools isec -p isec long_reads-SNVs.vcf.gz ../../data/day2/variant_calling/short_reads-SNVs.vcf.gz
+```
+
+This will creat a folder named isec with the following files:
+
+isec/0000.vcf   for records private to the long_reads_VCF
+isec/0001.vcf   for records private to the short_reads_VCF
+isec/0002.vcf   for records from long_reads_VCF shared by both
+isec/0003.vcf   for records from short_reads_VCF shared by both
+
+- How many SNVs have been called by both technologies?
+- How many SNVs have been missed by short and/or long read sequencing?
 
 ## SVcalling
 
@@ -28,13 +63,13 @@ Algorithms for calling SVs from long-read sequencing data include:
 Since we used minimap2 for the alignment, now we will use sniffles for calling structural variants.
 
 ```
-sniffles -m alignment/NA12878.ROI.sort.bam -v variant_calling/NA12878.ROI.vcf
+sniffles -m ~/Course_Materials/nanopore_practical/data/day2/alignment/long_reads.bam -v variant_calling/long_reads_SVs.vcf
 ```
 
 If you want to look at high quality SVs, you can change the -s parameter to 20, where s is the minimum number of reads that support a SV (by default is 10).
 
 ```
-sniffles -m alignment/NA12878.ROI.sort.bam -v variant_calling/NA12878.ROI.s20.vcf -s 20
+sniffles -m ~/Course_Materials/nanopore_practical/data/day2/alignment/long_reads.bam -v variant_calling/long_reads_SVs_s20.vcf -s 20
 ```
 
 The information that is provided in sniffles’s output can be found in:
@@ -43,13 +78,17 @@ The information that is provided in sniffles’s output can be found in:
 To know how many SVs have been called, we will run:
 
 ```
-bcftools view -H variant_calling/NA12878.ROI.vcf | wc -l
+bcftools view -H variant_calling/long_reads_SVs.vcf | wc -l
 ```
 
-Finally, you can convert the VCF to a tab format:
+To annotate the VCF, 
+
+.....
+
+You can also convert the VCF to a tab format:
 
 ```
-../scripts/vcf2tab.py variant_calling/NA12878.ROI.vcf
+../scripts/vcf2tab.py variant_calling/long_reads_SVs.vcf
 ```
 
 and inspect the deletions in IGV.
