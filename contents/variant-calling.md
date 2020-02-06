@@ -15,7 +15,9 @@ Variants are called and stored in [VCF](http://samtools.github.io/hts-specs/VCFv
 
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/vcf.png" alt="img_3" class="inline"/>
 
-In this section we will identify SNVs/indels in both WT and SL2 samples using [Longshot](https://github.com/pjedge/longshot)
+In this section we will identify SNVs/indels using [Longshot](https://github.com/pjedge/longshot)
+
+SNV - illumina comparison
 
 ## SVcalling
 
@@ -55,3 +57,20 @@ and inspect the deletions in IGV.
 -	How many deletions are real?
 -	How many SVs breakpoint junctions are within repetitive sequences?
      - For that, you would need to load Repeatmasker from server (File > Load from server > Annotations > Variation and Repeats > Repeat Masker)
+
+## Analysis report
+
+The tutorial document can also be prepared from the Linux command line with the following command.
+
+```
+R --slave -e 'rmarkdown::render("ont_tutorial_sv.Rmd", "html_document")'
+```
+
+## Explore structural variation using IGV
+
+## Make representation of complex SVs using circos
+
+## Snakemake
+
+## References
+
