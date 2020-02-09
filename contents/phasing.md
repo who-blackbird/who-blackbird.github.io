@@ -97,6 +97,7 @@ Now, open the `phasing/sample1_haplotagged.bam` file on IGV.
 
 If we have sequence information coming from our sample relative, we could use them to 
 ```{}
+family_ID, proband_id, paternal_id, maternal_id, sex, phenotype
 FAM_01	EXAMPLE_1	EXAMPLE_2	EXAMPLE_3	1	unknown
 ```
 
