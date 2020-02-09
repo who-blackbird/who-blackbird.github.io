@@ -45,7 +45,7 @@ After this course you should be able to:
 3. [Quality control](http://who-blackbird.github.io/contents/run_quality_control)
 4. [Alignment](http://who-blackbird.github.io/contents/alignment)
 5. [Variant calling](http://who-blackbird.github.io/contents/variant-calling)
-6. Haplotype phasing
+6. [Haplotype phasing](http://who-blackbird.github.io/contents/ONT_course_phasing_Feb2020)
 7. [Methylation](http://who-blackbird.github.io/contents/methylation)
 
 # Registration
