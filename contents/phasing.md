@@ -4,9 +4,9 @@
 #### [Phasing - Visualization](#Phasing-Visualization) <br>
 #### [Phasing - Pedigrees](#Phasing-Pedigrees)
 
-N.B.: Note these scripts use `path/to/course/` as working directory
-
 ***
+
+N.B.: Note these scripts use `path/to/course/` as working directory
 
 ## Phasing - WhatsHap {#Phasing-WA}
 
@@ -36,6 +36,7 @@ bcftools query -l phasing/res/sample1_short_reads.vcf.gz
 ```
 
 WhatsHap was able to discriminate the allele for 4601 variant as it printed out in the report (see `Found 19244 reads covering 4601 variants`). If we now look at SNVs and how they are distributed on the alleles we should that the command has divided them on allele 1 and allele 2 (for the one where this was possible):
+
 ```{}
 # Before the phasing
 bcftools view -H phasing/res/sample1_short_reads.vcf.gz | grep -c "0/1"
@@ -50,7 +51,8 @@ bcftools view -H phasing/sample1_phased.vcf | grep -c "1/0"
 bcftools view -H phasing/sample1_phased.vcf | grep -c "1|0"
 ```
 
-The different genotype separator (i.e. `|` or `/`) is because different variant caller use different separators, but both are equally good in the vcf notation. Please note that now the SNVs and indel are roughly 50% on allele 1 (a.k.a. 1|0) and 50% on allele 2 (a.k.a 0|1), while before the pahsing the were mostly on allele 2.
+The different genotype separator (i.e. `|` or `/`) is because different variant caller use different separators, but both are equally good in the vcf notation. Please note that now the SNVs and indel are roughly 50% on allele 1 (a.k.a. `1|0`) and 50% on allele 2 (a.k.a `0|1`), while before the pahsing the were mostly on allele 2.
+
 
 ## Phasing - Visualization {#Phasing-Visualization}
 
@@ -64,7 +66,7 @@ whatshap stats --gtf=phasing/sample1_phased.gtf phasing/sample1_phased.vcf
 
 This command will print out some stats about the haplotype blocks called in the previous command and it will also create a gtf file that we can load on IGV. Open the IGV browser and load the `phasing/sample1_phased.gtf` file you just created
 
-Go on chr20;40000000-45000000 to look at the subset we are using.
+Go on chr20:40000000-45000000 to look at the subset we are using.
 
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/HaploBlocks.png" alt="img_1" class="inline"/>
 
