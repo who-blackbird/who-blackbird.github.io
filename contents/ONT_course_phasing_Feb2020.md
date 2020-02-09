@@ -1,17 +1,3 @@
----
-title: "Oxford Nanopore Course Phasing "
-author: "Luca Stefanucci - ls760@cam.ac.uk"
-date: "14 Feb 2020"
-output:
-html_document: default
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
-
-***
-
 #  Oxford Nanopore - day 2 - Phasing
 
 #### [Phasing - WhatsHap](#Phasing-WA) <br>
