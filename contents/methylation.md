@@ -5,9 +5,9 @@
 #### [Methylation - Comparison](#Methylation-Comparison) <br>
 #### [Methylation - Visualization](#Methylation-Visualization) <br>
 
-N.B.: Note these scripts use `course/` as working directory
-
 ***
+
+N.B.: Note these scripts use `course/` as working directory
 
 ## Methylation - DeepSignal {#Methylation-DeepSignal}
 
@@ -27,8 +27,7 @@ deepsignal call_mods --input_path res/fast5_files/ --model_path res/model.CpG.R9
 
 This command call Cytosin modification straight from the Fast5 data. The output should be something like:
 
-| chromosome | position | strand | pos_in_strand | readname | prob_0 | prob_1 | called_label | k_mer |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+chromosome | position | strand | pos_in_strand | readname | prob_0 | prob_1 | called_label | k_mer 
 
 ```{}
 chr20	5345797	+	5345797	0bd4fa76-db91-4355-9dff-7acabda704cb	t	0.87934494	0.12065502	0	AAAAAAATCGAGAGTTG
