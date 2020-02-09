@@ -10,7 +10,9 @@ N.B.: Note these scripts use `path/to/course/` as working directory
 
 ## Phasing - WhatsHap {#Phasing-WA}
 
-[WhatsHap](https://whatshap.readthedocs.io/en/latest/index.html) is a python languaged based phasing tool. It can phase SNVs and indels, but it does not work on structural variants. It is very easy to use: WhatsHap takes as input a BAM file and a VCF file and returns a second VCF file improved with phasing information. 
+For this practical we are going to use the [WhatsHap tool](https://www.biorxiv.org/content/10.1101/085050v2.full.pdf) based on the homonym algorithm. 
+
+[WhatsHap](https://whatshap.readthedocs.io/en/latest/index.html) is a python languaged based phasing tool. It can phase SNVs and indels, but it does not work on structural variants. WhatsHap is very easy to use: it takes as input a BAM file and a VCF file and returns a second VCF file improved with phasing information. 
 
 BAM and VCF files don't have to be derived from the same set of reads. This is convenient bacause high-quality short reads (such us Illumina reads) can be used for variant calling and then these can be paired to long reads (such us Oxford Nanopore reads) for the phasing. Indeed, the workflow that has just been described is the reccomended one. 
 
