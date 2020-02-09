@@ -120,10 +120,11 @@ whatshap phase --ped phasing/res/PED_ONT.txt -o phasing/pedigree_phased.vcf --re
 
 Once we have phased the pedigree, the output will looks something like this:
 ```{}
-# NB this VCF has been simplified 
-chr20   44705582        rs373596784              AAT     A       0|1 # Alternative allele comes from the mother
-chr20   40003760        rs6071894                G       T       1|0 # Alternative allele comes from the father
-chr20   44928864      	rs57778806;rs796352932	 CAA	   CA,C	 	 1|2 # Both alleles are different from the reference genome, where 1 comes from paternal and 2 from maternal allele
+# NB this VCF file has been simplified 
+CHROM   POS             ID                       REF     ALT      FORMAT    SAMPLE
+chr20   44705582        rs373596784              AAT     A        GT        0|1 # Alternative allele comes from the mother
+chr20   40003760        rs6071894                G       T        GT        1|0 # Alternative allele comes from the father
+chr20   44928864      	rs57778806;rs796352932	 CAA	   CA,C	 	  GT        1|2 # Both alleles are different from the reference genome, where 1 comes from paternal and 2 from maternal allele
 ```
 
 The `paternal_allele | maternal_allele` used in whatshap is a convention started with the 1000 genome project and kept afterwards. 
@@ -131,3 +132,8 @@ The `paternal_allele | maternal_allele` used in whatshap is a convention started
 Open the `phasing/pedigree_phased.vcf` file on IGV and have a look at the vcf file now. It reports the anno
 
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/PedigreePhase.png" alt="img_1" class="inline"/>
+
+## Phasing - Excercise
+
+If you made it this far and you still spare some time, there is a quick exercise you may want to do. For sample2 and sample3 we have VCF and BAM file. However, the bam files are derived from Illumina sequencing. You can try to phase this samples ans cehck the haplotype you get to the one we got for sample1
+

@@ -1,9 +1,9 @@
 #  Oxford Nanopore - day 2 - Methylation
 
-#### [Methylation - DeepSignal](#Methylation-DeepSignal) <br>
-#### [Methylation - Nanopolish](#Methylation-Nanopolish) <br>
-#### [Methylation - Comparison](#Methylation-Comparison) <br>
-#### [Methylation - Visualization](#Methylation-Visualization) <br>
+#### [Methylation - DeepSignal](#Methylation-DeepSignal)
+#### [Methylation - Nanopolish](#Methylation-Nanopolish)
+#### [Methylation - Comparison](#Methylation-Comparison) 
+#### [Methylation - Visualization](#Methylation-Visualization)
 
 ***
 
@@ -21,9 +21,8 @@ Deepsignal is quite straightforward tool. However, it needs to have some .... :
 #### Call 5mC modification
 
 ```{}
-deepsignal call_mods --input_path res/fast5_files/ --model_path res/model.CpG.R9.4_1D.human_hx1.bn17.sn360/bn_17.sn_360.epoch_7.ckpt --result_file Met_deepsignal.tsv --reference_path res/reference.fasta --corrected_group RawGenomeCorrected_000 --nproc 10 --is_gpu no
+deepsignal call_mods --input_path methylation/res/fast5_files/ --model_path methylation/res/model.CpG.R9.4_1D.human_hx1.bn17.sn360/bn_17.sn_360.epoch_7.ckpt --result_file methylation/Met_deepsignal.tsv --reference_path methylation/res/reference.fasta --corrected_group methylation/RawGenomeCorrected_000 --nproc 10 --is_gpu no
 ```
-
 
 This command call Cytosin modification straight from the Fast5 data. The output should be something like:
 
@@ -43,14 +42,13 @@ The deepsignal default setting have 0 as Unmethylated and 1 as Methylated
 #### Call 5mC modification frequency
 
 ```{}
-python3 scripts/call_modification_frequency.py --input_path Met_deepsignal.tsv --result_file Met_frequency_deepsignal.tsv --prob_cf 0.6
+python3 methylation/scripts/call_modification_frequency.py --input_path methylation/Met_deepsignal.tsv --result_file methylation/Met_frequency_deepsignal.tsv --prob_cf 0.6
 ```
 the scripts to call modification frequency comes from the [deepsignal utils](https://github.com/bioinfomaticsCSU/deepsignal/tree/master/scripts)
 
  The frequency script output should look something like:
 
 | chromosome | position | strand | pos_in_strand | prob_0_sum | prob_1_sum | count_modified | count_unmodified | coverage | modification_frequency | k_mer |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 ```{}
 chr20	4991162	-	59453004	0.060	0.940	1	0	1	1.000	GGTGCCACCGCACTCCA
@@ -71,7 +69,7 @@ Yesterday, we learned how to align the data, so we will skip this step and go st
 #### Index fast5 files
 
 ```{}
-nanopolish index -d res/fast5_files/ res/alignment_output.fastq
+nanopolish index -d methylation/res/fast5_files/ methylation/res/alignment_output.fastq
 ```
 
 #### Align and sort fastq files
@@ -79,21 +77,21 @@ nanopolish index -d res/fast5_files/ res/alignment_output.fastq
 ```{}
 # module load samtools
 # Align the reads the the GRCh38 subset
-scripts/minimap2/minimap2 -a -x map-ont res/reference.fasta res/alignment_output.fastq | samtools sort -T tmp -o res/alignment_output_sorted.bam
+methylation/scripts/minimap2/minimap2 -a -x map-ont methylation/res/reference.fasta methylation/res/alignment_output.fastq | samtools sort -T tmp -o methylation/res/alignment_output_sorted.bam
 # Index the sorted output
-samtools index res/alignment_output_sorted.bam
+samtools index methylation/res/alignment_output_sorted.bam
 ```
 
 #### Call 5mC modification
 
 ```{}
-nanopolish call-methylation -t 16 -r res/alignment_output.fastq -b res/alignment_output_sorted.bam -g res/reference.fasta -w "chr20:5,000,000-10,000,000" > Met_nanopolish.tsv
+nanopolish call-methylation -t 16 -r methylation/res/alignment_output.fastq -b methylation/res/alignment_output_sorted.bam -g methylation/res/reference.fasta -w "chr20:5,000,000-10,000,000" > methylation/Met_nanopolish.tsv
 ```
 
 #### Call 5mC modification frequency
 
 ```{}
-scripts/nanopolish/scripts/calculate_methylation_frequency.py Met_nanopolish.tsv > Met_frequency_nanopolish.tsv
+methylation/scripts/nanopolish/scripts/calculate_methylation_frequency.py methylation/Met_nanopolish.tsv > methylation/Met_frequency_nanopolish.tsv
 ```
 
 ## Methylation - Comparison {#Methylation-Comparison}
@@ -101,8 +99,7 @@ scripts/nanopolish/scripts/calculate_methylation_frequency.py Met_nanopolish.tsv
 #### Compare the cytosines that have been identified to be modified or not modified
 
 ```{}
-scripts/compare_met_score.R -d .Met_deepsignal.tsv -n .Met_frequency_nanopolish.tsv -b res/bisulfite.ENCFF835NTC.example.tsv -o Proof_level_score
-
+methylation/scripts/compare_met_score.R -d methylation/Met_deepsignal.tsv -n methylation/Met_frequency_nanopolish.tsv -b methylation/res/bisulfite.ENCFF835NTC.example.tsv -o methylation/methylation_score_comparison
 ```
 
 #### Use the Jaccard index to quantify the modifyed cytosines
