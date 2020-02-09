@@ -48,7 +48,7 @@ the scripts to call modification frequency comes from the [deepsignal utils](htt
 
  The frequency script output should look something like:
 
-| chromosome | position | strand | pos_in_strand | prob_0_sum | prob_1_sum | count_modified | count_unmodified | coverage | modification_frequency | k_mer |
+chromosome | position | strand | pos_in_strand | prob_0_sum | prob_1_sum | count_modified | count_unmodified | coverage | modification_frequency | k_mer
 
 ```{}
 chr20	4991162	-	59453004	0.060	0.940	1	0	1	1.000	GGTGCCACCGCACTCCA
@@ -108,21 +108,21 @@ We are using bedtools to calculate the Jaccard score.
 
 Convert every frqurncy file to bed file (required for bedtools)
 ```{}
-for i in .Met_frequency_*.tsv; do awk --field-separator="\t" '{ if (NR > 1 ) print $1,$2,$2,$(NF-1) }' $i | sort -V | sed 's/ /\t/g' > ${i:1:-3}bedgraph ; done
+for i in methylation/Met_frequency_*.tsv; do awk --field-separator="\t" '{ if (NR > 1 ) print $1,$2,$2,$(NF-1) }' $i | sort -V | sed 's/ /\t/g' > ${i:1:-3}bedgraph ; done
 ```
 
 Calculate the Jaccard score
 ```{}
-bedtools jaccard -a Met_frequency_deepsignal.bed -b res/bisulfite.ENCFF835NTC.example.tsv
-bedtools jaccard -a Met_frequency_nanopolish.bed -b res/bisulfite.ENCFF835NTC.example.tsv
-bedtools jaccard -a Met_frequency_deepsignal.bed -b Met_frequency_nanopolish.bed
+bedtools jaccard -a methylation/Met_frequency_deepsignal.bed -b methylation/res/bisulfite.ENCFF835NTC.example.tsv
+bedtools jaccard -a methylation/Met_frequency_nanopolish.bed -b methylation/res/bisulfite.ENCFF835NTC.example.tsv
+bedtools jaccard -a methylation/Met_frequency_deepsignal.bed -b methylation/Met_frequency_nanopolish.bed
 
 ```
 
 #### Compare the values assigned to the modified or not modified cytosines
 
 ```{}
-scripts/compare_met_regions.R -d .Met_frequency_deepsignal.tsv -n .Met_frequency_nanopolish.tsv -b res/bisulfite.ENCFF835NTC.example.tsv -o Proof_level_script
+methylation/scripts/compare_met_regions.R -d methylation/Met_frequency_deepsignal.tsv -n methylation/Met_frequency_nanopolish.tsv -b methylation/res/bisulfite.ENCFF835NTC.example.tsv -o methylation/methylation_region_comparison
 ```
 
 ## Methylation - Visualization {#Methylation-Visualization}
@@ -130,9 +130,7 @@ scripts/compare_met_regions.R -d .Met_frequency_deepsignal.tsv -n .Met_frequency
 ```{}
 
 ```
-
 convert the `.Met_deepsignal.tsv` file to a bed file with this script and visualise it with the others tracks we have loaded earlier.
-
 ```{}
 
 ```
