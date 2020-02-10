@@ -1,7 +1,7 @@
 #  Oxford Nanopore - day 2 - Phasing
 
-#### [Phasing - WhatsHap](#Phasing-WA) <br>
-#### [Phasing - Visualization](#Phasing-Visualization) <br>
+#### [Phasing - WhatsHap](#Phasing-WA) 
+#### [Phasing - Visualization](#Phasing-Visualization) 
 #### [Phasing - Pedigrees](#Phasing-Pedigrees)
 
 ***
