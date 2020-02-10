@@ -10,15 +10,11 @@ N.B.: Note these scripts use `path/to/course/` as working directory
 
 ## Phasing - WhatsHap {#Phasing-WA}
 
-For this practical we are going to use the [WhatsHap tool](https://www.biorxiv.org/content/10.1101/085050v2.full.pdf) based on the homonym algorithm. 
+For this practical we are going to use the [WhatsHap tool](https://www.biorxiv.org/content/10.1101/085050v2.full.pdf), which is using python and it is based on the homonym algorithm. To download [WhatsHap](https://whatshap.readthedocs.io/en/latest/index.html). 
 
-[WhatsHap](https://whatshap.readthedocs.io/en/latest/index.html) is a python languaged based phasing tool. It can phase SNVs and indels, but it does not work on structural variants. WhatsHap is very easy to use: it takes as input a BAM file and a VCF file and returns a second VCF file improved with phasing information. 
+WhatsHap can phase SNVs and indels, but it does not work on structural variants. It is very easy to use: it takes as input a BAM file and a VCF file and returns a second VCF file improved with the phasing information. BAM and VCF files don't have to be derived from the same set of reads. This is convenient bacause one can use high-quality short reads (such us Illumina reads) to call the variants and then use long reads (such us Oxford Nanopore reads) to phase them. Indeed, the workflow that has just been described is the reccomended one. Please note that using 2 different set of reads may creates some problem to the WhatHap algortihm, which is trying to match the sample name (`@RG` header line) of the BAM file to the VCF file. It tries to match them because this tool can process VCF and BAM containing different samples merged in the same one. Nonetheless, there are a couple of ways to work around this problem.
 
-BAM and VCF files don't have to be derived from the same set of reads. This is convenient bacause high-quality short reads (such us Illumina reads) can be used for variant calling and then these can be paired to long reads (such us Oxford Nanopore reads) for the phasing. Indeed, the workflow that has just been described is the reccomended one. 
-
-However, the use of 2 different set of reads may creates some problem to the WhatHap tool, which is trying to match the sample name (`@RG` header line) of the VCF file to the BAM file, but we will see a couple of way to solve this problem.
-
-The main WhatsHap subcommand is `phase`, which is the backbone of the entire tool. In this example we are going to phase the VCF we use as test set.
+The main WhatsHap subcommand is `phase`, which is the backbone of the entire tool, it is using reads containing 2 or more variants to assign them to one allele or the other. In this example we are going to phase the VCF we use as test set.
 
 ```{}
 # The bamtools needs to be indexed bedore, so we do:
