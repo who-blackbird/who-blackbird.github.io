@@ -130,11 +130,11 @@ chr20   44928864      	rs57778806;rs796352932	 CAA	   CA,C	 	  GT        1|2 # B
 
 The `paternal_allele | maternal_allele` annotation used in WhatsHap is a convention started with the 1000 genomes project and kept afterwards. 
 
-Open the `phasing/pedigree_phased.vcf` file on IGV and have a look at the VCF file. It reports the annotated
+Open the `phasing/pedigree_phased.vcf` file on IGV and have a look at the VCF file. It reports the variants of the trio. 
 
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/PedigreePhase.png" alt="img_1" class="inline"/>
 
 ## Phasing - Excercise
 
-If you made it this far and you still spare some time, there is a quick exercise you may want to do. For sample2 and sample3 we have VCF and BAM file. However, the bam files are derived from Illumina sequencing. You can try to phase this samples ans cehck the haplotype you get to the one we got for sample1
+If you made it this far and you still have time and stamina, there is a quick exercise you may want to do. For sample2 and sample3 we have VCF and BAM files. However, the BAM files are derived from Illumina sequencing. You can try to phase this samples and compare the haplotype you get to the one we got for sample1. 
 

@@ -3,7 +3,7 @@
 #### [Methylation - DeepSignal](#Methylation-DeepSignal)
 #### [Methylation - Nanopolish](#Methylation-Nanopolish)
 #### [Methylation - Comparison](#Methylation-Comparison) 
-#### [Methylation - Visualization](#Methylation-Visualization)
+#### [Methylation - Visualisation](#Methylation-Visualization)
 
 ***
 
@@ -11,12 +11,12 @@ N.B.: Note these scripts use `course/` as working directory
 
 ## Methylation - DeepSignal {#Methylation-DeepSignal}
 
-Deepsignal [(doi:10.1093/bioinformatics/btz276)](https://doi.org/10.1093/bioinformatics/btz276) is a Machine learning (ML) approach to identify changes in the resistence measured by the ONT that may be identified as a 5-MethylCytosin (5mC). As all the ML approacches requires a model. Meaning that the author spend some time training the model. It takes ~ 24 hours to run on 4 GPU for a human genome 30x coverage.
+Deepsignal [(doi:10.1093/bioinformatics/btz276)](https://doi.org/10.1093/bioinformatics/btz276) is a Machine learning (ML) approach to identify changes in the resistance measured by the ONT that may be identified as a 5-MethylCytosin (5mC). As all ML approaches, DeepSignal requires a model. The model has been trained by the authors and you can download it with the software. DeepSignal takes ~ 24 hours to run on 4 GPU for a human genome 30x coverage.
 
-Deepsignal is quite straightforward tool. However, it needs to have some .... :
-+ Deepsignal needs fast5 files (link to the directory path) to work.
-+ if fast5 have a Multi fast5 format, they need to be converted to singe fast5 (you can use the command [```multi_to_single_fast5```](https://github.com/nanoporetech/ont_fast5_api).
-+ It needs the ML model. One model has been trained by the Author. Alternatively, one can traine a new model, specially if one has to investigate DNA/RNA modification different from 5mC. To train a new model one can use the command ```deepsignal train```. In this case, one needs a _training set_ and a _validation set_ (N.B. They need to be 2 different data sets).
+Deepsignal is a quite straightforward tool. However, it needs:
++ Fast5 files to work (they contain the resistance information required to call 5mC).
++ if fast5 files have a Multi-fast5 format, they need to be converted to single fast5 (you can use the command [```multi_to_single_fast5```](https://github.com/nanoporetech/ont_fast5_api)).
++ It needs the ML model. One model has been trained by the Author. Alternatively, one can train a new model, especially if one has to investigate DNA/RNA modifications that are different from 5mC. To train a new model, one can use the command ```deepsignal train```. In this case, one needs a _training set_ and a _validation set_ (N.B. They need to be 2 different data sets).
 
 #### Call 5mC modification
 
@@ -24,7 +24,7 @@ Deepsignal is quite straightforward tool. However, it needs to have some .... :
 deepsignal call_mods --input_path methylation/res/fast5_files/ --model_path methylation/res/model.CpG.R9.4_1D.human_hx1.bn17.sn360/bn_17.sn_360.epoch_7.ckpt --result_file methylation/Met_deepsignal.tsv --reference_path methylation/res/reference.fasta --corrected_group methylation/RawGenomeCorrected_000 --nproc 10 --is_gpu no
 ```
 
-This command call Cytosin modification straight from the Fast5 data. The output should be something like:
+This command calls Cytosin modifications straight from the Fast5 data. The output should be something like:
 
 chromosome | position | strand | pos_in_strand | readname | prob_0 | prob_1 | called_label | k_mer 
 
@@ -37,16 +37,16 @@ chr20	5346431	+	5346431	0bd4fa76-db91-4355-9dff-7acabda704cb	t	0.065592036	0.934
 chr20	5346554	+	5346554	0bd4fa76-db91-4355-9dff-7acabda704cb	t	0.8229035	0.17709653	0	CCCTCTTTCGTGCTCTG
 ```
 
-The deepsignal default setting have 0 as Unmethylated and 1 as Methylated
+The deepsignal default settings have 0 as Unmethylated and 1 as Methylated
 
 #### Call 5mC modification frequency
 
 ```{}
 python3 methylation/scripts/call_modification_frequency.py --input_path methylation/Met_deepsignal.tsv --result_file methylation/Met_frequency_deepsignal.tsv --prob_cf 0.6
 ```
-the scripts to call modification frequency comes from the [deepsignal utils](https://github.com/bioinfomaticsCSU/deepsignal/tree/master/scripts)
+The script to call modification frequencies comes from the [deepsignal utils](https://github.com/bioinfomaticsCSU/deepsignal/tree/master/scripts)
 
- The frequency script output should look something like:
+The frequency script output should look something like:
 
 chromosome | position | strand | pos_in_strand | prob_0_sum | prob_1_sum | count_modified | count_unmodified | coverage | modification_frequency | k_mer
 
@@ -60,9 +60,9 @@ chr20	4992064	-	59452102	0.056	0.944	1	0	1	1.000	TAATGGCGCGATCTCGG
 
 ## Methylation - Nanopolish {#Methylation-Nanopolish}
 
+INTRODUCE NANOPOLISH
 
-
-As it happens for deepsignal, Nanopolish need to access the signal-level. To do it in an efficient way, we need to create and index to link the read ids (fastq) with their signal-level data in the fast5 files. 
+As it happens for deepsignal, Nanopolish needs to access the signal-level. To do it in an efficient way, we need to create an index to link the read IDs (fastq) with their signal-level data in the fast5 files. 
 
 Yesterday, we learned how to align the data, so we will skip this step and go straight to the indexing:
 
@@ -102,11 +102,11 @@ methylation/scripts/nanopolish/scripts/calculate_methylation_frequency.py methyl
 methylation/scripts/compare_met_score.R -d methylation/Met_deepsignal.tsv -n methylation/Met_frequency_nanopolish.tsv -b methylation/res/bisulfite.ENCFF835NTC.example.tsv -o methylation/methylation_score_comparison
 ```
 
-#### Use the Jaccard index to quantify the modifyed cytosines
+#### Use the Jaccard index to quantify the modified cytosines
 
 We are using bedtools to calculate the Jaccard score.
 
-Convert every frqurncy file to bed file (required for bedtools)
+Convert every frequency file to a BED file (required for bedtools)
 ```{}
 for i in methylation/Met_frequency_*.tsv; do awk --field-separator="\t" '{ if (NR > 1 ) print $1,$2,$2,$(NF-1) }' $i | sort -V | sed 's/ /\t/g' > ${i:1:-3}bedgraph ; done
 ```
@@ -125,17 +125,17 @@ bedtools jaccard -a methylation/Met_frequency_deepsignal.bed -b methylation/Met_
 methylation/scripts/compare_met_regions.R -d methylation/Met_frequency_deepsignal.tsv -n methylation/Met_frequency_nanopolish.tsv -b methylation/res/bisulfite.ENCFF835NTC.example.tsv -o methylation/methylation_region_comparison
 ```
 
-## Methylation - Visualization {#Methylation-Visualization}
+## Methylation - Visualisation {#Methylation-Visualization}
 
 ```{}
 
 ```
-convert the `.Met_deepsignal.tsv` file to a bed file with this script and visualise it with the others tracks we have loaded earlier.
+convert the `.Met_deepsignal.tsv` file to a BED file with this script and visualise it with the others tracks we have loaded earlier.
 ```{}
 
 ```
 
-Alternatively, we could write a script to visualize the data. Script are a useful way to have consistency in your pictures. Here, we use an R script to plot the methylation peaks, called using the three different methods we saw during the course.
+Alternatively, we could write a script to visualize the data. Scripts are a useful way to have consistency in your results and pictures. Here, we use an R script to plot the methylation peaks, called using the three different methods we saw during the course.
 
 We load the packages we will need
 ```{}
@@ -146,7 +146,7 @@ library(GenomicRanges)
 
 We then define all the variables we are going to use:
 ```{}
-# Defines the files we need and their paths
+# Define the files we need and their paths
 deep <- "Desktop/NANOPORE_HPC/course/Met_frequency_deepsignal.bed"
 nano <- "Desktop/NANOPORE_HPC/course/Met_frequency_nanopolish.bedgraph"
 met <- "Desktop/NANOPORE_HPC/course/res/bisulfite.ENCFF835NTC.example.bed"
@@ -156,22 +156,22 @@ start_reg <- 5000000
 end_reg <- 6000000
 genome_plot="hg38"
 # Set the window number
-window_plot = 250 # the final plot will display the region divided in the number or windows we define here
+window_plot = 250 # the final plot will display the regions divided in the number or windows we define here
 ```
 Import the data:
 ```{} 
 # Load the files as dataframe
 deep_df <- read_delim(deep, delim = "\t", col_names = FALSE) %>%  
-  filter(X2 < end_reg) # we filter out the region that we don't want to plot (i.e. the ones starting  downstream our plot end) so that we work with a smaller dataset
+  filter(X2 < end_reg) # we filter out the regions that we don't want to plot (i.e. the ones starting  downstream our plot end) so that we work with a smaller dataset
 nano_df <- read_delim(nano, delim = "\t", col_names = FALSE) %>%  
   filter(X2 < end_reg)
 met_df <- read_delim(met, delim = "\t", col_names = FALSE) %>% 
   mutate(value = (X11 / 100 * X10) / max(X11 / 100 * X10) ) %>% # it calculates the methylation frequency and normalise it to 1
   filter(X2 < end_reg)
 ```
-We want to see how the methylation correlates to the genes, possibly to their promoter. To download these info it is convient write down few lines and get this info from ENSEMBL. If we are going to use this info quite often is convenient to save it and not download it every time, so that next time we can import it without donwloding.
+We want to see how the methylation correlates to the genes, possibly to their promoters. To download these info, it is convient to write down a few lines of code and get this info from ENSEMBL. If we are going to use this info quite often, it is convenient to save it and not download it every time, so that next time we can import it without downloading.
 ```{}
-#### Download from ENSMBL the gene symbols and coordinates
+# Download from ENSMBL the gene symbols and coordinates
 mart <- biomaRt::useEnsembl(biomart = "ensembl", dataset = "hsapiens_gene_ensembl")
 
 attributes_to_extract <- c("chromosome_name", "start_position", "end_position", "external_gene_name")
@@ -180,7 +180,7 @@ values_to_filter <- paste(chr, format(start_reg, scientific = FALSE), format(end
                     str_replace("chr","") # remove the 'chr' at the beginning. ENSEMBL doesn't use it 
 
 gene_name <- biomaRt::getBM(attributes = attributes_to_extract, # Refer to the values you want to have in the final df
-                                    filter="chromosomal_region", # Define what filter apply. Here the chromosomal regions of the capture
+                                    filter="chromosomal_region", # Define what filter to apply. 
                                     values = values_to_filter, 
                                     mart = mart #Mart object to use
 )  
@@ -188,9 +188,9 @@ gene_name <- biomaRt::getBM(attributes = attributes_to_extract, # Refer to the v
 gene_name$chromosome_name <-   str_replace(gene_name$chromosome_name, "^", "chr") #Put 'chr' on the chromosome
 
 gene_name <- gene_name %>% 
-  filter(!str_detect(external_gene_name, "LIN|\\.|-|SLC23A2")) # Remove long non coding RNA, MT genes and Antisense RNA
+  filter(!str_detect(external_gene_name, "LIN|\\.|-|SLC23A2")) # Remove long non coding RNA, MT genes and antisense RNA
 
-#### Transform the ENSEMBL data to a GenomicRange
+# Transform the ENSEMBL data to a GenomicRange
 gene_name_gr <- GenomicRanges::GRanges(seqnames = gene_name$chromosome_name, 
                                        ranges = IRanges(start = gene_name$start_position, 
                                                         end = gene_name$end_position) 
@@ -201,9 +201,9 @@ Ultimately, we can start to make the track we will use to plot.
 ```{}
 # This line creates the chromosome(s) we want to plot, with giemsa banding and higligths the region of the cromosome we are plotting with a red box
 ideoTrack <- IdeogramTrack(genome=genome_plot, chromosome=chr, start = start_reg, end = end_reg)
-# This track give the genomic coordinates we are plotting in Mb. a sort of ruler
+# This track gives the genomic coordinates we are plotting in Mb. a sort of ruler
 gtrack <- GenomeAxisTrack()
-# This 3 line are plotting the methylation profile for deepsignal, nanopolis and bisulphite methods respectively.
+# These 3 lines plot the methylation profile for deepsignal, nanopolish and bisulphite methods respectively.
 plotTrack_deep <- DataTrack(range=deep_gr, genome=genome_plot, chromosome=chr, name="Methylation deepsignal", start = start_reg, end = end_reg, window = window_plot, type = c("a","hist"))
 plotTrack_nano <- DataTrack(range=nano_gr, genome=genome_plot, chromosome=chr, name="Methylation nanopolish", start = start_reg, end = end_reg, window = window_plot, type = c("a","hist"))
 plotTrack_met <- DataTrack(range=met_gr, genome=genome_plot, chromosome=chr, name="Methylation bisulphite", start = start_reg, end = end_reg, window = window_plot, type = c("a","hist"))
@@ -214,3 +214,5 @@ plotTracks(list(ideoTrack, gtrack, plotTrack_deep, plotTrack_nano, plotTrack_met
 
 # to see all the graphic parameters go to https://rdrr.io/bioc/Gviz/man/settings.html
 ```
+You ahould get something like:
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/gviz_met.png" alt="img_1" class="inline"/>
