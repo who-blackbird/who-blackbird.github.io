@@ -214,5 +214,5 @@ plotTracks(list(ideoTrack, gtrack, plotTrack_deep, plotTrack_nano, plotTrack_met
 
 # to see all the graphic parameters go to https://rdrr.io/bioc/Gviz/man/settings.html
 ```
-You ahould get something like:
+You should get something like:
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/gviz_met.png" alt="img_1" class="inline"/>
