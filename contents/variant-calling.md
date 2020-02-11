@@ -18,23 +18,24 @@ You will learn to:
 Before we start, go to your wd:
 
 ```
-cd ~/Course_Materials/nanopore_practical/wd
+cd ~/Course_Materials/wd/day2
 ```
 
 And make the following directories:
 
 ```
-mkdir SNVs
-mkdir SVs
+mkdir variant_calling
+mkdir variant_calling/snvs
+mkdir variant_calling/svs
 ```
 
 You can also define the following variables that we will use later for convienience:
 
 ```
-LRS_bam=~/Course_Materials/nanopore_practical/data/day2/alignment/LRS_alignment.bam
-SRS_bam=~/Course_Materials/nanopore_practical/data/day2/alignment/SRS_alignment.bam
-SRS_snvs=~/Course_Materials/nanopore_practical/data/day2/SNVs/SRS_SNVs.vcf.gz
-ref=~/Course_Materials/nanopore_practical/data/day2/reference_genome/Homo_sapiens.GRCh38.dna.fasta
+LRS_bam=~/Course_Materials/data/day2/alignment/LRS_alignment.bam
+SRS_bam=~/Course_Materials/data/day2/alignment/SRS_alignment.bam
+SRS_snvs=~/Course_Materials/data/day2/snvs/SRS_SNVs.vcf.gz
+ref=~/Course_Materials/data/day2/reference_genome/Homo_sapiens.GRCh38.dna.fasta
 annotsv=/path/to/AnnotSV.tcl
 ```
 
@@ -49,7 +50,7 @@ Variants are called and stored in [VCF](http://samtools.github.io/hts-specs/VCFv
 Call SNVs in the nanopore aligment example as below:
 
 ```
-longshot --bam $LRS_bam --ref $ref --out SNVs/LRS_SNVs.vcf
+longshot --bam $LRS_bam --ref $ref --out variant_calling/snvs/LRS_SNVs.vcf
 ```
 
 *Note:* This step will take ~18min!! Feel free to grab a coffee, ask questions or continue to the next section (SV calling) in a different Terminal window - you can always come back later :-)
@@ -59,14 +60,14 @@ longshot --bam $LRS_bam --ref $ref --out SNVs/LRS_SNVs.vcf
 Wellcome back! When the SNV calling is done, compress and index the VCF file:
 
 ```
-bgzip SNVs/LRS_SNVs.vcf
-tabix -p vcf SNVs/LRS_SNVs.vcf.gz
+bgzip variant_calling/snvs/LRS_SNVs.vcf
+tabix -p vcf variant_calling/snvs/LRS_SNVs.vcf.gz
 ```
 
 Now you can compare the instersection between both using bcftools:
 
 ```
-bcftools isec -p isec SNVs/LRS_snvs.vcf.gz $SRS_snvs
+bcftools isec -p isec variant_calling/snvs/LRS_snvs.vcf.gz $SRS_snvs
 ```
 
 This will creat a folder named isec with the following files:
@@ -96,13 +97,13 @@ Algorithms for calling SVs from long-read sequencing data include:
 Here, we will use **Sniffles** for calling structural variants.
 
 ```
-sniffles -m $LRS_bam -v SVs/LRS_SVs.vcf
+sniffles -m $LRS_bam -v variant_calling/svs/LRS_SVs.vcf
 ```
 
 If you want to look at high quality SVs, you can change the -s parameter to 20, where s is the minimum number of reads that support a SV (by default is 10).
 
 ```
-sniffles -m $LRS_bam -v SVs/LRS_SVs.s20.vcf -s 20
+sniffles -m $LRS_bam -v variant_calling/svs/LRS_SVs_s20.vcf -s 20
 ```
 
 The information that is provided in sniffles’s output can be found in:
@@ -111,23 +112,23 @@ The information that is provided in sniffles’s output can be found in:
 Sort the VCF files (for that you'd need to compress them first) and index them:
 
 ```
-bgzip SVs/LRS_SVs.vcf
-vcf-sort SVs/LRS_SVs.vcf.gz | bgzip -c > SVs/LRS_SVs.sort.vcf.gz
-tabix -p vcf SVs/LRS_SVs.sort.vcf.gz
+bgzip variant_calling/svs/LRS_SVs.vcf
+vcf-sort variant_calling/svs/LRS_SVs.vcf.gz | bgzip -c > variant_calling/svs/LRS_SVs.sort.vcf.gz
+tabix -p vcf variant_calling/svs/LRS_SVs.sort.vcf.gz
 ```
 
-*Note:* The commands above are only for the VCF run with default parameters. Do the same for the `s20` VCF.
+**Note: The commands above are only for the VCF run with default parameters. Do the same for the `s20` VCF.**
 
 Now, we will compare how many SVs called in each VCF:
 
 ```
-bcftools view -H SVs/LRS_SVs.sort.vcf.gz | wc -l
+bcftools view -H variant_calling/svs/LRS_SVs.sort.vcf.gz | wc -l
 ```
 
 To investigate the differences, we are going to intersect both VCF files:
 
 ```
-bcftools isec -p SVs/isec SVs/LRS_SVs.sort.vcf.gz SVs/LRS_SVs.s20.sort.vcf.gz
+bcftools isec -p variant_calling/svs/isec variant_calling/svs/LRS_SVs.sort.vcf.gz variant_calling/svs/LRS_SVs_s20.sort.vcf.gz
 ```
 
 Do the same for the `s20` file.
@@ -149,7 +150,7 @@ AnnotSV annotates SVs with information about the genes (OMIM, ClinGen), regulato
 To run a basic SV annotation, we will exectue the following command:
 
 ```
-$annotsv -SVinputFile SVs/LRS_SVs.sort.vcf.gz -SVinputInfo 1 \
+$annotsv -SVinputFile variant_calling/svs/LRS_SVs.sort.vcf.gz -SVinputInfo 1 \
      -genomeBuild GRCh38 \
      -outputDir annotation
      -outputFile LRD_SVs.anno.vcf
