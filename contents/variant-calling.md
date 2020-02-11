@@ -13,7 +13,7 @@ You will learn to:
 - Call SVs and interpret the results
 - Make nice reports
 
-## Working directory {workingdirectory}
+## Working directory {#workingdirectory}
 
 Before we start, go to your wd:
 
@@ -38,7 +38,7 @@ ref=~/Course_Materials/nanopore_practical/data/day2/reference_genome/Homo_sapien
 annotsv=/path/to/AnnotSV.tcl
 ```
 
-## Single Nucleotide Variant Calling {snvcalling}
+## Single Nucleotide Variant Calling {#snvcalling}
 
 In this section we will identify SNVs from long-read sequencing data using [**Longshot**](https://github.com/pjedge/longshot).
 
@@ -52,7 +52,7 @@ Call SNVs in the nanopore aligment example as below:
 longshot --bam $LRS_bam --ref $ref --out SNVs/LRS_SNVs.vcf
 ```
 
-*Note:* This step will take ~18min!! Feel free to grab a coffee, ask questions or continue to the [next section]{svcalling} in a different Terminal window - you can always come back later :-)
+*Note:* This step will take ~18min!! Feel free to grab a coffee, ask questions or continue to the [next section]{#svcalling} in a different Terminal window - you can always come back later :-)
 
 ...
 
@@ -87,7 +87,7 @@ Then, load your BAM files `$LRS_bam` and `$SRS_bam`.
 Go to position (PENDING)
 
 
-## Structural Variant Calling {svcalling}
+## Structural Variant Calling {#svcalling}
 
 Algorithms for calling SVs from long-read sequencing data include:
 - [Sniffles](http://github.com/fritzsedlazeck/Sniffles): best used with minimap2 or NGMLR. 
@@ -140,7 +140,7 @@ Do the same for the `s20` file.
 - Do you think that `s20` is too strict or lenient?
 
 
-## Structural Variant Annotation {svannotation}
+## Structural Variant Annotation {#svannotation}
 
 In order to perform annotation of the SVs from multiple sources, we will use [**AnnotSV**](https://lbgi.fr/AnnotSV).
 
