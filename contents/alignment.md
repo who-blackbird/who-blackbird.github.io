@@ -73,8 +73,6 @@ and create the following directory structure:
 ```
 mkdir stats
 mkdir alignment
-mkdir variant_calling
-mkdir annotation
 ```
 
 Define now the following variables for convenience:
