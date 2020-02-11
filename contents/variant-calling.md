@@ -51,7 +51,7 @@ Call SNVs in the nanopore aligment example as below:
 longshot --bam $LRS_bam --ref $ref --out SNVs/LRS_SNVs.vcf
 ```
 
-*Note:* This step will take ~18min!! Feel free to grab a coffee, ask questions or continue to the [next section]{#svcalling} in a different Terminal window - you can always come back later :-)
+*Note:* This step will take ~18min!! Feel free to grab a coffee, ask questions or continue to the [next section](#svcalling) in a different Terminal window - you can always come back later :-)
 
 ...
 
@@ -70,11 +70,12 @@ bcftools isec -p isec SNVs/LRS_snvs.vcf.gz $SRS_snvs
 
 This will creat a folder named isec with the following files:
 
-* isec/0000.vcf   for records private to the long_reads_VCF
-* isec/0001.vcf   for records private to the short_reads_VCF
-* isec/0002.vcf   for records from long_reads_VCF shared by both
-* isec/0003.vcf   for records from short_reads_VCF shared by both
-
+```
+isec/0000.vcf   for records private to the long_reads_VCF
+isec/0001.vcf   for records private to the short_reads_VCF
+isec/0002.vcf   for records from long_reads_VCF shared by both
+isec/0003.vcf   for records from short_reads_VCF shared by both
+```
 - How many SNVs have been called by both technologies?
 - How many SNVs have been missed by short and/or long read sequencing?
 
