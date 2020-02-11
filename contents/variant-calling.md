@@ -2,8 +2,9 @@
 
 In this section we will cover:
 
-* [SNVcalling](#snvcalling)
-* [SVcalling](#svcalling)
+* [SNV Calling](#snvcalling)
+* [SV Calling](#svcalling)
+* [Analysis report](#report)
 
 You will learn to:
 
@@ -34,7 +35,7 @@ SRS_bam=
 ref=../../data/day2/reference_genome/Homo_sapiens.GRCh38.dna.fasta
 ```
 
-## SNVcalling
+## SNV Calling {#snvcalling}
 
 In this section we will identify SNVs from long-read sequencing data using [**Longshot**](https://github.com/pjedge/longshot).
 
@@ -71,7 +72,7 @@ This will creat a folder named isec with the following files:
 - How many SNVs have been called by both technologies?
 - How many SNVs have been missed by short and/or long read sequencing?
 
-## SVcalling
+## SV Calling {svcalling}
 
 Algorithms for calling SVs from long-read sequencing data include:
 -	[Sniffles](http://github.com/fritzsedlazeck/Sniffles): best used with minimap2 or NGMLR. 
@@ -114,7 +115,7 @@ and inspect the deletions in IGV.
 -	How many SVs breakpoint junctions are within repetitive sequences?
      - For that, you would need to load Repeatmasker from server (File > Load from server > Annotations > Variation and Repeats > Repeat Masker)
 
-## Analysis report
+## Analysis report {#report}
 
 The tutorial document can also be prepared from the Linux command line with the following command.
 
