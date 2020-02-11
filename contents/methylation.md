@@ -146,6 +146,7 @@ intersection	union-intersection	jaccard 	n_intersections
 the index we want to use to compare the regions is the third value (i.e. `jaccard`)
 
 #### Compare the values assigned to the modified or not modified cytosines
+
 We can also plot the similarity of the regions as recognised versus not recognised.
 ```{}
 methylation/scripts/compare_met_regions.R -d methylation/Met_frequency_deepsignal.tsv -n methylation/Met_frequency_nanopolish.tsv -b methylation/res/bisulfite.ENCFF835NTC.example.tsv -o methylation/methylation_region_comparison
