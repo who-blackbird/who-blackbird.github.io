@@ -81,20 +81,23 @@ samtools index methylation/res/alignment_output_sorted.bam
 Once the preprocessing is finished, we have all the required files to start the 5mC modification call. We use the command `call-methylation` to annotate the modification.
 #### Call 5mC modification
 ```{}
-nanopolish call-methylation -t 8 -r methylation/res/alignment_output.fastq -b methylation/res/alignment_output_sorted.bam -g methylation/res/reference.fasta -w "chr20:5,000,000-10,000,000" > methylation/Met_nanopolish.tsv
+nanopolish call-methylation -t 16 -r methylation/res/alignment_output.fastq -b methylation/res/alignment_output_sorted.bam -g methylation/res/reference.fasta -w "chr20:5,000,000-10,000,000" > methylation/Met_nanopolish.tsv
 ```
-__NB.: This command will take about 10 minutes, so it is a good time to have a break and stretch a bit your legs.__
+__NB.: This command will take about 10 minutes, so it is a good time to have a break and stretch a bit your legs.__ If the script is taking too long there is a hidden file that you can use to keep going. Do:
+```{}
+mv methylation/.Met_nanopolish.tsv methylation/Met_nanopolish.tsv
+```
 
 Tip:
-`-t` specify the number of threads to use for this command. This value can be optimised on the number of cores in your CPU. To check how many threads you have, on linux, you can do:
+`-t` specifies the number of threads to use for this command. This value can be optimised on the number of cores in your CPU. To check how many threads you have, on linux, you can do:
 ```{}
 lscpu | egrep 'Model name|Socket|Thread|NUMA|CPU\(s\)'
 ```
-This command will see CPUs and threads which are the information you need, there is not an optimum number of threads, it really depends on the process you are running and it always need a bit of optimization.
+This command will print CPUs and threads. There is not an optimal number of threads, it really depends on the process you are running and it always needs a bit of optimization.
 
 
 #### Call 5mC modification frequency
-
+Now we can use the modification file to call the 5mC modification frequencies:
 ```{}
 methylation/scripts/nanopolish/scripts/calculate_methylation_frequency.py methylation/Met_nanopolish.tsv > methylation/Met_frequency_nanopolish.tsv
 ```
@@ -102,9 +105,21 @@ methylation/scripts/nanopolish/scripts/calculate_methylation_frequency.py methyl
 ## Methylation - Comparison {#Methylation-Comparison}
 
 #### Compare the cytosines that have been identified to be modified or not modified
-
+Bisulphyte is nowadays commonly used to detect 5mC genome-wide. We can compare the results we got from the Nanopore methylation to the bisulphite doing:
 ```{}
 methylation/scripts/compare_met_score.R -d methylation/Met_deepsignal.tsv -n methylation/Met_frequency_nanopolish.tsv -b methylation/res/bisulfite.ENCFF835NTC.example.tsv -o methylation/methylation_score_comparison
+```
+this script print out a table containing the methylation scores calculated for the different tools, that table looks like:
+```{}
+Index Deepsignal_frequency  Bisulphite_frequency  Nanopolish_frequency
+chr20:5017505 0.88322896	0.75	0.8
+chr20:5017536	0.46293265	0.6	0.857
+chr20:5017607	0.9334746	0.8	0.818
+chr20:5017628	0.9180513	1	0.818
+chr20:5017662	0.15342923	0.78	0.462
+chr20:5017701	0.92652583	0.62	0.778
+chr20:5017906	0.86876917	1	0.846
+chr20:5017998	0.28020185	0.29	0.286
 ```
 
 #### Use the Jaccard index to quantify the modified cytosines
