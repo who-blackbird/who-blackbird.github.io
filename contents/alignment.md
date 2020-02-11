@@ -2,19 +2,19 @@
 
 In this section we will cover:
 
-* [Background](#Background)
-* [Data](#Data)
-* [WorkingDirectory](#WorkingDirectory)
-* [ReadsQC](#ReadsQC)
-* [Alignment](#Alignment)
-* [AlignmentQC](#AlignmentQC)
-* [Visualisation](#Visualisation)
+* [Background](#background)
+* [Data](#data)
+* [Working Directory](#workingdirectory)
+* [Reads Quality Control](#readsQC)
+* [Alignment](#alignment)
+* [Alignment Quality Control](#alignmentQC)
+* [Visualisation](#visualisation)
 
 You will learn to:
 - Take the basecalled sequences in FASTQ format and align them to a genome of reference
 - Perform quality control and visualise the alignment
 
-## Background
+## Background {#background}
 
 **Coronaviruses** are enveloped positive-sense (+) single-stranded RNA viruses that infect a variety of mammalian and avian hosts. Among the several coronaviruses that are pathogenic to humans, most are associated with mild clinical symptoms, with the exception of severe acute respiratory syndrome (SARS) coronavirus (SARS-CoV), a Middle East respiratory syndrome (MERS) coronavirus (MERS-Cov), and the recently identified human-infecting coronavirus, provisionally named 2019 novel coronavirus (2019-nCoV).
 
@@ -24,7 +24,7 @@ The scheme of genomic and subgenomic RNAs produced in HCov-229E-infected cells l
 
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/HCov-RNAs_CoV.png" alt="rnas" class="inline"/>
 
-## Data
+## Data {#data}
 
 The data we will be using is from Human Coronavirus 229E (HCoV-229E), one of the first coronavirus strains being described.
 
@@ -60,7 +60,7 @@ and the SL2:
 less -S ~/Course_Materials/nanopore_practical/data/day1/fastq/SL2_CoV.fastq.gz
 ```
 
-## WorkingDirectory
+## Working Directory {workingdirectory}
 
 Now, we will set up the working directory where we will do the analysis. Open your terminal, go to 
 
@@ -73,8 +73,6 @@ and create the following directory structure:
 ```
 mkdir stats
 mkdir alignment
-mkdir variant_calling
-mkdir annotation
 ```
 
 Define now the following variables for convenience:
@@ -85,7 +83,7 @@ SL2_fastq=~/Course_Materials/nanopore_practical/data/day1/fastq/SL2_CoV.fastq.gz
 HCoV_ref=~/Course_Materials/nanopore_practical/data/day1/reference_genome/HCov-229E.fasta
 ```
 
-## ReadsQC
+## Reads Quality Control {#readsQC}
 
 There are many approaches to assess the quality of the reads. Here we will use [**NanoStat**](https://github.com/wdecoster/nanostat). This calculates various statistics from a long read sequencing dataset in FASTQ, BAM or albacore sequencing summary format.
 
@@ -167,7 +165,7 @@ For quitting R, just type:
 quit()
 ```
 
-## Alignment
+## Alignment {#alignment}
 
 Great! Now we will align these FASTQ files to the genome of reference - but first, a quick introduction about the format of the files you are going to handle.
 
@@ -224,7 +222,7 @@ To visualise a BAM file:
 samtools view -h alignment/SL2_CoV.sort.bam | less -S
 ```
 
-## AlignmentQC
+## Alignment Quality Control {#alignmentQC}
 
 As a first QC, we can run **NanoStat** on the BAM files:
 
@@ -331,7 +329,7 @@ You can also add a fancy vertical line to the previous plot intercepting with a 
 p3 + geom_vline(xintercept = 1000, colour = "red")
 ```
 
-## Visualisation
+## Visualisation {#visualisation}
 
 To inspect the alignment, we will use [**Integrative Genomics Viewer**](https://software.broadinstitute.org/software/igv/).
 
