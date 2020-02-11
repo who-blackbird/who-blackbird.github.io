@@ -5,7 +5,6 @@ In this section we will cover:
 * [Single Nucleotide Variant Calling](#snvcalling)
 * [Structural Variant Calling](#svcalling)
 * [Structural Variant Annotation](#svannotation)
-* [Analysis report](#report)
 
 You will learn to:
 
