@@ -4,12 +4,14 @@ In this section we will cover:
 
 * [SNV Calling](#snvcalling)
 * [SV Calling](#svcalling)
+* [SV Annotation](#svannotation)
 * [Analysis report](#report)
 
 You will learn to:
 
 - Call SNVs from nanopore data and compare them to short-read sequencing SNVs
 - Call SVs and interpret the results
+- Make nice reports
 
 ## Workind directory
 
@@ -29,10 +31,10 @@ mkdir SVs
 You can also define the following variables that we will use later for convienience:
 
 ```
-LRS_bam=../../data/day2/alignment/long_reads.bam
-SRS_snvs=pending
-SRS_bam=
-ref=../../data/day2/reference_genome/Homo_sapiens.GRCh38.dna.fasta
+LRS_bam=~/Course_Materials/nanopore_practical/data/day2/alignment/LRS_alignment.bam
+SRS_bam=~/Course_Materials/nanopore_practical/data/day2/alignment/SRS_alignment.bam
+SRS_snvs=~/Course_Materials/nanopore_practical/data/day2/SNVs/SRS_SNVs.vcf.gz
+ref=~/Course_Materials/nanopore_practical/data/day2/reference_genome/Homo_sapiens.GRCh38.dna.fasta
 ```
 
 ## SNV Calling {#snvcalling}
@@ -46,14 +48,18 @@ Variants are called and stored in [VCF](http://samtools.github.io/hts-specs/VCFv
 Call SNVs in the nanopore aligment example as below:
 
 ```
-longshot --bam $LRS_bam --ref $ref --out SNVs/LRS_snvs.vcf
+longshot --bam $LRS_bam --ref $ref --out SNVs/LRS_SNVs.vcf
 ```
 
-Compress and index the VCF file:
+*Note:* This step will take ~18min!! Feel free to grab a coffee, ask questions or continue to the [next section]{#svcalling} in a different Terminal window - you can always come back later :-)
+
+...
+
+Wellcome back! When the SNV callins is done, compress and index the VCF file:
 
 ```
-bgzip SNVs/LRS_snvs.vcf
-tabix -p vcf SNVs/LRS_snvs.vcf.gz
+bgzip SNVs/LRS_SNVs.vcf
+tabix -p vcf SNVs/LRS_SNVs.vcf.gz
 ```
 
 Now you can compare the instersection between both using bcftools:
@@ -72,13 +78,20 @@ This will creat a folder named isec with the following files:
 - How many SNVs have been called by both technologies?
 - How many SNVs have been missed by short and/or long read sequencing?
 
+Now, explore the variants in the **IGV**. Open IGV and load the Homo_sapiens.GRCh38.dna.fasta (`$ref`) reference genome by selecting Genomes>Load from File or Genomes>Load from URL. The new genome will be added to the drop-down menu, and also loaded and displayed in the IGV window.
+
+Then, load your BAM files `$LRS_bam` and `$SRS_bam`.
+
+Go to position (PENDING)
+
+
 ## SV Calling {svcalling}
 
 Algorithms for calling SVs from long-read sequencing data include:
 -	[Sniffles](http://github.com/fritzsedlazeck/Sniffles): best used with minimap2 or NGMLR. 
 -	[NanoSV](http://github.com/philres/ngmlr): best used with LAST.
 
-Since we used minimap2 for the alignment, now we will use sniffles for calling structural variants.
+Here, we will use sniffles for calling structural variants.
 
 ```
 sniffles -m $LRS_bam -v SVs/LRS_SVs.vcf
@@ -87,21 +100,50 @@ sniffles -m $LRS_bam -v SVs/LRS_SVs.vcf
 If you want to look at high quality SVs, you can change the -s parameter to 20, where s is the minimum number of reads that support a SV (by default is 10).
 
 ```
-sniffles -m $LRS_bam -v SVs/LRS_SVs.s20.vcf - 20
+sniffles -m $LRS_bam -v SVs/LRS_SVs.s20.vcf -s 20
 ```
 
 The information that is provided in sniffles’s output can be found in:
 [http://github.com/fritzsedlazeck/Sniffles/wiki/Output](http://github.com/fritzsedlazeck/Sniffles/wiki/Output)
 
-To know how many SVs have been called, we will run:
+Sort the VCF files (for that you'd need to compress them first) and index them:
 
 ```
-bcftools view -H variant_calling/long_reads_SVs.vcf | wc -l
+bgzip SVs/LRS_SVs.vcf
+vcf-sort SVs/LRS_SVs.vcf.gz | bgzip -c > SVs/LRS_SVs.sort.vcf.gz
+tabix -p vcf SVs/LRS_SVs.sort.vcf.gz
 ```
+
+*Note:* The commands above are only for the VCF run with default parameters. Do the same for the `s20` VCF.
+
+Now, we will compare how many SVs called in each VCF:
+
+```
+bcftools view -H SVs/LRS_SVs.sort.vcf.gz | wc -l
+```
+
+To investigate the differences, we are going to intersect both VCF files:
+
+```
+bcftools isec -p SVs/isec SVs/LRS_SVs.sort.vcf.gz SVs/LRS_SVs.s20.sort.vcf.gz
+```
+
+Do the same for the `s20` file.
+
+- How many variants were called in both VCF files?
+- Why are there variants in the `s20` VCF file that are not in the default one?
+- Open both VCF files in IGV and inspect the following regions (all of them absent in `s20`)
+-- 7:89890594-89901123
+-- 7:90462621-90476627
+- Do you think that `s20` is too strict or lenient?
+
+
+## SV Annotation {svannotation}
 
 To annotate the VCF, 
 
 PENDING
+
 
 You can also convert the VCF to a tab format:
 
