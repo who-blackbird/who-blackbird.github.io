@@ -2,19 +2,19 @@
 
 In this section we will cover:
 
-* [Background](#Background)
-* [Data](#Data)
-* [WorkingDirectory](#WorkingDirectory)
-* [ReadsQC](#ReadsQC)
-* [Alignment](#Alignment)
-* [AlignmentQC](#AlignmentQC)
-* [Visualisation](#Visualisation)
+* [Background](#background)
+* [Data](#data)
+* [WorkingDirectory](#workingdirectory)
+* [ReadsQC](#readsQC)
+* [Alignment](#alignment)
+* [AlignmentQC](#alignmentQC)
+* [Visualisation](#visualisation)
 
 You will learn to:
 - Take the basecalled sequences in FASTQ format and align them to a genome of reference
 - Perform quality control and visualise the alignment
 
-## Background
+## [Background](#background)
 
 **Coronaviruses** are enveloped positive-sense (+) single-stranded RNA viruses that infect a variety of mammalian and avian hosts. Among the several coronaviruses that are pathogenic to humans, most are associated with mild clinical symptoms, with the exception of severe acute respiratory syndrome (SARS) coronavirus (SARS-CoV), a Middle East respiratory syndrome (MERS) coronavirus (MERS-Cov), and the recently identified human-infecting coronavirus, provisionally named 2019 novel coronavirus (2019-nCoV).
 
