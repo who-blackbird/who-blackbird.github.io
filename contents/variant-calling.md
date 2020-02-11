@@ -10,38 +10,55 @@ You will learn to:
 - Call SNVs from nanopore data and compare them to short-read sequencing SNVs
 - Call SVs and interpret the results
 
-## SNVcalling
+## Workind directory
 
-Variants are called and stored in [VCF](http://samtools.github.io/hts-specs/VCFv4.2.pdf) format. This contains a header, and then data lines each containing information about a position in the genome.
-
-<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/vcf.png" alt="img_3" class="inline"/>
-
-In this section we will identify SNVs from long-read sequencing data using [Longshot](https://github.com/pjedge/longshot).
-
-Go to your wd:
+Before we start, go to your wd:
 
 ```
 cd ~/Course_Materials/nanopore_practical/wd
 ```
 
-And call SNVs in the nanopore aligment example as below:
+And make the following directories:
 
 ```
-longshot --bam ../../data/day2/alignment/long_reads.bam --ref ../../data/day2/reference_genome/Homo_sapiens.GRCh38.dna.fasta --out long_reads-SNVs.vcf
+mkdir SNVs
+mkdir SVs
+```
+
+You can also define the following variables that we will use later for convienience:
+
+```
+LRS_bam=../../data/day2/alignment/long_reads.bam
+SRS_snvs=pending
+SRS_bam=
+ref=../../data/day2/reference_genome/Homo_sapiens.GRCh38.dna.fasta
+```
+
+## SNVcalling
+
+In this section we will identify SNVs from long-read sequencing data using [**Longshot**](https://github.com/pjedge/longshot).
+
+Variants are called and stored in [VCF](http://samtools.github.io/hts-specs/VCFv4.2.pdf) format. This contains a header, and then data lines each containing information about a position in the genome.
+
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/vcf.png" alt="img_3" class="inline"/>
+
+Call SNVs in the nanopore aligment example as below:
+
+```
+longshot --bam $LRS_bam --ref $ref --out SNVs/LRS_snvs.vcf
 ```
 
 Compress and index the VCF file:
 
-
 ```
-bgzip long_reads-SNVs.vcf
-tabix -p vcf long_reads-SNVs.vcf.gz
+bgzip SNVs/LRS_snvs.vcf
+tabix -p vcf SNVs/LRS_snvs.vcf.gz
 ```
 
 Now you can compare the instersection between both using bcftools:
 
 ```
-bcftools isec -p isec long_reads-SNVs.vcf.gz ../../data/day2/variant_calling/short_reads-SNVs.vcf.gz
+bcftools isec -p isec SNVs/LRS_snvs.vcf.gz $SRS_snvs
 ```
 
 This will creat a folder named isec with the following files:
@@ -63,13 +80,13 @@ Algorithms for calling SVs from long-read sequencing data include:
 Since we used minimap2 for the alignment, now we will use sniffles for calling structural variants.
 
 ```
-sniffles -m ~/Course_Materials/nanopore_practical/data/day2/alignment/long_reads.bam -v variant_calling/long_reads_SVs.vcf
+sniffles -m $LRS_bam -v SVs/LRS_SVs.vcf
 ```
 
 If you want to look at high quality SVs, you can change the -s parameter to 20, where s is the minimum number of reads that support a SV (by default is 10).
 
 ```
-sniffles -m ~/Course_Materials/nanopore_practical/data/day2/alignment/long_reads.bam -v variant_calling/long_reads_SVs_s20.vcf -s 20
+sniffles -m $LRS_bam -v SVs/LRS_SVs.s20.vcf - 20
 ```
 
 The information that is provided in sniffles’s output can be found in:
@@ -83,12 +100,12 @@ bcftools view -H variant_calling/long_reads_SVs.vcf | wc -l
 
 To annotate the VCF, 
 
-.....
+PENDING
 
 You can also convert the VCF to a tab format:
 
 ```
-../scripts/vcf2tab.py variant_calling/long_reads_SVs.vcf
+~/Course_Materials/nanopore_practical/scripts/vcf2tab.py SVs/LSR_SVs.vcf
 ```
 
 and inspect the deletions in IGV.
