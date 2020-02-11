@@ -35,6 +35,7 @@ LRS_bam=~/Course_Materials/nanopore_practical/data/day2/alignment/LRS_alignment.
 SRS_bam=~/Course_Materials/nanopore_practical/data/day2/alignment/SRS_alignment.bam
 SRS_snvs=~/Course_Materials/nanopore_practical/data/day2/SNVs/SRS_SNVs.vcf.gz
 ref=~/Course_Materials/nanopore_practical/data/day2/reference_genome/Homo_sapiens.GRCh38.dna.fasta
+annotsv=/path/to/AnnotSV.tcl
 ```
 
 ## Single Nucleotide Variant Calling {#snvcalling}
@@ -89,8 +90,8 @@ Go to position (PENDING)
 ## Structural Variant Calling {svcalling}
 
 Algorithms for calling SVs from long-read sequencing data include:
--	[Sniffles](http://github.com/fritzsedlazeck/Sniffles): best used with minimap2 or NGMLR. 
--	[NanoSV](http://github.com/philres/ngmlr): best used with LAST.
+- [Sniffles](http://github.com/fritzsedlazeck/Sniffles): best used with minimap2 or NGMLR. 
+- [NanoSV](http://github.com/philres/ngmlr): best used with LAST.
 
 Here, we will use sniffles for calling structural variants.
 
@@ -134,43 +135,32 @@ Do the same for the `s20` file.
 - How many variants were called in both VCF files?
 - Why are there variants in the `s20` VCF file that are not in the default one?
 - Open both VCF files in IGV and inspect the following regions (all of them absent in `s20`)
--- 7:89890594-89901123
--- 7:90462621-90476627
+     - 7:89890594-89901123
+     - 7:90462621-90476627
 - Do you think that `s20` is too strict or lenient?
 
 
 ## Structural Variant Annotation {svannotation}
 
-To annotate the VCF, 
+In order to perform annotation of the SVs from multiple sources, we will use **AnnotSV**.
 
-PENDING
+AnnotSV annotates SVs with information about the genes (OMIM, ClinGen), regulatory elements (enhancders, promoters), pathogenicity (known from dbVar), frequencies (gnomAD, internal) and breakpoints (GC content, repeats) they overlap.
 
-
-You can also convert the VCF to a tab format:
-
-```
-~/Course_Materials/nanopore_practical/scripts/vcf2tab.py SVs/LSR_SVs.vcf
-```
-
-and inspect the deletions in IGV.
-
--	How many deletions are real?
--	How many SVs breakpoint junctions are within repetitive sequences?
-     - For that, you would need to load Repeatmasker from server (File > Load from server > Annotations > Variation and Repeats > Repeat Masker)
-
-## Analysis report {#report}
-
-The tutorial document can also be prepared from the Linux command line with the following command.
+To run a basic annotation, we will run:
 
 ```
-R --slave -e 'rmarkdown::render("ont_tutorial_sv.Rmd", "html_document")'
+$annotsv -SVinputFile SVs/LRS_SVs.sort.vcf.gz -SVinputInfo 1 \
+     -genomeBuild GRCh38 \
+     -outputDir annotation
+     -outputFile LRD_SVs.anno.vcf
 ```
 
-## Explore structural variation using IGV
+Now... Inspect the calls in *SGCE* gene:
 
-## Make representation of complex SVs using circos
+```
+grep SGCE annotation/LRD_SVs.anno.vcf.tsv
+```
 
-## Snakemake
+And visualise them in IGV.
 
-## References
-
+Mutations in *SGCE* gene [[MIM:159900]](https://www.omim.org/entry/159900) have previously been associated with Myoclonic Dystonia. As you can see in the IGV plot, there are multiple deletions in this individual overlaping *SGCE*. This data comes from a patient with Myoclonic Dystonia. The deletions you just found have already been seen to be pathogenic. Congratulations, you just called variants from long-read sequencing data and identified a pathogenic one associated with disease! And actually... a very complex one! Wait for the wrap-up :)
