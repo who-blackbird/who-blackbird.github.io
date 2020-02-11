@@ -105,11 +105,12 @@ methylation/scripts/nanopolish/scripts/calculate_methylation_frequency.py methyl
 ## Methylation - Comparison {#Methylation-Comparison}
 
 #### Compare the cytosines that have been identified to be modified or not modified
-Bisulphyte is nowadays commonly used to detect 5mC genome-wide. We can compare the results we got from the Nanopore methylation to the bisulphite doing:
+
+Bisulphyte is nowadays commonly used to detect 5mC genome-wide. We can compare the results we got from the Nanopore methylation to the bisulphite doing. We could compare the score the softwares gave to the 5mC and the regions where they identified the modification. To compare the scores we could do:
 ```{}
 methylation/scripts/compare_met_score.R -d methylation/Met_deepsignal.tsv -n methylation/Met_frequency_nanopolish.tsv -b methylation/res/bisulfite.ENCFF835NTC.example.tsv -o methylation/methylation_score_comparison
 ```
-this script print out a table containing the methylation scores calculated for the different tools and a pdf comparing the methulation scores. The table should looks like:
+Please, feel free to open the script and look at what is it doing. This command prints out a table (i.e. `methylation_score_comparison.tsv`) and a pdf (i.e. `methylation_score_comparison.pdf`) comparing the methulation scores. The table list the scores given by every software/method. It should looks like:
 ```{}
 Index            Deepsignal_frequency  Bisulphite_frequency  Nanopolish_frequency
 chr20:5017505    0.88322896	           0.75	                 0.8
@@ -121,41 +122,39 @@ chr20:5017701	   0.92652583	           0.62	                 0.778
 chr20:5017906	   0.86876917	           1	                   0.846
 chr20:5017998	   0.28020185	           0.29	                 0.286
 ```
-and the pdf:
-<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/" alt="img_1" class="inline"/>
+and the pdf represents grphically the comparison:
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/Met_score_comparison.png" alt="img_1" class="inline"/>
 
 #### Use the Jaccard index to quantify the modified cytosines
 
-We are using bedtools to calculate the Jaccard score.
+We can use Jaccard similarity coefficient to score the similarity between the regions that have been recognised by our tools as being modified. The Jaccard score measures the intersection over the union minus the intersection. So that, the closest the index is to one, the more the 2 datasets are similar.  
+To do so, we can use bedtools. First we have to convert the frequency files to BED files (which is the format required from `bedtools`).
 
-Convert every frequency file to a BED file (required for bedtools)
 ```{}
-for i in methylation/Met_frequency_*.tsv; do awk --field-separator="\t" '{ if (NR > 1 ) print $1,$2,$2,$(NF-1) }' $i | sort -V | sed 's/ /\t/g' > ${i:1:-3}bedgraph ; done
+for i in methylation/Met_frequency_*.tsv; do awk --field-separator="\t" '{ if (NR > 1 ) print $1,$2,$2,$(NF-1) }' $i | sort -V | sed 's/ /\t/g' > ${i:0:-3}bedgraph ; done
 ```
-
-Calculate the Jaccard score
+Then we can calculate the Jaccard score for every pair of methods:
 ```{}
-bedtools jaccard -a methylation/Met_frequency_deepsignal.bed -b methylation/res/bisulfite.ENCFF835NTC.example.tsv
-bedtools jaccard -a methylation/Met_frequency_nanopolish.bed -b methylation/res/bisulfite.ENCFF835NTC.example.tsv
-bedtools jaccard -a methylation/Met_frequency_deepsignal.bed -b methylation/Met_frequency_nanopolish.bed
-
+bedtools jaccard -a methylation/Met_frequency_deepsignal.bedgraph -b methylation/res/bisulfite.ENCFF835NTC.example.tsv
+bedtools jaccard -a methylation/Met_frequency_nanopolish.bedgraph -b methylation/res/bisulfite.ENCFF835NTC.example.tsv
+bedtools jaccard -a methylation/Met_frequency_deepsignal.bedgraph -b methylation/Met_frequency_nanopolish.bed
 ```
+the output is:
+```{}
+intersection	union-intersection	jaccard 	n_intersections
+```
+the index we want to use to compare the regions is the third value (i.e. `jaccard`)
 
 #### Compare the values assigned to the modified or not modified cytosines
-
+We can also plot the similarity of the regions as recognised versus not recognised.
 ```{}
 methylation/scripts/compare_met_regions.R -d methylation/Met_frequency_deepsignal.tsv -n methylation/Met_frequency_nanopolish.tsv -b methylation/res/bisulfite.ENCFF835NTC.example.tsv -o methylation/methylation_region_comparison
 ```
 
 ## Methylation - Visualisation {#Methylation-Visualization}
 
-```{}
+We could use IGV to visualise the bedgraph files we created before. Bedgraph files are essentially BED files with a 4th column that stores the value of that region. In the file we created the 4th column store the probabilty of the regions to be methylated.
 
-```
-convert the `.Met_deepsignal.tsv` file to a BED file with this script and visualise it with the others tracks we have loaded earlier.
-```{}
-
-```
 
 Alternatively, we could write a script to visualize the data. Scripts are a useful way to have consistency in your results and pictures. Here, we use an R script to plot the methylation peaks, called using the three different methods we saw during the course.
 
