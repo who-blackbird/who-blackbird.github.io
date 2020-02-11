@@ -82,7 +82,6 @@ Define now the following variables for convenience:
 ```
 WT_fastq=~/Course_Materials/nanopore_practical/data/day1/fastq/WT_CoV.fastq.gz
 SL2_fastq=~/Course_Materials/nanopore_practical/data/day1/fastq/SL2_CoV.fastq.gz
-
 HCoV_ref=~/Course_Materials/nanopore_practical/data/day1/reference_genome/HCov-229E.fasta
 ```
 
