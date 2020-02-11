@@ -2,9 +2,9 @@
 
 In this section we will cover:
 
-* [SNV Calling](#snvcalling)
-* [SV Calling](#svcalling)
-* [SV Annotation](#svannotation)
+* [Single Nucleotide Variant Calling](#snvcalling)
+* [Structural Variant Calling](#svcalling)
+* [Structural Variant Annotation](#svannotation)
 * [Analysis report](#report)
 
 You will learn to:
@@ -13,7 +13,7 @@ You will learn to:
 - Call SVs and interpret the results
 - Make nice reports
 
-## Workind directory
+## Working directory
 
 Before we start, go to your wd:
 
@@ -37,7 +37,7 @@ SRS_snvs=~/Course_Materials/nanopore_practical/data/day2/SNVs/SRS_SNVs.vcf.gz
 ref=~/Course_Materials/nanopore_practical/data/day2/reference_genome/Homo_sapiens.GRCh38.dna.fasta
 ```
 
-## SNV Calling {#snvcalling}
+## Single Nucleotide Variant Calling {#snvcalling}
 
 In this section we will identify SNVs from long-read sequencing data using [**Longshot**](https://github.com/pjedge/longshot).
 
@@ -86,7 +86,7 @@ Then, load your BAM files `$LRS_bam` and `$SRS_bam`.
 Go to position (PENDING)
 
 
-## SV Calling {svcalling}
+## Structural Variant Calling {svcalling}
 
 Algorithms for calling SVs from long-read sequencing data include:
 -	[Sniffles](http://github.com/fritzsedlazeck/Sniffles): best used with minimap2 or NGMLR. 
@@ -139,7 +139,7 @@ Do the same for the `s20` file.
 - Do you think that `s20` is too strict or lenient?
 
 
-## SV Annotation {svannotation}
+## Structural Variant Annotation {svannotation}
 
 To annotate the VCF, 
 
