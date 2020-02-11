@@ -249,7 +249,9 @@ samtools stats alignment/WT_CoV.sort.bam > stats/WT_samtools_stats.txt
 samtools stats alignment/SL2_CoV.sort.bam > stats/SL2_samtools_stats.txt
 ```
 
-Explore the results obtained from samtools stats, and comprare them with the NanoStat output. Which one provides more information?
+Explore the results obtained from samtools stats, and comprare them with the NanoStat output.
+- Which one provides more information?
+- Compare the number of mapped vs unmapped reads. Why do you think there are so many unmapped ones?
 
 Additional information for the `samtools stats` output can be found [here](https://www.htslib.org/doc/samtools-stats.html).
 
@@ -337,4 +339,4 @@ Open IGV and load the HCov-229E.fasta reference genome by selecting Genomes>Load
 
 Then, load your BAM file located in alignment/SL2_CoV.sort.bam
 
-Go to the region:
+Explore!
