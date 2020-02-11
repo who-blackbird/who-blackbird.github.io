@@ -150,8 +150,8 @@ readLength$sample <- factor(readLength$sample, levels = c('WT', 'SL2'))
 
 #Make the plot
 p1 <- ggplot(data=readLength, aes(length, fill = sample)) + 
-    geom_histogram(position = "identity", alpha = 0.6, binwidth = 10) +
-    scale_x_continuous(breaks = seq(0, max(readLength$length), 1000)) +
+    geom_histogram(position = "identity", alpha = 0.6, binwidth = 1) +
+    scale_x_sqrt(breaks = trans_breaks("sqrt", function(x) x ^ 2)(c(1, max(readLength$length)))) +
     theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
     labs(title = "Read length")
 p1
