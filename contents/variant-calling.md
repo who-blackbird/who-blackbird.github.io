@@ -51,7 +51,7 @@ Call SNVs in the nanopore aligment example as below:
 longshot --bam $LRS_bam --ref $ref --out SNVs/LRS_SNVs.vcf
 ```
 
-*Note:* This step will take ~18min!! Feel free to grab a coffee, ask questions or continue to the [next section](#svcalling) in a different Terminal window - you can always come back later :-)
+*Note:* This step will take ~18min!! Feel free to grab a coffee, ask questions or continue to the [next section]{svcalling} in a different Terminal window - you can always come back later :-)
 
 ...
 
