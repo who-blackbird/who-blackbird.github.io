@@ -60,33 +60,38 @@ chr20	4992064	-	59452102	0.056	0.944	1	0	1	1.000	TAATGGCGCGATCTCGG
 
 ## Methylation - Nanopolish {#Methylation-Nanopolish}
 
-INTRODUCE NANOPOLISH
+[Nanopolish](https://nanopolish.readthedocs.io/en/latest/index.html) is a software to analyse signal-level Oxford Nanopore data. It was originally designed to improve consensus sequence and polish the basecall, but today it provides a series of other tools. Nanopolish needs to access the signal-level and it uses hidden Markov model (HMM) to take into account the sorrounding resistence signal when calling the base and its modification.
 
-As it happens for deepsignal, Nanopolish needs to access the signal-level. To do it in an efficient way, we need to create an index to link the read IDs (fastq) with their signal-level data in the fast5 files. 
-
-Yesterday, we learned how to align the data, so we will skip this step and go straight to the indexing:
+To look at the raw data in an efficient way, Nanopolish needs to create an index to link the read IDs (fastq) with their signal-level data in the fast5 files. We already learned how to basecall the raw data, so we will skip this step and we go straight to the indexing:
 
 #### Index fast5 files
-
+We use the `index` command to link fast5 files to the fastq sequences: 
 ```{}
 nanopolish index -d methylation/res/fast5_files/ methylation/res/alignment_output.fastq
 ```
-
+We need to align the reads to the reference genome. We can use mimimap2 for this and pipe the results to samtools to sort them. Ultimately, we need to index the bam file we created:
 #### Align and sort fastq files
-
 ```{}
-# module load samtools
 # Align the reads the the GRCh38 subset
-methylation/scripts/minimap2/minimap2 -a -x map-ont methylation/res/reference.fasta methylation/res/alignment_output.fastq | samtools sort -T tmp -o methylation/res/alignment_output_sorted.bam
+minimap2 -a -x map-ont methylation/res/reference.fasta methylation/res/alignment_output.fastq | samtools sort -T tmp -o methylation/res/alignment_output_sorted.bam
+
 # Index the sorted output
 samtools index methylation/res/alignment_output_sorted.bam
 ```
-
+Once done this preprocessing, we have all the required files to start the 5mC modification call. We use the command `call-methylation` to annotate the modification.
 #### Call 5mC modification
-
 ```{}
-nanopolish call-methylation -t 16 -r methylation/res/alignment_output.fastq -b methylation/res/alignment_output_sorted.bam -g methylation/res/reference.fasta -w "chr20:5,000,000-10,000,000" > methylation/Met_nanopolish.tsv
+nanopolish call-methylation -t 8 -r methylation/res/alignment_output.fastq -b methylation/res/alignment_output_sorted.bam -g methylation/res/reference.fasta -w "chr20:5,000,000-10,000,000" > methylation/Met_nanopolish.tsv
 ```
+__NB.: This command will take about 10 minutes, so it is a good time to have a break and stretch a bit your.__
+
+Tip:
+`-t` specify the number of threads to use for this command. This value can be optimised on the number of cores in your CPU. To check how many threads you have, on linux, you can do:
+```{}
+lscpu | egrep 'Model name|Socket|Thread|NUMA|CPU\(s\)'
+```
+This command will see CPUs and threads which are the information you need, there is not an optimum number of threads, it really depends on the process you are running and it always need a bit of optimization.
+
 
 #### Call 5mC modification frequency
 
