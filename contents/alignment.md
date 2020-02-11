@@ -323,10 +323,10 @@ p3
 
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/HCoV-coverage_distribution.png" alt="cov" class="inline"/>
 
-You can also add a fancy vertical line to the previous plot intercepting with a minimum coverage of (let's say) 100x:
+You can also add a fancy vertical line to the previous plot intercepting with a minimum coverage of (let's say) 1000x:
 
 ```
-p3 + geom_vline(xintercept = 100, colour = "red")
+p3 + geom_vline(xintercept = 1000, colour = "red")
 ```
 
 ## Visualisation
