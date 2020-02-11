@@ -2,6 +2,7 @@
 
 In this section we will cover:
 
+* [Working directory](#workingdirectory)
 * [Single Nucleotide Variant Calling](#snvcalling)
 * [Structural Variant Calling](#svcalling)
 * [Structural Variant Annotation](#svannotation)
@@ -12,7 +13,7 @@ You will learn to:
 - Call SVs and interpret the results
 - Make nice reports
 
-## Working directory
+## Working directory {workingdirectory}
 
 Before we start, go to your wd:
 
@@ -37,7 +38,7 @@ ref=~/Course_Materials/nanopore_practical/data/day2/reference_genome/Homo_sapien
 annotsv=/path/to/AnnotSV.tcl
 ```
 
-## Single Nucleotide Variant Calling {#snvcalling}
+## Single Nucleotide Variant Calling {snvcalling}
 
 In this section we will identify SNVs from long-read sequencing data using [**Longshot**](https://github.com/pjedge/longshot).
 
