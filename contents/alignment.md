@@ -2,6 +2,7 @@
 
 In this section we will cover:
 
+* [Background](#Background)
 * [Data](#Data)
 * [WorkingDirectory](#WorkingDirectory)
 * [ReadsQC](#ReadsQC)
@@ -13,9 +14,19 @@ You will learn to:
 - Take the basecalled sequences in FASTQ format and align them to a genome of reference
 - Perform quality control and visualise the alignment
 
+## Background
+
+Coronaviruses are enveloped positive-sense (+) single-stranded RNA viruses that infect a variety of mammalian and avian hosts. Among the several coronaviruses that are pathogenic to humans, most are associated with mild clinical symptoms, with the exception of severe acute respiratory syndrome (SARS) coronavirus (SARS-CoV), a Middle East respiratory syndrome (MERS) coronavirus (MERS-Cov), and the recently identified human-infecting coronavirus, provisionally named 2019 novel coronavirus (2019-nCoV).
+
+In this practical we will be using data from Human Coronavirus 229E (HCoV-229E), one of the first coronavirus strains being described, with a genome size of ~27,300nt. In HCov-229E-infected cells, a total of seven major viral RNAs are produced. In it's 5'-terminal region, the genome RNA contains two large ORFs, 1a and 1b, that encode the viral replicase polyproteins 1a and 1b. mRNAs 2, 4, 5, 6 and 7 are used to produce the S protein, accessory protein 4, E protein, M protein and N protein respectively.
+
+The scheme of genomic and subgenomic RNAs produced in HCov-229E-infected cells looks like this:
+
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/HCov-RNAs_CoV.png" alt="rnas" class="inline"/>
+
 ## Data
 
-The data we will be using is from Human Coronavirus 229E (HCoV-229E), one of the first coronavirus strains being described, with a genome size of ~27,300nt.
+The data we will be using is from Human Coronavirus 229E (HCoV-229E), one of the first coronavirus strains being described.
 
 In [this](http://www.ncbi.nlm.nih.gov/pubmed/?term=Viehweger+coronavirus) study, RNA sequencing was performed from Huh7 cells infected with serially passaged recombinant human coronaviruses, that we will refer to as:
 
