@@ -109,18 +109,20 @@ Bisulphyte is nowadays commonly used to detect 5mC genome-wide. We can compare t
 ```{}
 methylation/scripts/compare_met_score.R -d methylation/Met_deepsignal.tsv -n methylation/Met_frequency_nanopolish.tsv -b methylation/res/bisulfite.ENCFF835NTC.example.tsv -o methylation/methylation_score_comparison
 ```
-this script print out a table containing the methylation scores calculated for the different tools, that table looks like:
+this script print out a table containing the methylation scores calculated for the different tools and a pdf comparing the methulation scores. The table should looks like:
 ```{}
-Index Deepsignal_frequency  Bisulphite_frequency  Nanopolish_frequency
-chr20:5017505 0.88322896	0.75	0.8
-chr20:5017536	0.46293265	0.6	0.857
-chr20:5017607	0.9334746	0.8	0.818
-chr20:5017628	0.9180513	1	0.818
-chr20:5017662	0.15342923	0.78	0.462
-chr20:5017701	0.92652583	0.62	0.778
-chr20:5017906	0.86876917	1	0.846
-chr20:5017998	0.28020185	0.29	0.286
+Index            Deepsignal_frequency  Bisulphite_frequency  Nanopolish_frequency
+chr20:5017505    0.88322896	           0.75	                 0.8
+chr20:5017536	   0.46293265	           0.6	                 0.857
+chr20:5017607	   0.9334746	           0.8	                 0.818
+chr20:5017628  	 0.9180513	           1	                   0.818
+chr20:5017662	   0.15342923	           0.78	                 0.462
+chr20:5017701	   0.92652583	           0.62	                 0.778
+chr20:5017906	   0.86876917	           1	                   0.846
+chr20:5017998	   0.28020185	           0.29	                 0.286
 ```
+and the pdf:
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/" alt="img_1" class="inline"/>
 
 #### Use the Jaccard index to quantify the modified cytosines
 
