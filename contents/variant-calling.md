@@ -55,7 +55,7 @@ longshot --bam $LRS_bam --ref $ref --out SNVs/LRS_SNVs.vcf
 
 ...
 
-Wellcome back! When the SNV callins is done, compress and index the VCF file:
+Wellcome back! When the SNV calling is done, compress and index the VCF file:
 
 ```
 bgzip SNVs/LRS_SNVs.vcf
@@ -92,7 +92,7 @@ Algorithms for calling SVs from long-read sequencing data include:
 - [Sniffles](http://github.com/fritzsedlazeck/Sniffles): best used with minimap2 or NGMLR. 
 - [NanoSV](http://github.com/philres/ngmlr): best used with LAST.
 
-Here, we will use sniffles for calling structural variants.
+Here, we will use **Sniffles** for calling structural variants.
 
 ```
 sniffles -m $LRS_bam -v SVs/LRS_SVs.vcf
@@ -141,11 +141,11 @@ Do the same for the `s20` file.
 
 ## Structural Variant Annotation {svannotation}
 
-In order to perform annotation of the SVs from multiple sources, we will use **AnnotSV**.
+In order to perform annotation of the SVs from multiple sources, we will use [**AnnotSV**](https://lbgi.fr/AnnotSV).
 
 AnnotSV annotates SVs with information about the genes (OMIM, ClinGen), regulatory elements (enhancders, promoters), pathogenicity (known from dbVar), frequencies (gnomAD, internal) and breakpoints (GC content, repeats) they overlap.
 
-To run a basic annotation, we will run:
+To run a basic SV annotation, we will exectue the following command:
 
 ```
 $annotsv -SVinputFile SVs/LRS_SVs.sort.vcf.gz -SVinputInfo 1 \
