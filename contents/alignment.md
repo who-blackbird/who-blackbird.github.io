@@ -16,9 +16,9 @@ You will learn to:
 
 ## Background
 
-Coronaviruses are enveloped positive-sense (+) single-stranded RNA viruses that infect a variety of mammalian and avian hosts. Among the several coronaviruses that are pathogenic to humans, most are associated with mild clinical symptoms, with the exception of severe acute respiratory syndrome (SARS) coronavirus (SARS-CoV), a Middle East respiratory syndrome (MERS) coronavirus (MERS-Cov), and the recently identified human-infecting coronavirus, provisionally named 2019 novel coronavirus (2019-nCoV).
+**Coronaviruses** are enveloped positive-sense (+) single-stranded RNA viruses that infect a variety of mammalian and avian hosts. Among the several coronaviruses that are pathogenic to humans, most are associated with mild clinical symptoms, with the exception of severe acute respiratory syndrome (SARS) coronavirus (SARS-CoV), a Middle East respiratory syndrome (MERS) coronavirus (MERS-Cov), and the recently identified human-infecting coronavirus, provisionally named 2019 novel coronavirus (2019-nCoV).
 
-In this practical we will be using data from Human Coronavirus 229E (HCoV-229E), one of the first coronavirus strains being described, with a genome size of ~27,300nt. In HCov-229E-infected cells, a total of seven major viral RNAs are produced. In it's 5'-terminal region, the genome RNA contains two large ORFs, 1a and 1b, that encode the viral replicase polyproteins 1a and 1b. mRNAs 2, 4, 5, 6 and 7 are used to produce the S protein, accessory protein 4, E protein, M protein and N protein respectively.
+In this practical we will be using data from **Human Coronavirus 229E (HCoV-229E)**, one of the first coronavirus strains being described, with a genome size of ~27,300nt. In HCov-229E-infected cells, a total of seven major viral RNAs are produced. In it's 5'-terminal region, the genome RNA contains two large ORFs, 1a and 1b, that encode the viral replicase polyproteins 1a and 1b. mRNAs 2, 4, 5, 6 and 7 are used to produce the S protein, accessory protein 4, E protein, M protein and N protein respectively.
 
 The scheme of genomic and subgenomic RNAs produced in HCov-229E-infected cells looks like this:
 
@@ -30,8 +30,8 @@ The data we will be using is from Human Coronavirus 229E (HCoV-229E), one of the
 
 In [this](http://www.ncbi.nlm.nih.gov/pubmed/?term=Viehweger+coronavirus) study, RNA sequencing was performed from Huh7 cells infected with serially passaged recombinant human coronaviruses, that we will refer to as:
 
-* WT RNA (wild-type HCoV-229E)
-* SL2 RNA (pool of recombinant virus, with the stem-loop structrue (SL2) in the 5'UTR replaced with the equivalent SL2 element from SARS-CoV and SARS-BCoV)
+* **WT RNA** (wild-type HCoV-229E)
+* **SL2 RNA** (pool of recombinant virus, with the stem-loop structrue (SL2) in the 5'UTR replaced with the equivalent SL2 element from SARS-CoV and SARS-BCoV)
 
 Sequencing was performed with Oxford Nanopore MinION using the Direct RNA Sequencing protocol (SQK-RNA-1) and R9.4 chemistry. The source for the original FAST5 and FASTQ files can be found [here](https://osf.io/up7b4/).
 
@@ -87,7 +87,7 @@ HCoV_ref=~/Course_Materials/nanopore_practical/data/day1/reference_genome/HCov-2
 
 ## ReadsQC
 
-There are many approaches to assess the quality of the reads. Here we will use [NanoStat](https://github.com/wdecoster/nanostat). This calculates various statistics from a long read sequencing dataset in FASTQ, BAM or albacore sequencing summary format.
+There are many approaches to assess the quality of the reads. Here we will use [**NanoStat**](https://github.com/wdecoster/nanostat). This calculates various statistics from a long read sequencing dataset in FASTQ, BAM or albacore sequencing summary format.
 
 For FASTQ files, it provides information for the number of reads, the read lenght and quality distrubutions (including mean and median) and the read length [N50](http://www.metagenomics.wiki/pdf/definition/assembly/n50).
 
@@ -104,7 +104,7 @@ Obtain for both WT and SL2 samples the:
 - How many reads have a quality score (Q) higher than 15? For which sample?
 - Longest read
 
-*Hint: To visualize the file you can use the command `cat`, or `grep` if you want to search for lines containing a pattern, eg. `grep "Mean read length" stats/*fastq_nanostats.txt`*
+*Hint:* To visualize the file you can use the command `cat`, or `grep` if you want to search for lines containing a pattern, eg. `grep "Mean read length" stats/*fastq_nanostats.txt`
 
 However, you may want to run your customised scripts, to answer your own questions... Here you have some ideas!
 
@@ -186,7 +186,7 @@ Multiple algorithms have been developed to align long reads to a genome of refer
 -	Graphmap: [http://github.com/isovic/graphmap](http://github.com/isovic/graphmap)
 -	bwa mem -x l ont2d: [http://github.com/lh3/bwa](http://github.com/lh3/bwa)
 
-Here we will use **minimap2** to map the reads to the genome of reference. Then we will convert the SAM output to BAM format and sort it by mapping coordinate. For that we will use the following **minimap2** options:
+Here we will use **minimap2** to map the reads to the genome of reference. Then we will convert the SAM output to BAM format and sort it by mapping coordinate. For that we will use the following minimap2 options:
 
 ```
 -x map-ont  Nanopore vs reference mapping
@@ -205,7 +205,7 @@ minimap2 -x map-ont --MD -u n -k 14 -a $HCoV_ref $WT_fastq > alignment/WT_CoV.sa
 samtools sort alignment/WT_CoV.sam -O BAM -o alignment/WT_CoV.sort.bam
 ```
 
-***Alternatively***, you can run these two steps using only one command line. Below is the alignment for the SL2 sample:
+*Alternatively*, you can run these two steps using only one command line. Below is the alignment for the SL2 sample:
 
 ```
 minimap2 -x map-ont --MD -u n -k 14 -a $HCoV_ref $SL2_fastq | samtools sort - -O BAM -o alignment/SL2_CoV.sort.bam
@@ -298,7 +298,7 @@ p2
 
 You should see a plot like this one. 
 
-<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/HCov-coverage.png" alt="cov" class="inline"/>
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/HCoV-coverage.png" alt="cov" class="inline"/>
 
 Which is a reproduction of the **Figure 2** from the original [paper](http://genome.cshlp.org/cgi/pmidlookup?view=long&pmid=31439691).
 
@@ -321,7 +321,7 @@ p3 <- ggplot(data = percent_cov, aes(x = cov, y = percent*100, colour = sample))
 p3
 ```
 
-<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/HCov-coverage_distribution.png" alt="cov" class="inline"/>
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/HCoV-coverage_distribution.png" alt="cov" class="inline"/>
 
 You can also add a fancy vertical line to the previous plot intercepting with a minimum coverage of (let's say) 100x:
 
@@ -331,7 +331,7 @@ p3 + geom_vline(xintercept = 100, colour = "red")
 
 ## Visualisation
 
-To inspect the alignment, we will use [Integrative Genomics Viewer](https://software.broadinstitute.org/software/igv/).
+To inspect the alignment, we will use [**Integrative Genomics Viewer**](https://software.broadinstitute.org/software/igv/).
 
 Open IGV and load the HCov-229E.fasta reference genome by selecting Genomes>Load from File or Genomes>Load from URL. The new genome will be added to the drop-down menu, and also loaded and displayed in the IGV window.
 
