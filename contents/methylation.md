@@ -147,94 +147,36 @@ the index we want to use to compare the regions is the third value (i.e. `jaccar
 
 #### Compare the values assigned to the modified or not modified cytosines
 
-We can also plot the similarity of the regions as recognised versus not recognised.
+We can also plot the similarity of the regions that have been recognised to be modified versus the one that have not been recognised. You can use the command:
 ```{}
 methylation/scripts/compare_met_regions.R -d methylation/Met_frequency_deepsignal.tsv -n methylation/Met_frequency_nanopolish.tsv -b methylation/res/bisulfite.ENCFF835NTC.example.tsv -o methylation/methylation_region_comparison
 ```
+Also this command print a table and a PDF file. The table report if a region has been recognised (TRUE) or not (FALSE) from a method/technique. It should look like: 
+```{}
+reference_regions	  deep_overlap	nano_overlap	bisul_overlap
+chr20:5092445	      FALSE	        FALSE	        TRUE
+chr20:5092454	      TRUE	        FALSE	        TRUE
+chr20:5092455	      TRUE	        FALSE	        TRUE
+chr20:5092482	      TRUE	        TRUE	        TRUE
+chr20:5092483	      TRUE	        FALSE	        TRUE
+chr20:5092485	      TRUE	        FALSE	        TRUE
+chr20:5092486	      TRUE	        FALSE	        TRUE
+```
+and the PDF:
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/met_region_comparison.png" alt="img_1" class="inline"/>
 
 ## Methylation - Visualisation {#Methylation-Visualization}
 
-We could use IGV to visualise the bedgraph files we created before. Bedgraph files are essentially BED files with a 4th column that stores the value of that region. In the file we created the 4th column store the probabilty of the regions to be methylated.
-
-
-Alternatively, we could write a script to visualize the data. Scripts are a useful way to have consistency in your results and pictures. Here, we use an R script to plot the methylation peaks, called using the three different methods we saw during the course.
-
-We load the packages we will need
+We could use IGV to visualise the bedgraph files we created before. Bedgraph files are essentially BED files with a 4th column that stores the value of that region. In the file we created the 4th column store the probabilty of the regions to be methylated. If we want to add the bisulphite as "reference methylation" we could convert it to bedgraph:
 ```{}
-library(Gviz)
-library(tidyverse)
-library(GenomicRanges)
+awk -F "\t" '{print $1,$2,$3,$11/100*$10}' methylation/res/bisulfite.ENCFF835NTC.example.tsv > methylation/bisulfite.ENCFF835NTC.example.bedgraph
 ```
+And then open all the files on IGV. It should looks something like:
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/met_comparison_igv.png" alt="img_1" class="inline"/>
+Do you think IGV tracks reflect the comparison plots we did before?
 
-We then define all the variables we are going to use:
-```{}
-# Define the files we need and their paths
-deep <- "Desktop/NANOPORE_HPC/course/Met_frequency_deepsignal.bed"
-nano <- "Desktop/NANOPORE_HPC/course/Met_frequency_nanopolish.bedgraph"
-met <- "Desktop/NANOPORE_HPC/course/res/bisulfite.ENCFF835NTC.example.bed"
-# Set the chromosomal coordinates to plot
-chr <- "chr20"
-start_reg <- 5000000
-end_reg <- 6000000
-genome_plot="hg38"
-# Set the window number
-window_plot = 250 # the final plot will display the regions divided in the number or windows we define here
-```
-Import the data:
-```{} 
-# Load the files as dataframe
-deep_df <- read_delim(deep, delim = "\t", col_names = FALSE) %>%  
-  filter(X2 < end_reg) # we filter out the regions that we don't want to plot (i.e. the ones starting  downstream our plot end) so that we work with a smaller dataset
-nano_df <- read_delim(nano, delim = "\t", col_names = FALSE) %>%  
-  filter(X2 < end_reg)
-met_df <- read_delim(met, delim = "\t", col_names = FALSE) %>% 
-  mutate(value = (X11 / 100 * X10) / max(X11 / 100 * X10) ) %>% # it calculates the methylation frequency and normalise it to 1
-  filter(X2 < end_reg)
-```
-We want to see how the methylation correlates to the genes, possibly to their promoters. To download these info, it is convient to write down a few lines of code and get this info from ENSEMBL. If we are going to use this info quite often, it is convenient to save it and not download it every time, so that next time we can import it without downloading.
-```{}
-# Download from ENSMBL the gene symbols and coordinates
-mart <- biomaRt::useEnsembl(biomart = "ensembl", dataset = "hsapiens_gene_ensembl")
 
-attributes_to_extract <- c("chromosome_name", "start_position", "end_position", "external_gene_name")
+Alternatively, we could write a script to visualize the data. Scripts are a useful way to have consistency in your results and pictures. We can use an R script to plot the methylation peaks, called using the three different methods we saw during the course.
 
-values_to_filter <- paste(chr, format(start_reg, scientific = FALSE), format(end_reg, scientific = FALSE), sep = ":") %>% 
-                    str_replace("chr","") # remove the 'chr' at the beginning. ENSEMBL doesn't use it 
-
-gene_name <- biomaRt::getBM(attributes = attributes_to_extract, # Refer to the values you want to have in the final df
-                                    filter="chromosomal_region", # Define what filter to apply. 
-                                    values = values_to_filter, 
-                                    mart = mart #Mart object to use
-)  
-
-gene_name$chromosome_name <-   str_replace(gene_name$chromosome_name, "^", "chr") #Put 'chr' on the chromosome
-
-gene_name <- gene_name %>% 
-  filter(!str_detect(external_gene_name, "LIN|\\.|-|SLC23A2")) # Remove long non coding RNA, MT genes and antisense RNA
-
-# Transform the ENSEMBL data to a GenomicRange
-gene_name_gr <- GenomicRanges::GRanges(seqnames = gene_name$chromosome_name, 
-                                       ranges = IRanges(start = gene_name$start_position, 
-                                                        end = gene_name$end_position) 
-)
-mcols(gene_name_gr)$gene_symbol <- gene_name$external_gene_name  
-```
-Ultimately, we can start to make the track we will use to plot.
-```{}
-# This line creates the chromosome(s) we want to plot, with giemsa banding and higligths the region of the cromosome we are plotting with a red box
-ideoTrack <- IdeogramTrack(genome=genome_plot, chromosome=chr, start = start_reg, end = end_reg)
-# This track gives the genomic coordinates we are plotting in Mb. a sort of ruler
-gtrack <- GenomeAxisTrack()
-# These 3 lines plot the methylation profile for deepsignal, nanopolish and bisulphite methods respectively.
-plotTrack_deep <- DataTrack(range=deep_gr, genome=genome_plot, chromosome=chr, name="Methylation deepsignal", start = start_reg, end = end_reg, window = window_plot, type = c("a","hist"))
-plotTrack_nano <- DataTrack(range=nano_gr, genome=genome_plot, chromosome=chr, name="Methylation nanopolish", start = start_reg, end = end_reg, window = window_plot, type = c("a","hist"))
-plotTrack_met <- DataTrack(range=met_gr, genome=genome_plot, chromosome=chr, name="Methylation bisulphite", start = start_reg, end = end_reg, window = window_plot, type = c("a","hist"))
-
-# This last line of script creates the graphic object with the plot we created so far.
-#### plot the 
-plotTracks(list(ideoTrack, gtrack, plotTrack_deep, plotTrack_nano, plotTrack_met, gene_track), chromosome=chr, start = start_reg, end = end_reg, background.title="white", col = "black", fontcolor = " black", cex.title = 1, col.title="black", col.border.title = "black", col.id="black", cex.axis=0.6, col.axis="black")
-
-# to see all the graphic parameters go to https://rdrr.io/bioc/Gviz/man/settings.html
-```
-You should get something like:
+Open the script `methylation/scripts/plot_methylation_gviz.R` and plot the methylation peaks using R. You should get something like:
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/gviz_met.png" alt="img_1" class="inline"/>
