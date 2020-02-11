@@ -122,7 +122,7 @@ chr20:5017701	   0.92652583	           0.62	                 0.778
 chr20:5017906	   0.86876917	           1	                   0.846
 chr20:5017998	   0.28020185	           0.29	                 0.286
 ```
-and the pdf represents grphically the comparison:
+and the pdf graphically represents the comparison:
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/Met_score_comparison.png" alt="img_1" class="inline"/>
 
 #### Use the Jaccard index to quantify the modified cytosines
