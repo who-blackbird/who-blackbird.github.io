@@ -1,15 +1,21 @@
-#  Oxford Nanopore - day 2 - Methylation
+#  7. Methylation
 
-#### [Methylation - DeepSignal](#Methylation-DeepSignal)
-#### [Methylation - Nanopolish](#Methylation-Nanopolish)
-#### [Methylation - Comparison](#Methylation-Comparison) 
-#### [Methylation - Visualisation](#Methylation-Visualization)
+In this section we will cover:
+
+* [Methylation - DeepSignal](#Methylation-DeepSignal)
+* [Methylation - Nanopolish](#Methylation-Nanopolish)
+* [Methylation - Comparison](#Methylation-Comparison) 
+* [Methylation - Visualisation](#Methylation-Visualization)
+
+You will learn to:
+- Call 5mC modification from Nanopore sequencing data
+- Compare differenc methods to call 5mC
+- Visualize the 5mC on IGV
 
 ***
+N.B.: Note these scripts use `path/to/Course_Materials/` as working directory (wd). To check what directory you are using as `wd` do `pwd`. If the output is different from `path/to/Course_Materials` please go to `Course_Materials/` with the `cd` command.
 
-N.B.: Note these scripts use `course/` as working directory
-
-
+Also here, we create the output directory and then we set the two variables: `IN` and `OUT.`
 ```{}
 mkdir -p Course_Materials/wd/day2/methylation/
 IN="Course_Materials/data/methylation"
@@ -187,3 +193,6 @@ Alternatively, we could write a script to visualize the data. Scripts are a usef
 
 Open the script `${IN}/scripts/plot_methylation_gviz.R` and plot the methylation peaks using R. You should get something like:
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/gviz_met.png" alt="img_1" class="inline"/>
+
+## References
+

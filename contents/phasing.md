@@ -5,9 +5,14 @@
 #### [Phasing - Pedigrees](#Phasing-Pedigrees)
 
 ***
+N.B.: Note these scripts use `path/to/Course_Materials/` as working directory (wd). To check what directory you are using as `wd` do `pwd`. If the output is different from `path/to/Course_Materials` please go to `Course_Materials/` with the `cd` command.
 
-N.B.: Note these scripts use `path/to/course/` as working directory
-
+We create the output directory and then we set two variables: `IN` and `OUT.` They store the path for the reference/input files and output files respectively.
+```{}
+mkdir -p wd/day2/phasing/
+IN="data/phasing"
+OUT="wd/day2/phasing"
+```
 ## Phasing - WhatsHap {#Phasing-WA}
 
 For this practical we are going to use the [WhatsHap tool](https://www.biorxiv.org/content/10.1101/085050v2.full.pdf), which uses python and is based on the homonym algorithm. To download [WhatsHap](https://whatshap.readthedocs.io/en/latest/index.html). 
@@ -15,14 +20,6 @@ For this practical we are going to use the [WhatsHap tool](https://www.biorxiv.o
 WhatsHap can phase SNVs and indels, but it does not work on structural variants. It is very easy to use: it takes as input a BAM file and a VCF file and returns a second VCF file improved with the phasing information. BAM and VCF files don't have to be derived from the same set of reads. This is convenient bacause one can use high-quality short reads (such us Illumina reads) to call the variants and then use long reads (such us Oxford Nanopore reads) to phase them. Indeed, this workflow that has just been described is the raccomended one. Please note that using 2 different sets of reads may create some problems to the WhatsHap algortihm, which is trying to match the sample name (`@RG` header line) of the BAM file to the VCF file. It tries to match them because this tool can process VCF and BAM containing different samples in the same file. Nonetheless, there are a couple of ways to work around this problem.
 
 The main WhatsHap subcommand is `phase`, which is the backbone of the entire tool, it uses reads containing 2 or more variants to assign them to one allele or the other. In this example we are going to phase a test VCF.
-
-```{}
-mkdir -p Course_Materials/wd/day2/phasing/
-IN="Course_Materials/data/phasing"
-OUT="Course_Materials/wd/day2/phasing"
-```
-
-
 ```{}
 # The bamtools needs to be indexed bedore, so we do:
 samtools index ${IN}/res/sample1_long_reads.bam
