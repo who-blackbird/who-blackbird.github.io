@@ -383,12 +383,12 @@ This was a VERY basic overview of nanopore data analysis. Below is a diagram sho
 
 ## References & Reading
 
-Excellent comparison of basecallers: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1727-y
+Excellent comparison of basecallers: <https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1727-y>
 
-Oxford Nanopore downloads: https://community.nanoporetech.com/downloads
+Oxford Nanopore downloads: <https://community.nanoporetech.com/downloads>
 
-Oxford Nanopore tutorials: https://community.nanoporetech.com/knowledge/bioinformatics/
+Oxford Nanopore tutorials: <https://community.nanoporetech.com/knowledge/bioinformatics/>
 
-Specific QC tutorial: https://github.com/nanoporetech/ont_tutorial_basicqc
+Specific QC tutorial: <https://github.com/nanoporetech/ont_tutorial_basicqc>
 
-How are Phred scores calculated: https://en.wikipedia.org/wiki/Phred_quality_score
+How are Phred scores calculated: <https://en.wikipedia.org/wiki/Phred_quality_score>
