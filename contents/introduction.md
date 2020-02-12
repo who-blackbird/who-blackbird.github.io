@@ -33,10 +33,14 @@ In contrast, **long-read sequencing** allows us to retrive much longer sequence 
 
 Additionally long-read methodologies typically sequence single molecules of DNA directly and in real-time, foregoing the need for amplification.
 
-<ins>**Long-read workflow**\_</ins>
+<ins>**Long-read workflow**</ins>
 
 <p align="center">
   <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.lrs.png" alt="img_2" class="inline"/>
 </p>
+
+The two best known producers of ‘true’ long-read sequencing technologies are Pacific Biosciences (**PacBio**) and Oxford Nanopore Technologies (**Nanopore**). Bother offer systems which sequence single molecules of **DNA or RNA** in **'real-time'** and that can produce **longer reads** than current short-read systems.
+
+## 2. SMRT sequencing
 
 ## References
