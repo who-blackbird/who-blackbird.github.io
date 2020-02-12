@@ -39,7 +39,7 @@ Additionally long-read methodologies typically sequence single molecules of DNA 
   <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.lrs.png" alt="img_2" class="inline"/>
 </p>
 
-The two best known producers of ‘true’ long-read sequencing technologies are Pacific Biosciences (**PacBio**) and Oxford Nanopore Technologies (**Nanopore**). Bother offer systems which directly sequence single molecules of **DNA or RNA** in '**real-time**' and that produce extremely long reads.
+The two best known producers of ‘true’ long-read sequencing technologies are Pacific Biosciences (**PacBio**) and Oxford Nanopore Technologies (**Nanopore**). Bother offer platforms that directly sequence single molecules of **DNA or RNA** in '**real-time**' and which can produce significantly longer reads than current short-read platofrms.
 
 ## 2. SMRT sequencing
 
