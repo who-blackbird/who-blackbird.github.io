@@ -2,11 +2,11 @@
 
 In this section we will cover:
 
-* [Working directory](#workingdirectory)
-* [Single Nucleotide Variant Calling](#snvcalling)
-* [Structural Variant Calling](#svcalling)
-* [Structural Variant Annotation](#svannotation)
-* [Represent cxSVs using Circos](#circos)
+- [Working directory](#workingdirectory)
+- [Single Nucleotide Variant Calling](#snvcalling)
+- [Structural Variant Calling](#svcalling)
+- [Structural Variant Annotation](#svannotation)
+- [Represent cxSVs using Circos](#circos)
 
 You will learn to:
 
@@ -14,6 +14,8 @@ You will learn to:
 - Call SVs and interpret the results
 - Annotate SVs with gene information
 - Make a super cool Circos plot
+
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/vcalling_schema.png" alt="vcalling" class="inline"/>
 
 ## Working directory {#workingdirectory}
 
@@ -56,7 +58,7 @@ Call SNVs in the nanopore aligment example as below:
 longshot --bam $LRS_bam --ref $ref --out variant_calling/snvs/LRS_SNVs.vcf
 ```
 
-*Note:* This step will take ~18min!! Feel free to grab a coffee, ask questions or continue to the next section (SV calling) in a different Terminal window - you can always come back later :-)
+_Note:_ This step will take ~18min!! Feel free to grab a coffee, ask questions or continue to the next section (SV calling) in a different Terminal window - you can always come back later :-)
 
 ...
 
@@ -67,13 +69,13 @@ bgzip variant_calling/snvs/LRS_SNVs.vcf
 tabix -p vcf variant_calling/snvs/LRS_SNVs.vcf.gz
 ```
 
-Now you can compare the instersection between both LRS- and SRS-VCF files using bcftools:
+Now you can compare the intersection between both LRS- and SRS-VCF files using bcftools:
 
 ```
 bcftools isec -p isec variant_calling/snvs/LRS_snvs.vcf.gz $SRS_snvs
 ```
 
-This will creat a folder named isec with the following files:
+This will create a folder named isec with the following files:
 
 ```
 isec/0000.vcf   for records private to the long_reads_VCF
@@ -81,20 +83,21 @@ isec/0001.vcf   for records private to the short_reads_VCF
 isec/0002.vcf   for records from long_reads_VCF shared by both
 isec/0003.vcf   for records from short_reads_VCF shared by both
 ```
+
 - How many SNVs have been called by both technologies?
 - How many SNVs have been missed by short and/or long read sequencing?
 
-*Hint:* to count the number of variants (= numer of rows in file excluding header) you can use the command `bcftools view -H isec/0000.vcf | wc -l`
+_Hint:_ to count the number of variants (= number of rows in file excluding header) you can use the command `bcftools view -H isec/0000.vcf | wc -l`
 
 Now, explore the variants in the **IGV**. Open IGV and load the Homo_sapiens.GRCh38.dna.fasta (`$ref`) reference genome by selecting Genomes>Load from File or Genomes>Load from URL. The new genome will be added to the drop-down menu, and also loaded and displayed in the IGV window.
 
 Then, load your BAM files `$LRS_bam` and `$SRS_bam`.
 
-
 ## Structural Variant Calling {#svcalling}
 
 Algorithms for calling SVs from long-read sequencing data include:
-- [Sniffles](http://github.com/fritzsedlazeck/Sniffles): best used with minimap2 or NGMLR. 
+
+- [Sniffles](http://github.com/fritzsedlazeck/Sniffles): best used with minimap2 or NGMLR.
 - [NanoSV](http://github.com/philres/ngmlr): best used with LAST.
 
 Here, we will use **Sniffles** for calling structural variants.
@@ -139,18 +142,17 @@ Do the same for the `s20` file.
 - How many variants were called in both VCF files?
 - Why are there variants in the `s20` VCF file that are not in the default one?
 - Open both VCF files in IGV and inspect the following regions (all of them absent in `s20`)
-     - 7:89890594-89901123
-     - 7:90462621-90476627
+  - 7:89890594-89901123
+  - 7:90462621-90476627
 - Do you think that `s20` is too strict or lenient?
-
 
 ## Structural Variant Annotation {#svannotation}
 
 In order to perform annotation of the SVs from multiple sources, we will use [**AnnotSV**](https://lbgi.fr/AnnotSV).
 
-AnnotSV annotates SVs with information about the genes (OMIM, ClinGen), regulatory elements (enhancders, promoters), pathogenicity (known from dbVar), frequencies (gnomAD, internal) and breakpoints (GC content, repeats) they overlap.
+AnnotSV annotates SVs with information about the genes (OMIM, ClinGen), regulatory elements (enhancers, promoters), pathogenicity (known from dbVar), frequencies (gnomAD, internal) and breakpoints (GC content, repeats) they overlap.
 
-To run a basic SV annotation, we will exectue the following command:
+To run a basic SV annotation, we will execute the following command:
 
 ```
 AnnotSV -SVinputFile variant_calling/svs/LRS_SVs.sort.vcf.gz -SVinputInfo 1 \
@@ -158,7 +160,7 @@ AnnotSV -SVinputFile variant_calling/svs/LRS_SVs.sort.vcf.gz -SVinputInfo 1 \
      -outputDir annotation
 ```
 
-Now... Inspect the calls in *SGCE* gene:
+Now... Inspect the calls in _SGCE_ gene:
 
 ```
 grep SGCE annotation/LRD_SVs.anno.vcf.tsv
@@ -166,4 +168,4 @@ grep SGCE annotation/LRD_SVs.anno.vcf.tsv
 
 And visualise them in IGV.
 
-Mutations in *SGCE* gene [[MIM:159900]](https://www.omim.org/entry/159900) have previously been associated with Myoclonic Dystonia. As you can see in the IGV plot, there are multiple deletions in this individual overlaping *SGCE*. This data comes from a patient with Myoclonic Dystonia. The deletions you just found have already been seen to be pathogenic. Congratulations, you just called variants from long-read sequencing data and identified a pathogenic one associated with disease! And actually... a very complex one!
+Mutations in _SGCE_ gene [[MIM:159900]](https://www.omim.org/entry/159900) have previously been associated with Myoclonic Dystonia. As you can see in the IGV plot, there are multiple deletions in this individual overlapping _SGCE_. This data comes from a patient with Myoclonic Dystonia. The deletions you just found have already been seen to be pathogenic. Congratulations, you just called variants from long-read sequencing data and identified a pathogenic one associated with disease! And actually... a very complex one!
