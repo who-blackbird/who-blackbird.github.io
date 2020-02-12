@@ -27,6 +27,7 @@ And make the following directories:
 mkdir variant_calling
 mkdir variant_calling/snvs
 mkdir variant_calling/svs
+mkdir annotation
 ```
 
 You can also define the following variables that we will use later for convienience:
