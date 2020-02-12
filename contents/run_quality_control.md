@@ -1,4 +1,4 @@
-# 3. Quality control
+# Quality control
 
 **The run completed successfully - so now what?**
 

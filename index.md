@@ -40,8 +40,8 @@ After this course you should be able to:
 
 # Contents
 
-1. [Introduction to ONT](http://who-blackbird.github.io/contents/introduction_to_ONT)
-2. Sample preparation
+1. [Introduction](http://who-blackbird.github.io/contents/introduction)
+2. [Sample preparation](http://who-blackbird.github.io/pptx/sample_prep.pdf)
 3. [Quality control](http://who-blackbird.github.io/contents/run_quality_control)
 4. [Alignment](http://who-blackbird.github.io/contents/alignment)
 5. [Variant calling](http://who-blackbird.github.io/contents/variant-calling)

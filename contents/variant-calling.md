@@ -27,16 +27,16 @@ And make the following directories:
 mkdir variant_calling
 mkdir variant_calling/snvs
 mkdir variant_calling/svs
+mkdir annotation
 ```
 
 You can also define the following variables that we will use later for convienience:
 
 ```
-LRS_bam=~/Course_Materials/data/day2/alignment/LRS_alignment.bam
-SRS_bam=~/Course_Materials/data/day2/alignment/SRS_alignment.bam
-SRS_snvs=~/Course_Materials/data/day2/snvs/SRS_SNVs.vcf.gz
-ref=~/Course_Materials/data/day2/reference_genome/Homo_sapiens.GRCh38.dna.fasta
-annotsv=/path/to/AnnotSV.tcl
+LRS_bam=~/Course_Materials/data/variant_calling/bams/LRS_alignment.bam
+SRS_bam=~/Course_Materials/data/variant_calling/bams/SRS_alignment.bam
+SRS_snvs=~/Course_Materials/data/variant_calling/snvs/SRS_SNVs.vcf.gz
+ref=~/Course_Materials/data/variant_calling/reference_genome/Homo_sapiens.GRCh38.dna.fasta
 ```
 
 ## Single Nucleotide Variant Calling {#snvcalling}
@@ -64,7 +64,7 @@ bgzip variant_calling/snvs/LRS_SNVs.vcf
 tabix -p vcf variant_calling/snvs/LRS_SNVs.vcf.gz
 ```
 
-Now you can compare the instersection between both using bcftools:
+Now you can compare the instersection between both LRS- and SRS-VCF files using bcftools:
 
 ```
 bcftools isec -p isec variant_calling/snvs/LRS_snvs.vcf.gz $SRS_snvs
@@ -81,11 +81,14 @@ isec/0003.vcf   for records from short_reads_VCF shared by both
 - How many SNVs have been called by both technologies?
 - How many SNVs have been missed by short and/or long read sequencing?
 
+*Hint:* to count the number of variants (= numer of rows in file excluding header) you can use the command `bcftools view -H isec/0000.vcf | wc -l`
+
 Now, explore the variants in the **IGV**. Open IGV and load the Homo_sapiens.GRCh38.dna.fasta (`$ref`) reference genome by selecting Genomes>Load from File or Genomes>Load from URL. The new genome will be added to the drop-down menu, and also loaded and displayed in the IGV window.
 
 Then, load your BAM files `$LRS_bam` and `$SRS_bam`.
 
-Go to position (PENDING)
+Go to positions:
+- 
 
 
 ## Structural Variant Calling {#svcalling}
@@ -150,10 +153,9 @@ AnnotSV annotates SVs with information about the genes (OMIM, ClinGen), regulato
 To run a basic SV annotation, we will exectue the following command:
 
 ```
-$annotsv -SVinputFile variant_calling/svs/LRS_SVs.sort.vcf.gz -SVinputInfo 1 \
+AnnotSV -SVinputFile variant_calling/svs/LRS_SVs.sort.vcf.gz -SVinputInfo 1 \
      -genomeBuild GRCh38 \
      -outputDir annotation
-     -outputFile LRD_SVs.anno.vcf
 ```
 
 Now... Inspect the calls in *SGCE* gene:

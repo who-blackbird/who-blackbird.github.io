@@ -51,16 +51,16 @@ A FASTQ file normally uses four lines per sequence:
 To visualise the WT FASTQ file, you can type:
 
 ```
-less -S ~/Course_Materials/data/day1/fastq/WT_CoV.fastq.gz
+less -S ~/Course_Materials/data/alignment/fastq/WT_CoV.fastq.gz
 ```
 
 and the SL2:
 
 ```
-less -S ~/Course_Materials/data/day1/fastq/SL2_CoV.fastq.gz
+less -S ~/Course_Materials/data/alignment/fastq/SL2_CoV.fastq.gz
 ```
 
-## Working Directory {workingdirectory}
+## Working Directory {#workingdirectory}
 
 Now, we will set up the working directory where we will do the analysis. Open your terminal, go to 
 
@@ -78,9 +78,9 @@ mkdir alignment
 Define now the following variables for convenience:
 
 ```
-WT_fastq=~/Course_Materials/data/day1/fastq/WT_CoV.fastq.gz
-SL2_fastq=~/Course_Materials/data/day1/fastq/SL2_CoV.fastq.gz
-HCoV_ref=~/Course_Materials/data/day1/reference_genome/HCov-229E.fasta
+WT_fastq=~/Course_Materials/data/alignment/fastq/WT_CoV.fastq.gz
+SL2_fastq=~/Course_Materials/data/alignment/fastq/SL2_CoV.fastq.gz
+HCoV_ref=~/Course_Materials/data/alignment/reference_genome/HCov-229E.fasta
 ```
 
 ## Reads Quality Control {#readsQC}
@@ -131,6 +131,7 @@ and type the following:
 ```
 #Load your libraries
 library(ggplot2)
+library(scales)
 
 #Read your data
 WTreadLength <- read.table("stats/WT_read_length.txt", header=FALSE, col.names = "length")
