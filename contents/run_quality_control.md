@@ -278,8 +278,10 @@ On opening the file you should see the following configuration lines at the top:
 ```
 inputFile: "./RawData/lambda_sequencing_summary.txt.bz2"
 barcodeFile: "./RawData/lambda_barcoding_summary.txt.bz2"
+#inputFile: "../example_runs/2.promethion_run/VWD1108/20191202_1317_1-E11-H11_PAE13924_73938d1f/PCT0099_20191202_131743_PAE13924_promethion_sequencing_run_VWD1108_sequencing_summary.txt"
+#barcodeFile: ""
 basecaller: "Guppy 2.1.3"
-flowcellId: "EXAMPLE_FLOWCELL"
+flowcellId: "PAE24233"
 tutorialText: FALSE
 ```
 
