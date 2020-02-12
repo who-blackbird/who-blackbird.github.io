@@ -1,6 +1,6 @@
 # 1. Introduction to Long-read Sequencing
 
-- What is long read sequencing?
+## What is long read sequencing?
 
 The genome of most organisms is too long to be sequencing in a long continuous string.
 
