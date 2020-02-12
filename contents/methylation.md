@@ -9,6 +9,13 @@
 
 N.B.: Note these scripts use `course/` as working directory
 
+
+```{}
+mkdir -p Course_Materials/wd/day2/methylation/
+IN="Course_Materials/data/methylation"
+OUT="Course_Materials/wd/day2/methylation"
+```
+
 ## Methylation - DeepSignal {#Methylation-DeepSignal}
 
 Deepsignal [(doi:10.1093/bioinformatics/btz276)](https://doi.org/10.1093/bioinformatics/btz276) is a Machine learning (ML) approach to identify changes in the resistance measured by the ONT that may be identified as a 5-MethylCytosin (5mC). As all ML approaches, DeepSignal requires a model. The model has been trained by the authors and you can download it with the software. DeepSignal takes ~ 24 hours to run on 4 GPU for a human genome 30x coverage.
@@ -21,7 +28,7 @@ Deepsignal is a quite straightforward tool. However, it needs:
 #### Call 5mC modification
 
 ```{}
-deepsignal call_mods --input_path methylation/res/fast5_files/ --model_path methylation/res/model.CpG.R9.4_1D.human_hx1.bn17.sn360/bn_17.sn_360.epoch_7.ckpt --result_file methylation/Met_deepsignal.tsv --reference_path methylation/res/reference.fasta --corrected_group methylation/RawGenomeCorrected_000 --nproc 10 --is_gpu no
+deepsignal call_mods --input_path ${IN}/res/fast5_files/ --model_path ${IN}/res/model.CpG.R9.4_1D.human_hx1.bn17.sn360/bn_17.sn_360.epoch_7.ckpt --result_file ${OUT}/Met_deepsignal.tsv --reference_path ${IN}/res/reference.fasta --corrected_group ${IN}/RawGenomeCorrected_000 --nproc 10 --is_gpu no
 ```
 
 This command calls Cytosin modifications straight from the Fast5 data. The output should be something like:

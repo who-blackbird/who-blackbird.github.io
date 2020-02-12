@@ -122,7 +122,7 @@ samtools index ${OUT}/merged_pedigree_samples.bam
 After we created the new input files, we can run the `whatshap phase` command:
 
 ```{}
-whatshap phase --ped ${IN}/res/PED_ONT.txt -o ${OUT}/pedigree_phased.vcf --reference ${IN}/res/reference_chr20.fa ${IN}/merged_pedigree_samples.vcf.gz ${IN}/merged_pedigree_samples.bam
+whatshap phase --ped ${IN}/res/PED_ONT.txt -o ${OUT}/pedigree_phased.vcf --reference ${IN}/res/reference_chr20.fa ${OUT}/merged_pedigree_samples.vcf.gz ${OUT}/merged_pedigree_samples.bam
 ```
 
 Once we have phased the pedigree, the output will look something like this:
