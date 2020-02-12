@@ -1,4 +1,4 @@
-# 1. Introduction to ONT
+# 1. Introduction to Long-read Sequencing
 
 - Who we are?
 
