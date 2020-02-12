@@ -60,7 +60,7 @@ and the SL2:
 less -S ~/Course_Materials/data/day1/fastq/SL2_CoV.fastq.gz
 ```
 
-## Working Directory {workingdirectory}
+## Working Directory {#workingdirectory}
 
 Now, we will set up the working directory where we will do the analysis. Open your terminal, go to 
 
