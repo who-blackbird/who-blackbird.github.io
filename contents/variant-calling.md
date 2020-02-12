@@ -156,7 +156,6 @@ To run a basic SV annotation, we will exectue the following command:
 AnnotSV -SVinputFile variant_calling/svs/LRS_SVs.sort.vcf.gz -SVinputInfo 1 \
      -genomeBuild GRCh38 \
      -outputDir annotation
-     -outputFile LRD_SVs.anno.vcf
 ```
 
 Now... Inspect the calls in *SGCE* gene:
