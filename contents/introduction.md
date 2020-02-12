@@ -21,7 +21,7 @@ The genomes of most organisms are too big to be sequenced in one long continuous
 
 In order to sequence these massive genomes, **short-read sequencing** was developed. Here DNA is broken into millions of tiny fragments that are amplified (copied) and then sequenced.
 
-This process produces millions of short sequences or "**reads**" which are typically **75-300bp** in length. Reads are then pieced together computationally.
+This process produces millions of short sequences or "**reads**" which are typically **75-300bp** in length which are then pieced back together computationally.
 
 <ins>**Short-read workflow**</ins>
 
@@ -29,7 +29,7 @@ This process produces millions of short sequences or "**reads**" which are typic
   <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.srs.png" alt="img_2" class="inline"/>
 </p>
 
-In contrast, **long-read sequencing** allows us to retrieve much longer sequence reads, typically **>10,000bp** in length. In fact, some long read sequencing systems have been producing reads over **2,000,000bp** (2 MB) in length.
+In contrast, **long-read sequencing** allows us to retrieve much longer sequence reads that are around **>6,000bp** in length. Some long read sequencing systems have even produced reads that are over **2,000,000bp** (2 MB) in length.
 
 Additionally long-read methodologies typically sequence single molecules of DNA directly and in real-time, foregoing the need for amplification.
 
