@@ -28,6 +28,7 @@ mkdir variant_calling
 mkdir variant_calling/snvs
 mkdir variant_calling/svs
 mkdir annotation
+mkdir circos
 ```
 
 You can also define the following variables that we will use later for convienience:
@@ -171,6 +172,5 @@ Mutations in *SGCE* gene [[MIM:159900]](https://www.omim.org/entry/159900) have 
 ## Circos plot
 
 ```
-circos -conf circos.conf
+circos -conf ~/Course_Materials/data/circos/circos.conf
 ```
-
