@@ -17,9 +17,9 @@ N.B.: Note these scripts use `path/to/Course_Materials/` as working directory (w
 
 Also here, we create the output directory and then we set the two variables: `IN` and `OUT.`
 ```{}
-mkdir -p Course_Materials/wd/day2/methylation/
-IN="Course_Materials/data/methylation"
-OUT="Course_Materials/wd/day2/methylation"
+mkdir -p wd/day2/methylation/
+IN="data/methylation"
+OUT="wd/day2/methylation"
 ```
 
 ## Methylation - DeepSignal {#Methylation-DeepSignal}
@@ -195,4 +195,6 @@ Open the script `${IN}/scripts/plot_methylation_gviz.R` and plot the methylation
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/gviz_met.png" alt="img_1" class="inline"/>
 
 ## References
-
+[Peng Ni, Neng Huang, Zhi Zhang, De-Peng Wang, Fan Liang, Yu Miao, Chuan-Le Xiao, Feng Luo, Jianxin Wang, DeepSignal: detecting DNA methylation state from Nanopore sequencing reads using deep-learning, Bioinformatics, Volume 35, Issue 22, 15 November 2019, Pages 4586–4595](https://doi.org/10.1093/bioinformatics/btz276) <br>
+[Simpson, Jared T., et al. “Detecting DNA cytosine methylation using nanopore sequencing.” nature methods 14.4 (2017): 407-410](https://doi.org/10.1038/nmeth.4184) <br>
+[The data for this practical have been taken from the Nanopolish GitHub page](https://github.com/jts/nanopolish)
