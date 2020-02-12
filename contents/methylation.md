@@ -49,7 +49,7 @@ The deepsignal default settings have 0 as Unmethylated and 1 as Methylated
 #### Call 5mC modification frequency
 
 ```{}
-python3 methylation/scripts/call_modification_frequency.py --input_path methylation/Met_deepsignal.tsv --result_file methylation/Met_frequency_deepsignal.tsv --prob_cf 0.6
+python3 ${IN}/scripts/call_modification_frequency.py --input_path ${IN}/Met_deepsignal.tsv --result_file ${OUT}/Met_frequency_deepsignal.tsv --prob_cf 0.6
 ```
 The script to call modification frequencies comes from the [deepsignal utils](https://github.com/bioinfomaticsCSU/deepsignal/tree/master/scripts)
 
@@ -74,25 +74,25 @@ To look at the raw data in an efficient way, Nanopolish needs to create an index
 #### Index fast5 files
 We use the `index` command to link fast5 files to the fastq sequences: 
 ```{}
-nanopolish index -d methylation/res/fast5_files/ methylation/res/alignment_output.fastq
+nanopolish index -d ${IN}/res/fast5_files/ ${IN}/res/alignment_output.fastq
 ```
 We need to align the reads to the reference genome. We can use mimimap2 for this and pipe the results to samtools to sort them. Ultimately, we need to index the bam file we created:
 #### Align and sort fastq files
 ```{}
 # Align the reads the the GRCh38 subset
-minimap2 -a -x map-ont methylation/res/reference.fasta methylation/res/alignment_output.fastq | samtools sort -T tmp -o methylation/res/alignment_output_sorted.bam
+minimap2 -a -x map-ont ${IN}/res/reference.fasta ${IN}/res/alignment_output.fastq | samtools sort -T tmp -o ${IN}/res/alignment_output_sorted.bam
 
 # Index the sorted output
-samtools index methylation/res/alignment_output_sorted.bam
+samtools index ${IN}/res/alignment_output_sorted.bam
 ```
 Once the preprocessing is finished, we have all the required files to start the 5mC modification call. We use the command `call-methylation` to annotate the modification.
 #### Call 5mC modification
 ```{}
-nanopolish call-methylation -t 8 -r methylation/res/alignment_output.fastq -b methylation/res/alignment_output_sorted.bam -g methylation/res/reference.fasta -w "chr20:5,000,000-10,000,000" > methylation/Met_nanopolish.tsv
+nanopolish call-methylation -t 8 -r ${IN}/res/alignment_output.fastq -b ${IN}/res/alignment_output_sorted.bam -g ${IN}/res/reference.fasta -w "chr20:5,000,000-10,000,000" > ${OUT}/Met_nanopolish.tsv
 ```
 __NB.: This command will take about 10 minutes, so it is a good time to have a break and stretch a bit your legs.__ If the script is taking too long there is a hidden file that you can use to keep going. Do:
 ```{}
-mv methylation/.Met_nanopolish.tsv methylation/Met_nanopolish.tsv
+mv ${IN}/.Met_nanopolish.tsv ${OUT}/Met_nanopolish.tsv
 ```
 
 Tip:
@@ -106,7 +106,7 @@ This command will print CPUs and threads. There is not an optimal number of thre
 #### Call 5mC modification frequency
 Now we can use the modification file to call the 5mC modification frequencies:
 ```{}
-methylation/scripts/nanopolish/scripts/calculate_methylation_frequency.py methylation/Met_nanopolish.tsv > methylation/Met_frequency_nanopolish.tsv
+${IN}/scripts/nanopolish/scripts/calculate_methylation_frequency.py ${OUT}/Met_nanopolish.tsv > ${OUT}/Met_frequency_nanopolish.tsv
 ```
 
 ## Methylation - Comparison {#Methylation-Comparison}
@@ -115,7 +115,7 @@ methylation/scripts/nanopolish/scripts/calculate_methylation_frequency.py methyl
 
 Bisulphyte is nowadays commonly used to detect 5mC genome-wide. We can compare the results we got from the Nanopore methylation to the bisulphite doing. We could compare the score the softwares gave to the 5mC and the regions where they identified the modification. To compare the scores we could do:
 ```{}
-methylation/scripts/compare_met_score.R -d methylation/Met_deepsignal.tsv -n methylation/Met_frequency_nanopolish.tsv -b methylation/res/bisulfite.ENCFF835NTC.example.tsv -o methylation/methylation_score_comparison
+${IN}/scripts/compare_met_score.R -d ${OUT}/Met_deepsignal.tsv -n ${OUT}/Met_frequency_nanopolish.tsv -b ${IN}/res/bisulfite.ENCFF835NTC.example.tsv -o ${OUT}/methylation_score_comparison
 ```
 Please, feel free to open the script and look at what is it doing. This command prints out a table (i.e. `methylation_score_comparison.tsv`) and a pdf (i.e. `methylation_score_comparison.pdf`) comparing the methulation scores. The table list the scores given by every software/method. It should looks like:
 ```{}
@@ -138,13 +138,13 @@ We can use Jaccard similarity coefficient to score the similarity between the re
 To do so, we can use bedtools. First we have to convert the frequency files to BED files (which is the format required from `bedtools`).
 
 ```{}
-for i in methylation/Met_frequency_*.tsv; do awk --field-separator="\t" '{ if (NR > 1 ) print $1,$2,$2,$(NF-1) }' $i | sort -V | sed 's/ /\t/g' > ${i:0:-3}bedgraph ; done
+for i in ${OUT}/Met_frequency_*.tsv; do awk --field-separator="\t" '{ if (NR > 1 ) print $1,$2,$2,$(NF-1) }' $i | sort -V | sed 's/ /\t/g' > ${i:0:-3}bedgraph ; done
 ```
 Then we can calculate the Jaccard score for every pair of methods:
 ```{}
-bedtools jaccard -a methylation/Met_frequency_deepsignal.bedgraph -b methylation/res/bisulfite.ENCFF835NTC.example.tsv
-bedtools jaccard -a methylation/Met_frequency_nanopolish.bedgraph -b methylation/res/bisulfite.ENCFF835NTC.example.tsv
-bedtools jaccard -a methylation/Met_frequency_deepsignal.bedgraph -b methylation/Met_frequency_nanopolish.bed
+bedtools jaccard -a ${OUT}/Met_frequency_deepsignal.bedgraph -b ${OUT}/res/bisulfite.ENCFF835NTC.example.tsv
+bedtools jaccard -a ${OUT}/Met_frequency_nanopolish.bedgraph -b ${OUT}/res/bisulfite.ENCFF835NTC.example.tsv
+bedtools jaccard -a ${OUT}/Met_frequency_deepsignal.bedgraph -b ${OUT}/Met_frequency_nanopolish.bed
 ```
 the output is:
 ```{}
@@ -156,7 +156,7 @@ the index we want to use to compare the regions is the third value (i.e. `jaccar
 
 We can also plot the similarity of the regions that have been recognised to be modified versus the one that have not been recognised. You can use the command:
 ```{}
-methylation/scripts/compare_met_regions.R -d methylation/Met_frequency_deepsignal.tsv -n methylation/Met_frequency_nanopolish.tsv -b methylation/res/bisulfite.ENCFF835NTC.example.tsv -o methylation/methylation_region_comparison
+${IN}/scripts/compare_met_regions.R -d ${OUT}/Met_frequency_deepsignal.tsv -n ${OUT}/Met_frequency_nanopolish.tsv -b ${IN}/res/bisulfite.ENCFF835NTC.example.tsv -o ${OUT}/methylation_region_comparison
 ```
 Also this command print a table and a PDF file. The table report if a region has been recognised (TRUE) or not (FALSE) from a method/technique. It should look like: 
 ```{}
@@ -176,7 +176,7 @@ and the PDF:
 
 We could use IGV to visualise the bedgraph files we created before. Bedgraph files are essentially BED files with a 4th column that stores the value of that region. In the file we created the 4th column store the probabilty of the regions to be methylated. If we want to add the bisulphite as "reference methylation" we could convert it to bedgraph:
 ```{}
-awk -F "\t" '{print $1,$2,$3,$11/100*$10}' methylation/res/bisulfite.ENCFF835NTC.example.tsv > methylation/bisulfite.ENCFF835NTC.example.bedgraph
+awk -F "\t" '{print $1,$2,$3,$11/100*$10}' ${IN}/res/bisulfite.ENCFF835NTC.example.tsv > ${OUT}/bisulfite.ENCFF835NTC.example.bedgraph
 ```
 And then open all the files on IGV. It should looks something like:
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/met_comparison_igv.png" alt="img_1" class="inline"/>
