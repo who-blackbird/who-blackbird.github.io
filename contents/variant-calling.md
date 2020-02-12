@@ -183,7 +183,7 @@ Circos needs
 
 To save you some time, we already prepared these files and put them under ```~/Course_Materials/data/circos```.
 
-Open the files to see the information they contain. Yes, it is true - making circos plots is not as difficult as it looks like!!
+Open the files to see the information they contain.
 
 Now, you can make the plot using circos software:
 
@@ -191,6 +191,8 @@ Now, you can make the plot using circos software:
 cd circos
 circos -conf ~/Course_Materials/data/circos/circos.conf
 ```
+
+Yes, it is true - making circos plots is not as difficult as it looks like!! Actually, it is quite cool :-)
 
 You can now visualise the plot you just made:
 
