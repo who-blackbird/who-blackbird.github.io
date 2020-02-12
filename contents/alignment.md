@@ -131,6 +131,7 @@ and type the following:
 ```
 #Load your libraries
 library(ggplot2)
+library(scales)
 
 #Read your data
 WTreadLength <- read.table("stats/WT_read_length.txt", header=FALSE, col.names = "length")

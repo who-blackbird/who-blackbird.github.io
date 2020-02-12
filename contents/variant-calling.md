@@ -36,7 +36,6 @@ LRS_bam=~/Course_Materials/data/variant_calling/bams/LRS_alignment.bam
 SRS_bam=~/Course_Materials/data/variant_calling/bams/SRS_alignment.bam
 SRS_snvs=~/Course_Materials/data/variant_calling/snvs/SRS_SNVs.vcf.gz
 ref=~/Course_Materials/data/variant_calling/reference_genome/Homo_sapiens.GRCh38.dna.fasta
-annotsv=/path/to/AnnotSV.tcl
 ```
 
 ## Single Nucleotide Variant Calling {#snvcalling}
@@ -153,7 +152,7 @@ AnnotSV annotates SVs with information about the genes (OMIM, ClinGen), regulato
 To run a basic SV annotation, we will exectue the following command:
 
 ```
-$annotsv -SVinputFile variant_calling/svs/LRS_SVs.sort.vcf.gz -SVinputInfo 1 \
+AnnotSV -SVinputFile variant_calling/svs/LRS_SVs.sort.vcf.gz -SVinputInfo 1 \
      -genomeBuild GRCh38 \
      -outputDir annotation
      -outputFile LRD_SVs.anno.vcf
