@@ -14,7 +14,7 @@ You will learn to:
 - Take the basecalled sequences in FASTQ format and align them to a genome of reference
 - Perform quality control and visualise the alignment
 
-<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/alignemnt_schema.png" alt="alignment" class="inline"/>
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/alignment_schema.png" alt="alignment" class="inline"/>
 
 ## Background {#background}
 
