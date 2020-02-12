@@ -10,16 +10,12 @@ In this section we will cover:
 You will learn to:
 
 - Call 5mC modification from Nanopore sequencing data
-<<<<<<< HEAD
 - Compare different methods to call 5mC
 - Visualise the 5mC on IGV
 - Plot methylation profile with R
-=======
 - Compare difference methods to call 5mC
 - Visualize the 5mC on IGV
->>>>>>> bedc1638cb4cc5b63b40419565e2fcb45096e512
-
----
+***
 
 N.B.: Note these scripts use `path/to/Course_Materials/` as working directory (wd). To check what directory you are using as `wd` do `pwd`. If the output is different from `path/to/Course_Materials` please go to `Course_Materials/` with the `cd` command.
 
