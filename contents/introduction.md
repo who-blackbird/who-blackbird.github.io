@@ -73,6 +73,8 @@ Original Publication: Eid, J., et al. (2009). [Real-time DNA sequencing from sin
 
 **Disclaimer**: We have never actually used or worked with **PacBio** sequencers/data. From now on this course will focus on **Nanopore** sequencing!
 
-If you would like more information about PacBio, I suggest you contact Professor Steven Marsh or Dr. James Robinson who are based at the
+If you would like more information about PacBio, I suggest you contact Professor Steven Marsh or Dr. James Robinson who are based at the Anthony Nolan Research Institute in London.
+
+They have been using **PacBio** sequencing for HLA typing over the past few years and have expert knowledge on this system.
 
 ## References
