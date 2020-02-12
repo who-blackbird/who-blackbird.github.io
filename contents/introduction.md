@@ -4,7 +4,9 @@
 
 The genome of most organisms is too long to be sequencing in a long continuous string.
 
-<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.genome_sizes.png" alt="img_2" class="inline"/>
+<p align="center">
+  <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.genome_sizes.png" alt="img_2" class="inline"/>
+</p>
 
 - Oxford nanopore
 
