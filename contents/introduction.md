@@ -145,4 +145,12 @@ This translates to an accuracy improvement from **~Q34** (error rate: 1 in 1,000
 
 Karst, S., et al. (2020), [Enabling high-accuracy long-read amplicon sequences using unique molecular identifiers with Nanopore or PacBio sequencing](https://www.biorxiv.org/content/10.1101/645903v3). bioRxiv.
 
+Computational methods can also be used to improve overall consensus accuracy. These algorithms assess raw signal data to 'polish' a consensus sequence made using nanopore data. An example is [Nanopolish](https://nanopolish.readthedocs.io/en/latest/quickstart_consensus.html).
+
 ## 8. A standard workflow
+
+In this course we are going to take you through a standard Nanopore sequencing workflow. You can then modify this 'vanilla' pipeline to suit your'e own analysis.
+
+<p align="center">
+  <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.workflow.png" alt="img_4" class="inline"/>
+</p>
