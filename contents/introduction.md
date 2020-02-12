@@ -8,14 +8,21 @@ The genome of most organisms is too long to be sequencing in a long continuous s
   <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.genome_sizes.png" alt="img_2" class="inline"/>
 </p>
 
-In order to sequence these massive genomes, short-read sequencing was developed. Here DNA is broken into short fragments that are amplified (copied) and then sequenced.
+In order to sequence these massive genomes, **short-read sequencing** was developed. Here DNA is broken into millions of tiny fragments that are amplified (copied) and then sequenced.
 
-This process produces millions of short sequences or "reads" which are then pieced together computationally.
+This process produces millions of short sequences or "reads" which are typically **75-300bp** in length. Reads are then pieced together computationally.
 
 <p align="center">
   <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.srs.png" alt="img_2" class="inline"/>
 </p>
 
+In contrast, **long-read sequencing** allows us to retrive much longer sequence reads, typically **>10,000bp** in length. In fact, some long read sequenceing systems have been producing reads over **2,000,000bp** (2 megabases) in length.
+
+Additionally long-read methodologies typically sequence single molecules of DNA directly and in real-time, foregoing the need for amplification.
+
+<p align="center">
+  <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.lrs.png" alt="img_2" class="inline"/>
+</p>
 ### In this section we will cover:
 
 1. What is long range sequencing
