@@ -84,10 +84,28 @@ They have been using **PacBio** sequencing for HLA typing over the past few year
 **Nanopore sequencing workflow**:
 
 1. DNA is extracted from the sample using standard methods
-2. You can now choose from two methods of sequencing library preperation
+2. You now choose which type of sequencing you would like to do, below are two examples:
    <p align="center">
      <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.libs.png" alt="img_4" class="inline"/>
    </p>
+3. Libraries are now loaded into flow-cells for sequencing.
+4. Each flowcell contains an electrically-resistant membrane with hundereds of protein nanopores embedded within it.
+5. A voltage is applied across the membrane and an ionic current begins to flow through the nanopore (as the membrane is electrically resistant).
+6. DNA with sequencing adapters
+7. As the DNA passes through the nanopore, the ionic current is disruped and this event is recorded.
+8. The specific pattern of diruption is analysed to determine DNA sequence.
+
+<p align="center">
+  <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.motor.png" alt="img_4" class="inline"/>
+</p>
+
+Note in the second image, that as DNA passes through the pore a **motor protein** unwinds it. This actually **slows** down the DNA passage enough to allow measurement of the ionic field disruption.
+
+Further reading:
+
+Branton, D. et al. (2008). (The potential and challenges of nanopore sequencing)[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2683588/]. Nature Biotechnology, 26(10), 1146-1153.
+
+Deamer, D., et al. (2016). [Three decades of nanopore sequencing](https://www.ncbi.nlm.nih.gov/pubmed/27153285?dopt=Abstract). Nature Biotechnology, 34(5), 518-24.
 
 ## 4. Different ONT sequencers
 
