@@ -171,6 +171,29 @@ Mutations in *SGCE* gene [[MIM:159900]](https://www.omim.org/entry/159900) have 
 
 ## Circos plot
 
+This is a complex SV, involving multiple breakpoints across different chromosomes. To characterise it, you are going to represent it using [**Circos**](http://circos.ca).
+
+Circos needs 
+- Scaffold
+- Links
+- Config file
+- Coverage
+
+To save you some time, we already prepared these files and put them under ```~/Course_Materials/data/circos```.
+
+Open the files to see the information they contain. Yes, it is true - making circos plots is not as difficult as it looks like!!
+
+Now, you can make the plot using circos software:
+
 ```
+cd circos
 circos -conf ~/Course_Materials/data/circos/circos.conf
 ```
+
+You can now visualise the plot you just made:
+
+```
+xdg-open circos.png
+```
+
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/circos.png" alt="circos" class="inline"/>
