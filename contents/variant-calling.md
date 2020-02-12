@@ -28,6 +28,7 @@ mkdir variant_calling
 mkdir variant_calling/snvs
 mkdir variant_calling/svs
 mkdir annotation
+mkdir circos
 ```
 
 You can also define the following variables that we will use later for convienience:
@@ -166,4 +167,10 @@ grep SGCE annotation/LRD_SVs.anno.vcf.tsv
 
 And visualise them in IGV.
 
-Mutations in *SGCE* gene [[MIM:159900]](https://www.omim.org/entry/159900) have previously been associated with Myoclonic Dystonia. As you can see in the IGV plot, there are multiple deletions in this individual overlaping *SGCE*. This data comes from a patient with Myoclonic Dystonia. The deletions you just found have already been seen to be pathogenic. Congratulations, you just called variants from long-read sequencing data and identified a pathogenic one associated with disease! And actually... a very complex one! Wait for the wrap-up :)
+Mutations in *SGCE* gene [[MIM:159900]](https://www.omim.org/entry/159900) have previously been associated with Myoclonic Dystonia. As you can see in the IGV plot, there are multiple deletions in this individual overlaping *SGCE*. This data comes from a patient with Myoclonic Dystonia. The deletions you just found have already been seen to be pathogenic. Congratulations, you just called variants from long-read sequencing data and identified a pathogenic one associated with disease! And actually... a very complex one!
+
+## Circos plot
+
+```
+circos -conf ~/Course_Materials/data/circos/circos.conf
+```
