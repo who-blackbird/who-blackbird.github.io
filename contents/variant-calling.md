@@ -15,6 +15,8 @@ You will learn to:
 - Annotate SVs with gene information
 - Make a super cool Circos plot
 
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/vcalling_schema.png" alt="vcalling" class="inline"/>
+
 ## Working directory {#workingdirectory}
 
 Before we start, go to your wd:
