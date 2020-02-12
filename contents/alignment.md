@@ -19,7 +19,7 @@ You will learn to:
 
 ## Background {#background}
 
-**Coronaviruses** are enveloped positive-sense (+) single-stranded RNA viruses that infect a variety of mammalian and avian hosts. Among the several coronaviruses that are pathogenic to humans, most are associated with mild clinical symptoms, with the exception of severe acute respiratory syndrome (SARS) coronavirus (SARS-CoV), a Middle East respiratory syndrome (MERS) coronavirus (MERS-Cov), and the recently identified human-infecting coronavirus, provisionally named 2019 novel coronavirus (2019-nCoV).
+**Coronaviruses** are enveloped positive-sense (+) single-stranded RNA viruses that infect a variety of mammalian and avian hosts. Among the several coronaviruses that are pathogenic to humans, most are associated with mild clinical symptoms, with the exception of severe acute respiratory syndrome (SARS) coronavirus (SARS-CoV), a Middle East respiratory syndrome (MERS) coronavirus (MERS-Cov), and the recently identified human-infecting coronavirus, provisionally named 2019 novel coronavirus (2019-nCoV, now Covid-19).
 
 In this practical we will be using data from **Human Coronavirus 229E (HCoV-229E)**, one of the first coronavirus strains being described, with a genome size of ~27,300nt. In HCov-229E-infected cells, a total of seven major viral RNAs are produced. In it's 5'-terminal region, the genome RNA contains two large ORFs, 1a and 1b, that encode the viral replicase polyproteins 1a and 1b. mRNAs 2, 4, 5, 6 and 7 are used to produce the S protein, accessory protein 4, E protein, M protein and N protein respectively.
 
