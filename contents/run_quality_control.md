@@ -17,7 +17,7 @@
 7. Take a run summary file and extract QC data
 8. Interpret this data
 
-## 1. Singal to sequence workflow
+## 1. Signal to sequence workflow
 
 The below image represents the process of translating raw electrical signal data from an ON sequencer to DNA sequence.
 
@@ -58,7 +58,7 @@ You should see something like this:
 5 directories
 ```
 
-This is what a raw directory structure will look like if you **dont** let the ONT software cal it for you!
+This is what a raw directory structure will look like if you **don't** let the ONT software cal it for you!
 
 Lets take a closer look at the **reads/** directory. This is where the sequencer writes raw data:
 
@@ -68,7 +68,7 @@ ls 20180830_PAD01151/data/reads/
 
 You should see two directories: **0/** and **1/**.
 
-ON machines write reads in batches, here batch size is **100** files. Normally, batch size would be around **5000** to **8000**. This is to keep the number of files in each directory resonable for the computers filesystem.
+ON machines write reads in batches, here batch size is **100** files. Normally, batch size would be around **5000** to **8000**. This is to keep the number of files in each directory reasonable for the computers filesystem.
 
 Take a look into read directory **0/**:
 
@@ -84,9 +84,9 @@ Nanopore writes read data to a file format they call **FAST5**
 
 1 read = 1 **.fast5** file
 
-**FAST5** files are infact **HDF5** files. These are compressed binary files which store data in a structured way, allowing fast random access to subsets of the data.
+**FAST5** files are in fact **HDF5** files. These are compressed binary files which store data in a structured way, allowing fast random access to subsets of the data.
 
-This is where electronic signal data from the sequencer is storred.
+This is where electronic signal data from the sequencer is stored.
 
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/qc.squiggle_data.png" alt="img_2" class="inline"/>
 
@@ -104,7 +104,7 @@ Raw                      Group
 UniqueGlobalKey          Group
 ```
 
-We can view the subkeys by recursivley (**-r**) listing the file:
+We can view the sub-keys by recursively (**-r**) listing the file:
 
 ```
 h5ls -r ./20180830_PAD01151/data/reads/0/PCT0045_20180830_0004A30B002402F4_2_E3_H3_sequencing_run_Cam_6_90217_read_106_ch_731_strand.fast5
@@ -242,7 +242,7 @@ What **should** I know at this point?:
 
 - It is also recommended that you let the sequencing software handle this automatically for you.
 
-What **dont** we know:
+What **don't** we know:
 
 - How can we access the data contained in **sequencing_summary.txt**.
 
@@ -252,7 +252,7 @@ Now, back to work!
 
 ## 6. Take a run summary file and extract QC data
 
-Many tools for run QC have been developed by the Nanopore sequening community. We will now learn how to use one of them!
+Many tools for run QC have been developed by the Nanopore sequencing community. We will now learn how to use one of them!
 
 Before we begin, lets change directory.
 
@@ -269,7 +269,7 @@ open .
 This should open up a directory, and we can see that there are multiple files in this "package".
 
 The first file we are interested in is the **config.yaml** file.
-_**Hint**: dont worry .yaml is just a fancy text file!_
+_**Hint**: don't worry .yaml is just a fancy text file!_
 
 This file contains the configuration for the QC plotting tool.
 
@@ -347,7 +347,7 @@ You should see:
 
 This is what a "run" directory looks like when you let the sequencer take care of data processing.
 
-You will notice that **.fast5** and **.fastq** files have beeen automatically separated into **pass** and **fail** directories.
+You will notice that **.fast5** and **.fastq** files have been automatically separated into **pass** and **fail** directories.
 
 There is also a "report.pdf" which the sequencer prints off, however the R script we used before gives us much more information (feel free to take a look though!).
 
@@ -373,7 +373,7 @@ Now press the "**Knitr**" button again the top of the page and wait for some _..
 
 You can print these reports to **.pdf** used the standard browser method if required.
 
-If you want to make youre own QC pipeline or just see how this one works, read through the **Nanopore_SumStatQC.Rmd** script.
+If you want to make you're own QC pipeline or just see how this one works, read through the **Nanopore_SumStatQC.Rmd** script.
 
 ## Final Comment
 
