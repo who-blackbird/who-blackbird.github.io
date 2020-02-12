@@ -6,8 +6,8 @@
 2. SMRT sequencing
 3. Nanopore sequencing
 4. Different ONT sequencers
-5. Advantages of this method
-6. Disadvantages of this method
+5. Advantages of long-read sequencing
+6. Disadvantages of long-read sequencing
 7. Why have we been using nanopore?
 8. A standard workflow
 
@@ -45,7 +45,7 @@ The two best known producers of ‘true’ long-read sequencing technologies are
 
 Single Molecule, Real Time (**SMRT**) sequencing the name of **PacBio**'s methodology.
 
-SMRT sequencing workflow:
+**SMRT sequencing workflow**:
 
 1. DNA is extracted from the sample using standard methods
 2. DNA is then fragmented
@@ -54,9 +54,9 @@ SMRT sequencing workflow:
        <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.circular.png" alt="img_4" class="inline"/>
    </p>
 4. Primer and polymerase are then added to the sequencing library.
-5. The library is then loaded into a "**SMRT cell**" containing millions of 'wells' called Zero Mode Wave-guides (**ZMW**'s).
-6. A single molecule of DNA is immobilised inside a ZMW.
-7. Sequencing reaction now takes place. As the DNA polymerase incorporates nuclotides light is emitted and measured.
+5. The library is then loaded into a "**SMRT cell**" containing millions of 'wells' called Zero Mode Wave-guides (**ZMW**'s)
+6. A single molecule of DNA is immobilised inside a ZMW
+7. The sequencing reaction now takes place. As the DNA polymerase incorporates nuclotides light is emitted and measured
 
 <p align="center">
   <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.smrt.png" alt="img_4" class="inline"/>
@@ -77,4 +77,24 @@ If you would like more information about PacBio, I suggest you contact Professor
 
 They have been using **PacBio** sequencing for HLA typing over the past few years and have expert knowledge on this system.
 
-## References
+## 3. Nanopore sequencing
+
+**Nanopore sequencing** is the general name for Oxford Nanopore Technolgies methodology.
+
+**Nanopore sequencing workflow**:
+
+1. DNA is extracted from the sample using standard methods
+2. You can now choose from two methods of sequencing library preperation
+   <p align="center">
+     <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.libs.png" alt="img_4" class="inline"/>
+   </p>
+
+## 4. Different ONT sequencers
+
+## 5. Advantages of long-read sequencing
+
+## 6. Disadvantages of long-read sequencing
+
+## 7. Why have we been using nanopore?
+
+## 8. A standard workflow
