@@ -1,4 +1,4 @@
-# Introduction to Long-read Sequencing
+# Introduction
 
 ### In this section we will cover:
 
@@ -36,5 +36,3 @@ Additionally long-read methodologies typically sequence single molecules of DNA 
 </p>
 
 ## References
-
-- A standard workflow
