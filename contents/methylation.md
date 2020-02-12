@@ -138,7 +138,7 @@ We can use Jaccard similarity coefficient to score the similarity between the re
 To do so, we can use bedtools. First we have to convert the frequency files to BED files (which is the format required from `bedtools`).
 
 ```{}
-for i in ${OUT}/Met_frequency_*.tsv; do awk --field-separator="\t" '{ if (NR > 1 ) print $1,$2,$2,$(NF-1) }' $i | sort -V | sed 's/ /\t/g' > ${i:0:-3}bedgraph ; done
+for i in ${OUT}/Met_frequency_*.tsv; do awk -F "\t" '{ if (NR > 1 ) print $1,$2,$2,$(NF-1) }' $i | sort -V | sed 's/ /\t/g' > ${i:0:-3}bedgraph ; done
 ```
 Then we can calculate the Jaccard score for every pair of methods:
 ```{}
@@ -185,5 +185,5 @@ Do you think IGV tracks reflect the comparison plots we did before?
 
 Alternatively, we could write a script to visualize the data. Scripts are a useful way to have consistency in your results and pictures. We can use an R script to plot the methylation peaks, called using the three different methods we saw during the course.
 
-Open the script `methylation/scripts/plot_methylation_gviz.R` and plot the methylation peaks using R. You should get something like:
+Open the script `${IN}/scripts/plot_methylation_gviz.R` and plot the methylation peaks using R. You should get something like:
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/gviz_met.png" alt="img_1" class="inline"/>
