@@ -111,14 +111,24 @@ Deamer, D., et al. (2016). [Three decades of nanopore sequencing](https://www.nc
 
 Oxford nanopore offer various different sequencing machines - the biggest difference is sequencing throughput (how many bases you can sequence) and their size.
 
+Below are examples of the most commonly used.
+
 <p align="center">
   <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.machines.png" alt="img_4" class="inline"/>
 </p>
 
+We have been lucky enough to use all three of these. The MinION and GridION are well suited to smaller genomes or targetted sequencing, the PromethION is better suited to WGS of large genomes such as human.
+
 ## 5. Advantages of long-read sequencing
 
-## 6. Disadvantages of long-read sequencing
+**Genome assembly**: Reassembling large genomes from short reads can be challenging, as many fragments look highly similar without additional context. Long-read data can make this task simpler as the reads are more likely to look distinct, allowing them to be assembled together with less ambiguity and error.
 
-## 7. Why have we been using nanopore?
+**Complex variant detection**: Large and complex rearrangements, large insertions or deletions of DNA, repetitive regions, highly polymorphic regions, or regions with low DNA nucleotide diversity can be extremely hard to observe using short read sequencing. Long reads can span across larger parts of these regions, so are able to detect more of these variants, which may be clinically relevant.
+
+**Haplotype phasing**: In clinical/medical genetics it is often critically important to determine the inheritance mode of multiple variants that may cause disease. Long reads are able to provide the long-range information for resolving haplotypes without additional statistical inference or parental sequencing.
+
+**Other applications**: Long-read platforms can also directly sequence RNA with no requirement for amplification or reverse transcription allowing us to better characterise the transcriptome. We can also detect epigenetic modifications such as methylation status in the electrical disruption data, this can be done from a regular sequencing run!
+
+## 6. Disadvantages of long-read sequencing
 
 ## 8. A standard workflow
