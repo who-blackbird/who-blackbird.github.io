@@ -13,8 +13,6 @@ You will learn to:
 - Compare different methods to call 5mC
 - Visualise the 5mC on IGV
 - Plot methylation profile with R
-- Compare difference methods to call 5mC
-- Visualize the 5mC on IGV
 
 ***
 
