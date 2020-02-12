@@ -69,7 +69,7 @@ Single Molecule, Real Time (**SMRT**) sequencing the name of **PacBio**'s method
 
 Original Publication: Eid, J., et al. (2009). [Real-time DNA sequencing from single polymerase molecules](http://dx.doi.org/10.1126/science.1162986). Science, 323(5910), 133–138.
 
------- **Disclaimer** ------:
+------ **Disclaimer** ------
 
 We have never actually used or worked with **PacBio** sequencers/data. From now on this course will focus on **Nanopore** sequencing!
 
@@ -103,7 +103,7 @@ Note in the second image, that as DNA passes through the pore a **motor protein*
 
 Further reading:
 
-Branton, D. et al. (2008). (The potential and challenges of nanopore sequencing)[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2683588/]. Nature Biotechnology, 26(10), 1146-1153.
+Branton, D. et al. (2008). [The potential and challenges of nanopore sequencing](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2683588/). Nature Biotechnology, 26(10), 1146-1153.
 
 Deamer, D., et al. (2016). [Three decades of nanopore sequencing](https://www.ncbi.nlm.nih.gov/pubmed/27153285?dopt=Abstract). Nature Biotechnology, 34(5), 518-24.
 
