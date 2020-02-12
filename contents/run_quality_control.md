@@ -73,7 +73,7 @@ ON machines write reads in batches, here batch size is **100** files. Normally, 
 Take a look into read directory **0/**:
 
 ```
-ls ./data/20180521_FAH88251/reads/0/
+ls 20180830_PAD01151/data/reads/0/
 ```
 
 You should see a list of files ending with **.fast5**.
@@ -93,7 +93,7 @@ This is where electronic signal data from the sequencer is storred.
 Lets look at the structure of a **FAST5** file using the **h5ls** command:
 
 ```
-h5ls 20180830_PAD01151/data/reads/0/PCT0045_20180830_0004A30B002402F4_2_E3_H3_sequencing_run_Cam_6_90217_read_100_ch_1023_strand.fast5
+h5ls ./20180830_PAD01151/data/reads/0/PCT0045_20180830_0004A30B002402F4_2_E3_H3_sequencing_run_Cam_6_90217_read_106_ch_731_strand.fast5
 ```
 
 This shows the top level data keys:
@@ -107,7 +107,7 @@ UniqueGlobalKey          Group
 We can view the subkeys by recursivley (**-r**) listing the file:
 
 ```
-h5ls -r data/20180521_FAH88251/reads/0 GXB01206_20180518_FAH88251_GA40000_mux_scan_MK_43023_read_103_ch_219_strand.fast5
+h5ls -r 20180830_PAD01151/data/reads/0/PCT0045_20180830_0004A30B002402F4_2_E3_H3_sequencing_run_Cam_6_90217_read_106_ch_731_strand.fast5
 ```
 
 Outputs:
@@ -117,8 +117,8 @@ Outputs:
 /PreviousReadInfo        Group
 /Raw                     Group
 /Raw/Reads               Group
-/Raw/Reads/Read_100      Group
-/Raw/Reads/Read_100/Signal Dataset {25746/Inf}
+/Raw/Reads/Read_106      Group
+/Raw/Reads/Read_106/Signal Dataset {34897/Inf}
 /UniqueGlobalKey         Group
 /UniqueGlobalKey/channel_id Group
 /UniqueGlobalKey/context_tags Group
@@ -128,7 +128,7 @@ Outputs:
 We can also dump and view the entire contents of a **.fast5** to text:
 
 ```
-h5dump 20180830_PAD01151/data/reads/0/PCT0045_20180830_0004A30B002402F4_2_E3_H3_sequencing_run_Cam_6_90217_read_100_ch_1023_strand.fast5 | less
+h5dump 20180830_PAD01151/data/reads/0/PCT0045_20180830_0004A30B002402F4_2_E3_H3_sequencing_run_Cam_6_90217_read_106_ch_731_strand.fast5 | less
 ```
 
 (**Hint 1**: use the up and down arrows to scroll through the file)  
