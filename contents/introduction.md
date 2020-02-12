@@ -1,4 +1,4 @@
-# 1. Introduction to Long-read Sequencing
+# Introduction to Long-read Sequencing
 
 ## What is long read sequencing?
 
@@ -8,24 +8,25 @@ The genome of most organisms is too long to be sequencing in a long continuous s
   <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.genome_sizes.png" alt="img_2" class="inline"/>
 </p>
 
-- Oxford nanopore
+In order to sequence these massive genomes, short-read sequencing was developed. Here DNA is broken into short fragments that are amplified (copied) and then sequenced.
 
-- What is oxford nanopore sequencing?
+This process produces millions of short sequences or "reads" which are then pieced together computationally.
 
-- How does it work?
+<p align="center">
+  <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.srs.png" alt="img_2" class="inline"/>
+</p>
 
-- Advantages over short read sequencing
+### In this section we will cover:
 
-- Disadvantages of long read sequencing
+1. What is long range sequencing
+2. SMRT sequencing
+3. Nanopore sequencing
+4. Different ONT sequencers
+5. Advantages of this method
+6. Disadvantages of this method
+7. Why have we been using nanopore?
+8. A standard workflow
 
-- What machines are available & outputs
-
-  - nanopore community
+## References
 
 - A standard workflow
-
-- Before we continue
-  - Links
-  - BASH
-  - IGV
-  - VCF
