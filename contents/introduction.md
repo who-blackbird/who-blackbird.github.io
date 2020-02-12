@@ -135,9 +135,9 @@ The biggest limitation for nanopore sequencing is that it has a much lower read 
 
 When homopolymer regions move through the pore with no change in current amplitude, the number of nucleotides associated with each detectable amplitude level must be inferred, and this introduces random insertion or deletion errors.
 
-Improving the accuracy of nanopore sequencing is highly dependent on the specific protein nanopore used. The current **R9.X** pore can 'read' about 5 bases at a time, which is what makes homopolymer detection difficult. Recenly, nanopore have released the **R10.X** pore which contains multiple readers, this means more base signal can be observed over a longer sequence distance.
+Improving the accuracy of nanopore sequencing is highly dependent on the specific protein nanopore used. The current **R9.X** pore can 'read' about 5 bases at a time, which is what makes homopolymer detection difficult. Recently, nanopore have released the **R10.X** pore which contains multiple readers, this means more base signal can be observed over a longer sequence distance.
 
-This translates to an accuracy improvment from **~Q34** (error rate: 1 in 1,000) with **R9.X** pores to **Q40** (error rate: 1 in 10,000) at 75x depth.
+This translates to an accuracy improvement from **~Q34** (error rate: 1 in 1,000) with **R9.X** pores to **Q40** (error rate: 1 in 10,000) at 75x depth.
 
 <p align="center">
   <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.pores.png" alt="img_4" class="inline"/>
