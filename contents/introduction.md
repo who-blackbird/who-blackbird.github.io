@@ -13,7 +13,7 @@
 
 ## 1. What is long read sequencing?
 
-The genome of most organisms is too long to be sequencing in a long continuous string.
+The genomes of most organisms are too big to be sequenced in one long continuous string.
 
 <p align="center">
   <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.genome_sizes.png" alt="img_2" class="inline"/>
@@ -23,6 +23,8 @@ In order to sequence these massive genomes, **short-read sequencing** was develo
 
 This process produces millions of short sequences or "reads" which are typically **75-300bp** in length. Reads are then pieced together computationally.
 
+**Short-read workflow**
+
 <p align="center">
   <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.srs.png" alt="img_2" class="inline"/>
 </p>
@@ -30,6 +32,8 @@ This process produces millions of short sequences or "reads" which are typically
 In contrast, **long-read sequencing** allows us to retrive much longer sequence reads, typically **>10,000bp** in length. In fact, some long read sequenceing systems have been producing reads over **2,000,000bp** (2 megabases) in length.
 
 Additionally long-read methodologies typically sequence single molecules of DNA directly and in real-time, foregoing the need for amplification.
+
+**Long-read workflow**
 
 <p align="center">
   <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.lrs.png" alt="img_2" class="inline"/>
