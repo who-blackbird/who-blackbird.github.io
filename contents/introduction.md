@@ -23,7 +23,7 @@ In order to sequence these massive genomes, **short-read sequencing** was develo
 
 This process produces millions of short sequences or "reads" which are typically **75-300bp** in length. Reads are then pieced together computationally.
 
-**Short-read workflow**
+<ins>**Short-read workflow**</ins>
 
 <p align="center">
   <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.srs.png" alt="img_2" class="inline"/>
@@ -33,7 +33,7 @@ In contrast, **long-read sequencing** allows us to retrive much longer sequence 
 
 Additionally long-read methodologies typically sequence single molecules of DNA directly and in real-time, foregoing the need for amplification.
 
-**Long-read workflow**
+<ins>**Long-read workflow**\_</ins>
 
 <p align="center">
   <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.lrs.png" alt="img_2" class="inline"/>
