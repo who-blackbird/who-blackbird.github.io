@@ -351,19 +351,13 @@ You will notice that **.fast5** and **.fastq** files have beeen automatically se
 
 There is also a "report.pdf" which the sequencer prints off, however the R script we used before gives us much more information (feel free to take a look though!).
 
-Lets produce the report for this run now. Open up the **config.yaml** file and edit the lines:
+Lets produce the report for this run now. Open up the **config.yaml** file and comment out the first two lines (add a '#' at the beginning) and uncomment lines 3 and 4.
+
+The file should now read:
 
 ```
-inputFile: "./RawData/lambda_sequencing_summary.txt.bz2"
-barcodeFile: "./RawData/lambda_barcoding_summary.txt.bz2"
-basecaller: "Guppy 2.1.3"
-flowcellId: "Lambda test"
-tutorialText: FALSE
-```
-
-So that they read:
-
-```
+#inputFile: "./RawData/lambda_sequencing_summary.txt.bz2"
+#barcodeFile: "./RawData/lambda_barcoding_summary.txt.bz2"
 inputFile: "../example_runs/2.promethion_run/VWD1108/20191202_1317_1-E11-H11_PAE13924_73938d1f/PCT0099_20191202_131743_PAE13924_promethion_sequencing_run_VWD1108_sequencing_summary.txt"
 barcodeFile: ""
 basecaller: "Guppy 2.1.3"
@@ -389,12 +383,12 @@ This was a VERY basic overview of nanopore data analysis. Below is a diagram sho
 
 ## References & Reading
 
-Excellent comparison of basecallers: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1727-y
+Excellent comparison of basecallers: <https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1727-y>
 
-Oxford Nanopore downloads: https://community.nanoporetech.com/downloads
+Oxford Nanopore downloads: <https://community.nanoporetech.com/downloads>
 
-Oxford Nanopore tutorials: https://community.nanoporetech.com/knowledge/bioinformatics/
+Oxford Nanopore tutorials: <https://community.nanoporetech.com/knowledge/bioinformatics/>
 
-Specific QC tutorial: https://github.com/nanoporetech/ont_tutorial_basicqc
+Specific QC tutorial: <https://github.com/nanoporetech/ont_tutorial_basicqc>
 
-How are Phred scores calculated: https://en.wikipedia.org/wiki/Phred_quality_score
+How are Phred scores calculated: <https://en.wikipedia.org/wiki/Phred_quality_score>
