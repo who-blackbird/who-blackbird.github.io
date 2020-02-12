@@ -169,3 +169,34 @@ grep SGCE annotation/LRD_SVs.anno.vcf.tsv
 And visualise them in IGV.
 
 Mutations in _SGCE_ gene [[MIM:159900]](https://www.omim.org/entry/159900) have previously been associated with Myoclonic Dystonia. As you can see in the IGV plot, there are multiple deletions in this individual overlapping _SGCE_. This data comes from a patient with Myoclonic Dystonia. The deletions you just found have already been seen to be pathogenic. Congratulations, you just called variants from long-read sequencing data and identified a pathogenic one associated with disease! And actually... a very complex one!
+
+## Represent cxSVs using Circos {#circos}
+
+This is a complex SV, involving multiple breakpoints across different chromosomes. To characterise it, you are going to represent it using [**Circos**](http://circos.ca).
+
+Circos needs 
+- Scaffold
+- Links
+- Config file
+- Coverage
+
+To save you some time, we already prepared these files and put them under ```~/Course_Materials/data/circos```.
+
+Open the files to see the information they contain.
+
+Now, you can make the plot using circos software:
+
+```
+cd circos
+circos -conf ~/Course_Materials/data/circos/circos.conf
+```
+
+Yes, it is true - making circos plots is not as difficult as it looks like!! Actually, it is quite cool :-)
+
+You can now visualise the plot you just made:
+
+```
+xdg-open circos.png
+```
+
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/circos.png" alt="circos" class="inline"/>
