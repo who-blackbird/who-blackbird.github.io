@@ -49,7 +49,7 @@ The deepsignal default settings have 0 as Unmethylated and 1 as Methylated
 #### Call 5mC modification frequency
 
 ```{}
-python3 ${IN}/scripts/call_modification_frequency.py --input_path ${IN}/Met_deepsignal.tsv --result_file ${OUT}/Met_frequency_deepsignal.tsv --prob_cf 0.6
+python3 ${IN}/scripts/call_modification_frequency.py --input_path ${OUT}/Met_deepsignal.tsv --result_file ${OUT}/Met_frequency_deepsignal.tsv --prob_cf 0.6
 ```
 The script to call modification frequencies comes from the [deepsignal utils](https://github.com/bioinfomaticsCSU/deepsignal/tree/master/scripts)
 
