@@ -107,7 +107,7 @@ UniqueGlobalKey          Group
 We can view the subkeys by recursivley (**-r**) listing the file:
 
 ```
-h5ls -r 20180830_PAD01151/data/reads/0/PCT0045_20180830_0004A30B002402F4_2_E3_H3_sequencing_run_Cam_6_90217_read_106_ch_731_strand.fast5
+h5ls -r ./20180830_PAD01151/data/reads/0/PCT0045_20180830_0004A30B002402F4_2_E3_H3_sequencing_run_Cam_6_90217_read_106_ch_731_strand.fast5
 ```
 
 Outputs:
@@ -128,7 +128,7 @@ Outputs:
 We can also dump and view the entire contents of a **.fast5** to text:
 
 ```
-h5dump 20180830_PAD01151/data/reads/0/PCT0045_20180830_0004A30B002402F4_2_E3_H3_sequencing_run_Cam_6_90217_read_106_ch_731_strand.fast5 | less
+h5dump ./20180830_PAD01151/data/reads/0/PCT0045_20180830_0004A30B002402F4_2_E3_H3_sequencing_run_Cam_6_90217_read_106_ch_731_strand.fast5 | less -S
 ```
 
 (**Hint 1**: use the up and down arrows to scroll through the file)  
@@ -166,7 +166,7 @@ FLO-MIN107 SQK-LSK109           dna_r9.5_450bps
 So lets basecall!
 
 ```
-guppy_basecaller --input_path 20180830_PAD01151/data/reads/ --recursive -s 20180830_PAD01151/data/basecalled --fast5_out --flowcell FLO-PRO002 --kit SQK-LSK109
+guppy_basecaller --input_path ./20180830_PAD01151/data/reads/ --recursive --save_path ./20180830_PAD01151/data/basecalled --fast5_out --flowcell FLO-PRO002 --kit SQK-LSK109
 ```
 
 **Interesting fact**: You have just started up a machine learning algorithm. Guppy, alongside almost all current nanopore basecallers have a neural network at their core.
@@ -201,12 +201,16 @@ ls -l 20180830_PAD01151/data/basecalled
 ```
 
 ```
-total 4024
--rw-r----- 1 nickgleadall staff 1797686 4 Feb 15:52 fastq_runid_5f42e62fe05de2c3f4e892def6936adeb53cf710_0_0.fastq
--rw-r----- 1 nickgleadall staff 121579 4 Feb 15:52 guppy_basecaller_log-2020-02-04_15-47-12.log
--rw-r----- 1 nickgleadall staff 57128 4 Feb 15:52 sequencing_summary.txt
--rw-r----- 1 nickgleadall staff 65669 4 Feb 15:52 sequencing_telemetry.js
-drwxr-x--- 4 nickgleadall staff 128 4 Feb 15:47 workspace
+total 2020
+-rw-r--r-- 1 participant docker 376482 Feb 12 17:11 fastq_runid_5f42e62fe05de2c3f4e892def6936adeb53cf710_0.fastq
+-rw-r--r-- 1 participant docker 484314 Feb 12 17:11 fastq_runid_5f42e62fe05de2c3f4e892def6936adeb53cf710_1.fastq
+-rw-r--r-- 1 participant docker 510656 Feb 12 17:11 fastq_runid_5f42e62fe05de2c3f4e892def6936adeb53cf710_2.fastq
+-rw-r--r-- 1 participant docker 431054 Feb 12 17:11 fastq_runid_5f42e62fe05de2c3f4e892def6936adeb53cf710_3.fastq
+-rw-r--r-- 1 participant docker  84282 Feb 12 17:11 guppy_basecaller_log-2020-02-12_17-08-00.log
+-rw-r--r-- 1 participant docker  56767 Feb 12 17:11 sequencing_summary.txt
+-rw-r--r-- 1 participant docker  86421 Feb 12 17:11 sequencing_telemetry.js
+drwxr-xr-x 4 participant docker   4096 Feb 12 17:08 workspace
+
 ```
 
 Our freshly called "sequence" data now sits inside **fastq_runid_5f42e62fe05de2c3f4e892def6936adeb53cf710_0_0.fastq**.
@@ -214,7 +218,7 @@ Our freshly called "sequence" data now sits inside **fastq_runid_5f42e62fe05de2c
 Lets take a quick look at it:
 
 ```
-less 20180830_PAD01151/data/basecalled/fastq_runid_5f42e62fe05de2c3f4e892def6936adeb53cf710_0_0.fastq
+less -S 20180830_PAD01151/data/basecalled/fastq_runid_5f42e62fe05de2c3f4e892def6936adeb53cf710_0.fastq
 ```
 
 This is a standard format fastq file which can now be analysed downstream. We will cover fastq's in greater detail later!  
@@ -223,7 +227,7 @@ This is a standard format fastq file which can now be analysed downstream. We wi
 Another important file is **sequencing_summary.txt**. This contains **A LOT** of data about the sequencing run. Lets take a look.
 
 ```
-less 20180830_PAD01151/data/basecalled/sequencing_summary.txt
+less -S 20180830_PAD01151/data/basecalled/sequencing_summary.txt
 ```
 
 ## Quick breather!!!
@@ -253,7 +257,7 @@ Many tools for run QC have been developed by the Nanopore sequening community. W
 Before we begin, lets change directory.
 
 ```
-cd ~/Desktop/quality_control/QC_script
+cd ~/Course_Materials/data/quality_control/QC_script/
 ```
 
 We can then open up a file browser to make things easy.
