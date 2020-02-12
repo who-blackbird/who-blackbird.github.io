@@ -32,10 +32,10 @@ mkdir variant_calling/svs
 You can also define the following variables that we will use later for convienience:
 
 ```
-LRS_bam=~/Course_Materials/data/day2/alignment/LRS_alignment.bam
-SRS_bam=~/Course_Materials/data/day2/alignment/SRS_alignment.bam
-SRS_snvs=~/Course_Materials/data/day2/snvs/SRS_SNVs.vcf.gz
-ref=~/Course_Materials/data/day2/reference_genome/Homo_sapiens.GRCh38.dna.fasta
+LRS_bam=~/Course_Materials/data/variant_calling/bams/LRS_alignment.bam
+SRS_bam=~/Course_Materials/data/variant_calling/bams/SRS_alignment.bam
+SRS_snvs=~/Course_Materials/data/variant_calling/snvs/SRS_SNVs.vcf.gz
+ref=~/Course_Materials/data/variant_calling/reference_genome/Homo_sapiens.GRCh38.dna.fasta
 annotsv=/path/to/AnnotSV.tcl
 ```
 
