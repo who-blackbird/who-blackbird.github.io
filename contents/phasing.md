@@ -1,8 +1,16 @@
-#  Oxford Nanopore - day 2 - Phasing
+#  6. Methylation
 
-#### [Phasing - WhatsHap](#Phasing-WA) 
-#### [Phasing - Visualization](#Phasing-Visualization) 
-#### [Phasing - Pedigrees](#Phasing-Pedigrees)
+In this section we will cover:
+
+* [Phasing - WhatsHap](#Phasing-WA) 
+* [Phasing - Visualization](#Phasing-Visualization) 
+* [Phasing - Pedigrees](#Phasing-Pedigrees)
+
+You will learn to:
+- Phase a vcf file
+- Phase a pedigree
+- Visualise pedigree information on IGV
+- Annotate bam file with phase and haplotype information
 
 ***
 N.B.: Note these scripts use `path/to/Course_Materials/` as working directory (wd). To check what directory you are using as `wd` do `pwd`. If the output is different from `path/to/Course_Materials` please go to `Course_Materials/` with the `cd` command.
@@ -142,3 +150,6 @@ Open the `phasing/pedigree_phased.vcf` file on IGV and have a look at the VCF fi
 
 If you made it this far and you still have time and stamina, there is a quick exercise you may want to do. For sample2 and sample3 we have VCF and BAM files. However, the BAM files are derived from Illumina sequencing. You can try to phase this samples and compare the haplotype you get to the one we got for sample1. 
 
+## References
+[Marcel Martin, Murray Patterson, Shilpa Garg, Sarah O. Fischer, Nadia Pisanti, Gunnar W. Klau, Alexander Schoenhuth, Tobias Marschall. WhatsHap: fast and accurate read-based phasing, bioRxiv 085050](https://doi.org/10.1101/085050) <br>
+[Hahne F, Ivanek R (2016). “Statistical Genomics: Methods and Protocols.” In Mathé E, Davis S (eds.), chapter Visualizing Genomic Data Using Gviz and Bioconductor, 335–351. Springer New York, New York, NY. ISBN 978-1-4939-3578-9](https://doi.org/10.1007/978-1-4939-3578-9_16)
