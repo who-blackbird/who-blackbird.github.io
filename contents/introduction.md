@@ -50,18 +50,16 @@ SMRT sequencing workflow:
 1. DNA is extracted from the sample using standard methods
 2. DNA is then fragmented
 3. Sequencing adapters are ligated to the fragments creating circular templates.
+   <p align="center">
+       <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.circular.png" alt="img_4" class="inline"/>
+   </p>
+4. Primer and polymerase are then added to the sequencing library.
+5. The library is then loaded into a "**SMRT cell**" containing millions of 'wells' called Zero Mode Wave-guides (**ZMW**'s).
+6. A single molecule of DNA is immobilised inside a ZMW.
+7. Sequencing reaction now takes place. As the DNA polymerase incorporates nuclotides light is emitted and measured.
 
 <p align="center">
-  <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.circular.png" alt="img_4" class="inline"/>
-</p>
-
-4.  Primer and polymerase are then added to the sequencing library.
-5.  The library is then loaded into a "**SMRT cell**" containing millions of 'wells' called Zero Mode Wave-guides (**ZMW**'s).
-6.  A single molecule of DNA is immobilised inside a ZMW.
-7.  Sequencing reaction now takes place. As the DNA polymerase incorporates nuclotides light is emitted and measured.
-
-<p align="center">
-  <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.circular.png" alt="img_4" class="inline"/>
+  <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.smrt.png" alt="img_4" class="inline"/>
 </p>
 
 **PacBio** **SMRT** sequencing has two modes:
