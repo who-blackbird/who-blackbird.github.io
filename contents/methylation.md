@@ -81,7 +81,7 @@ samtools index methylation/res/alignment_output_sorted.bam
 Once the preprocessing is finished, we have all the required files to start the 5mC modification call. We use the command `call-methylation` to annotate the modification.
 #### Call 5mC modification
 ```{}
-nanopolish call-methylation -t 16 -r methylation/res/alignment_output.fastq -b methylation/res/alignment_output_sorted.bam -g methylation/res/reference.fasta -w "chr20:5,000,000-10,000,000" > methylation/Met_nanopolish.tsv
+nanopolish call-methylation -t 8 -r methylation/res/alignment_output.fastq -b methylation/res/alignment_output_sorted.bam -g methylation/res/reference.fasta -w "chr20:5,000,000-10,000,000" > methylation/Met_nanopolish.tsv
 ```
 __NB.: This command will take about 10 minutes, so it is a good time to have a break and stretch a bit your legs.__ If the script is taking too long there is a hidden file that you can use to keep going. Do:
 ```{}

@@ -83,7 +83,7 @@ bcftools view -O z -o ${OUT}/sample1_phased.vcf.gz ${OUT}/sample1_phased.vcf
 bcftools index ${OUT}/sample1_phased.vcf.gz
 mv ${OUT}/sample1_phased.vcf.gz.csi ${OUT}/sample1_phased.vcf.gz.tbi
 
-whatshap haplotag  --ignore-read-groups -o ${OUT}/sample1_haplotagged.bam --reference ${OUT}/res/reference_chr20.fa ${OUT}/sample1_phased.vcf.gz ${OUT}/res/sample1_long_reads.bam 
+whatshap haplotag  --ignore-read-groups -o ${OUT}/sample1_haplotagged.bam --reference ${IN}/res/reference_chr20.fa ${OUT}/sample1_phased.vcf.gz ${IN}/res/sample1_long_reads.bam 
 
 samtools index ${OUT}/sample1_haplotagged.bam
 ```
