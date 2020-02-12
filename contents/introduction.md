@@ -29,7 +29,7 @@ This process produces millions of short sequences or "**reads**" which are typic
   <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.srs.png" alt="img_2" class="inline"/>
 </p>
 
-In contrast, **long-read sequencing** allows us to retrive much longer sequence reads, typically **>10,000bp** in length. In fact, some long read sequenceing systems have been producing reads over **2,000,000bp** (2 megabases) in length.
+In contrast, **long-read sequencing** allows us to retrieve much longer sequence reads, typically **>10,000bp** in length. In fact, some long read sequencing systems have been producing reads over **2,000,000bp** (2 MB) in length.
 
 Additionally long-read methodologies typically sequence single molecules of DNA directly and in real-time, foregoing the need for amplification.
 
@@ -39,7 +39,7 @@ Additionally long-read methodologies typically sequence single molecules of DNA 
   <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.lrs.png" alt="img_3" class="inline"/>
 </p>
 
-The two best known producers of ‘true’ long-read sequencing technologies are Pacific Biosciences (**PacBio**) and Oxford Nanopore Technologies (**Nanopore**). Bother offer platforms that directly sequence single molecules of **DNA or RNA** in '**real-time**' and which can produce significantly longer reads than current short-read platofrms.
+The two best known producers of ‘true’ long-read sequencing technologies are Pacific Biosciences (**PacBio**) and Oxford Nanopore Technologies (**Nanopore**). Bother offer platforms that directly sequence single molecules of **DNA or RNA** in '**real-time**' and which can produce significantly longer reads than current short-read platforms.
 
 ## 2. SMRT sequencing
 
@@ -56,7 +56,7 @@ Single Molecule, Real Time (**SMRT**) sequencing the name of **PacBio**'s method
 4. Primer and polymerase are then added to the sequencing library.
 5. The library is then loaded into a "**SMRT cell**" containing millions of 'wells' called Zero Mode Wave-guides (**ZMW**'s)
 6. A single molecule of DNA is immobilised inside a ZMW
-7. The sequencing reaction now takes place. As the DNA polymerase incorporates nuclotides light is emitted and measured
+7. The sequencing reaction now takes place. As the DNA polymerase incorporates nucleotides light is emitted and measured
 
 <p align="center">
   <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.smrt.png" alt="img_4" class="inline"/>
@@ -69,7 +69,7 @@ Single Molecule, Real Time (**SMRT**) sequencing the name of **PacBio**'s method
 
 Original Publication: Eid, J., et al. (2009). [Real-time DNA sequencing from single polymerase molecules](http://dx.doi.org/10.1126/science.1162986). Science, 323(5910), 133–138.
 
------- **Disclaimer** ------:
+------ **Disclaimer** ------
 
 We have never actually used or worked with **PacBio** sequencers/data. From now on this course will focus on **Nanopore** sequencing!
 
@@ -79,7 +79,7 @@ They have been using **PacBio** sequencing for HLA typing over the past few year
 
 ## 3. Nanopore sequencing
 
-**Nanopore sequencing** is the general name for Oxford Nanopore Technolgies methodology.
+**Nanopore sequencing** is the general name for Oxford Nanopore Technologies methodology.
 
 **Nanopore sequencing workflow**:
 
@@ -88,12 +88,12 @@ They have been using **PacBio** sequencing for HLA typing over the past few year
    <p align="center">
      <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.libs.png" alt="img_4" class="inline"/>
    </p>
-3. Libraries are now loaded into flow-cells for sequencing.
-4. Each flowcell contains an electrically-resistant membrane with hundereds of protein nanopores embedded within it.
+3. Libraries are now loaded into flow cells for sequencing.
+4. Each flow cell contains an electrically-resistant membrane with hundreds of protein nanopores embedded within it.
 5. A voltage is applied across the membrane and an ionic current begins to flow through the nanopore (as the membrane is electrically resistant).
 6. DNA with sequencing adapters
-7. As the DNA passes through the nanopore, the ionic current is disruped and this event is recorded.
-8. The specific pattern of diruption is analysed to determine DNA sequence.
+7. As the DNA passes through the nanopore, the ionic current is disrupted and this event is recorded.
+8. The specific pattern of disruption is analysed to determine DNA sequence.
 
 <p align="center">
   <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.motor.png" alt="img_4" class="inline"/>
@@ -103,11 +103,17 @@ Note in the second image, that as DNA passes through the pore a **motor protein*
 
 Further reading:
 
-Branton, D. et al. (2008). (The potential and challenges of nanopore sequencing)[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2683588/]. Nature Biotechnology, 26(10), 1146-1153.
+Branton, D. et al. (2008). [The potential and challenges of nanopore sequencing](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2683588/). Nature Biotechnology, 26(10), 1146-1153.
 
 Deamer, D., et al. (2016). [Three decades of nanopore sequencing](https://www.ncbi.nlm.nih.gov/pubmed/27153285?dopt=Abstract). Nature Biotechnology, 34(5), 518-24.
 
 ## 4. Different ONT sequencers
+
+Oxford nanopore offer various different sequencing machines - the biggest difference is sequencing throughput (how many bases you can sequence) and their size.
+
+<p align="center">
+  <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.machines.png" alt="img_4" class="inline"/>
+</p>
 
 ## 5. Advantages of long-read sequencing
 
