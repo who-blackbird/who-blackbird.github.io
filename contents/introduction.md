@@ -1,6 +1,10 @@
 # 1. Introduction to Long-read Sequencing
 
-- Who we are?
+- What is long read sequencing?
+
+The genome of most organisms is too long to be sequencing in a long continuous string.
+
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.genome_sizes.png" alt="img_2" class="inline"/>
 
 - Oxford nanopore
 
