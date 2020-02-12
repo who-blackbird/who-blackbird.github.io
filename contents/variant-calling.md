@@ -64,7 +64,7 @@ bgzip variant_calling/snvs/LRS_SNVs.vcf
 tabix -p vcf variant_calling/snvs/LRS_SNVs.vcf.gz
 ```
 
-Now you can compare the instersection between both using bcftools:
+Now you can compare the instersection between both LRS- and SRS-VCF files using bcftools:
 
 ```
 bcftools isec -p isec variant_calling/snvs/LRS_snvs.vcf.gz $SRS_snvs
@@ -81,11 +81,14 @@ isec/0003.vcf   for records from short_reads_VCF shared by both
 - How many SNVs have been called by both technologies?
 - How many SNVs have been missed by short and/or long read sequencing?
 
+*Hint:* to count the number of variants (= numer of rows in file excluding header) you can use the command `bcftools view -H isec/0000.vcf | wc -l`
+
 Now, explore the variants in the **IGV**. Open IGV and load the Homo_sapiens.GRCh38.dna.fasta (`$ref`) reference genome by selecting Genomes>Load from File or Genomes>Load from URL. The new genome will be added to the drop-down menu, and also loaded and displayed in the IGV window.
 
 Then, load your BAM files `$LRS_bam` and `$SRS_bam`.
 
-Go to position (PENDING)
+Go to positions:
+- 
 
 
 ## Structural Variant Calling {#svcalling}
