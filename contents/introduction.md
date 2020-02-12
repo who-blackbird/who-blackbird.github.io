@@ -61,7 +61,7 @@ SMRT sequencing workflow:
 7.  Sequencing reaction now takes place. As the DNA polymerase incorporates nuclotides light is emitted and measured.
 
 <p align="center">
-  <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.smrt.jpg" alt="img_5" class="inline"/>
+  <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.circular.png" alt="img_4" class="inline"/>
 </p>
 
 **PacBio** **SMRT** sequencing has two modes:
