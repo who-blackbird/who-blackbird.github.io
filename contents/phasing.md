@@ -17,36 +17,43 @@ WhatsHap can phase SNVs and indels, but it does not work on structural variants.
 The main WhatsHap subcommand is `phase`, which is the backbone of the entire tool, it uses reads containing 2 or more variants to assign them to one allele or the other. In this example we are going to phase a test VCF.
 
 ```{}
-# The bamtools needs to be indexed bedore, so we do:
-samtools index phasing/res/sample1_long_reads.bam
+mkdir -p Course_Materials/wd/day2/phasing/
+IN="Course_Materials/data/phasing"
+OUT="Course_Materials/wd/day2/phasing"
+```
 
-whatshap phase --indels --ignore-read-groups --reference phasing/res/reference_chr20.fa -o phasing/sample1_phased.vcf phasing/res/sample1_short_reads.vcf.gz phasing/res/sample1_long_reads.bam
+
+```{}
+# The bamtools needs to be indexed bedore, so we do:
+samtools index ${IN}/res/sample1_long_reads.bam
+
+whatshap phase --indels --ignore-read-groups --reference ${IN}/res/reference_chr20.fa -o ${OUT}/sample1_phased.vcf ${IN}/res/sample1_short_reads.vcf.gz ${IN}/res/sample1_long_reads.bam
 ```
 
 `--ignore-read-groups` asks `whatshap` to overlook the sample name information. But, because of this we have to be sure that the input files refer to the same sample.
 
 You can use the following commands to check the sample names in the 2 files:
 ```{}
-samtools view -H phasing/res/sample1_long_reads.bam | grep "@RG"
+samtools view -H ${IN}/res/sample1_long_reads.bam | grep "@RG"
 # sample name isthe one starting with "SM:"
 
-bcftools query -l phasing/res/sample1_short_reads.vcf.gz 
+bcftools query -l ${IN}/res/sample1_short_reads.vcf.gz 
 ```
 
 WhatsHap was able to discriminate the allele for 4601 variants as it printed out in the report (see `Found 19244 reads covering 4601 variants`). If we now look at SNVs and how they are distributed on the alleles, we should see that the command has divided them into allele 1 and allele 2 (when this was possible):
 
 ```{}
 # Before the phasing
-bcftools view -H phasing/res/sample1_short_reads.vcf.gz | grep -c "0/1"
-bcftools view -H phasing/res/sample1_short_reads.vcf.gz | grep -c "0|1"
-bcftools view -H phasing/res/sample1_short_reads.vcf.gz | grep -c "1/0"
-bcftools view -H phasing/res/sample1_short_reads.vcf.gz | grep -c "1|0"
+bcftools view -H ${IN}/res/sample1_short_reads.vcf.gz | grep -c "0/1"
+bcftools view -H ${IN}/res/sample1_short_reads.vcf.gz | grep -c "0|1"
+bcftools view -H ${IN}/res/sample1_short_reads.vcf.gz | grep -c "1/0"
+bcftools view -H ${IN}/res/sample1_short_reads.vcf.gz | grep -c "1|0"
 
 # After the phasing
-bcftools view -H phasing/sample1_phased.vcf | grep -c "0/1"
-bcftools view -H phasing/sample1_phased.vcf | grep -c "0|1"
-bcftools view -H phasing/sample1_phased.vcf | grep -c "1/0"
-bcftools view -H phasing/sample1_phased.vcf | grep -c "1|0"
+bcftools view -H ${OUT}/sample1_phased.vcf | grep -c "0/1"
+bcftools view -H ${OUT}/sample1_phased.vcf | grep -c "0|1"
+bcftools view -H ${OUT}/sample1_phased.vcf | grep -c "1/0"
+bcftools view -H ${OUT}/sample1_phased.vcf | grep -c "1|0"
 ```
 
 There are 2 different genotype separators (i.e. `|` or `/`) because different variant callers use different separators, but both are equally good in the VCF grammar. Please note that now the SNVs and indels are roughly 50% on allele 1 (a.k.a. `1|0`) and 50% on allele 2 (a.k.a `0|1`), while before the pahsing the were mostly on allele 2.
@@ -58,10 +65,10 @@ There are 2 different genotype separators (i.e. `|` or `/`) because different va
 It is always good practice to visually inspect our data, for this purpose we could use IGV. WhatsHap has a script to convert the VCF annotation to a GTF format that can be loaded on IGV.
 
 ```{}
-whatshap stats --gtf=phasing/sample1_phased.gtf phasing/sample1_phased.vcf
+whatshap stats --gtf=${OUT}/sample1_phased.gtf ${OUT}/sample1_phased.vcf
 ```
 
-This command will print out some stats about the haplotype blocks called in the previous command and it will also create a GTF file that we can load on IGV. Open the IGV browser and load the `phasing/sample1_phased.gtf` file you just created.
+This command will print out some stats about the haplotype blocks called in the previous command and it will also create a GTF file that we can load on IGV. Open the IGV browser and load the `${OUT}/sample1_phased.gtf` file you just created.
 
 Go on chr20:40000000-45000000 to look at the subset we are using.
 
@@ -72,16 +79,16 @@ Go on chr20:40000000-45000000 to look at the subset we are using.
 We could also visualise haplotype blocks and alleles directly on the reads. For this, we will need the VCF file we created and the BAM file used to create it. The command adds 2 tags to the bam file `PS` and `HP` which stand for `phase` and `haplotype` respectively. On IGV we can use this tag to colour and order our reads.
 
 ```{}
-bcftools view -O z -o phasing/sample1_phased.vcf.gz phasing/sample1_phased.vcf
-bcftools index phasing/sample1_phased.vcf.gz
-mv phasing/sample1_phased.vcf.gz.csi phasing/sample1_phased.vcf.gz.tbi
+bcftools view -O z -o ${OUT}/sample1_phased.vcf.gz ${OUT}/sample1_phased.vcf
+bcftools index ${OUT}/sample1_phased.vcf.gz
+mv ${OUT}/sample1_phased.vcf.gz.csi ${OUT}/sample1_phased.vcf.gz.tbi
 
-whatshap haplotag  --ignore-read-groups -o phasing/sample1_haplotagged.bam --reference phasing/res/reference_chr20.fa phasing/sample1_phased.vcf.gz phasing/res/sample1_long_reads.bam 
+whatshap haplotag  --ignore-read-groups -o ${OUT}/sample1_haplotagged.bam --reference ${OUT}/res/reference_chr20.fa ${OUT}/sample1_phased.vcf.gz ${OUT}/res/sample1_long_reads.bam 
 
-samtools index phasing/sample1_haplotagged.bam
+samtools index ${OUT}/sample1_haplotagged.bam
 ```
 
-Now, open the `phasing/sample1_haplotagged.bam` file on IGV.
+Now, open the `${OUT}/sample1_haplotagged.bam` file on IGV.
 `Color alignment by` > `tag` and insert `PS` and `Group alignment by` > `tag` and insert `PS` 
 
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/ColorAlignmentTag.png" alt="img_1" class="inline"/>
@@ -100,22 +107,22 @@ To use this `WhatsHap` function we need to merge the VCF files into one as well 
 
 ```{}
 # Merge the VCF files
-bcftools index phasing/res/sample1_short_reads.vcf.gz
-bcftools index phasing/res/sample2_short_reads.vcf.gz
-bcftools index phasing/res/sample3_short_reads.vcf.gz
-bcftools merge -O z -o phasing/merged_pedigree_samples.vcf.gz --merge all phasing/res/sample1_short_reads.vcf.gz phasing/res/sample2_short_reads.vcf.gz phasing/res/sample3_short_reads.vcf.gz  
+bcftools index ${IN}/res/sample1_short_reads.vcf.gz
+bcftools index ${IN}/res/sample2_short_reads.vcf.gz
+bcftools index ${IN}/res/sample3_short_reads.vcf.gz
+bcftools merge -O z -o ${OUT}/merged_pedigree_samples.vcf.gz --merge all ${IN}/res/sample1_short_reads.vcf.gz ${IN}/res/sample2_short_reads.vcf.gz ${IN}/res/sample3_short_reads.vcf.gz  
 
 #Merge the BAM files
-samtools index phasing/res/sample2_short_reads.bam
-samtools index phasing/res/sample3_short_reads.bam
-samtools merge -r -O BAM phasing/merged_pedigree_samples.bam phasing/res/sample1_long_reads.bam phasing/res/sample2_short_reads.bam phasing/res/sample3_short_reads.bam
-samtools index phasing/merged_pedigree_samples.bam
+samtools index ${IN}/res/sample2_short_reads.bam
+samtools index ${IN}/res/sample3_short_reads.bam
+samtools merge -r -O BAM ${OUT}/merged_pedigree_samples.bam ${IN}/res/sample1_long_reads.bam ${IN}/res/sample2_short_reads.bam ${IN}/res/sample3_short_reads.bam
+samtools index ${OUT}/merged_pedigree_samples.bam
 ```
 
 After we created the new input files, we can run the `whatshap phase` command:
 
 ```{}
-whatshap phase --ped phasing/res/PED_ONT.txt -o phasing/pedigree_phased.vcf --reference phasing/res/reference_chr20.fa phasing/merged_pedigree_samples.vcf.gz phasing/merged_pedigree_samples.bam
+whatshap phase --ped ${IN}/res/PED_ONT.txt -o ${OUT}/pedigree_phased.vcf --reference ${IN}/res/reference_chr20.fa ${IN}/merged_pedigree_samples.vcf.gz ${IN}/merged_pedigree_samples.bam
 ```
 
 Once we have phased the pedigree, the output will look something like this:
