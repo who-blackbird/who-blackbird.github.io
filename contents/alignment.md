@@ -2,15 +2,16 @@
 
 In this section we will cover:
 
-* [Background](#background)
-* [Data](#data)
-* [Working Directory](#workingdirectory)
-* [Reads Quality Control](#readsQC)
-* [Alignment](#alignment)
-* [Alignment Quality Control](#alignmentQC)
-* [Visualisation](#visualisation)
+- [Background](#background)
+- [Data](#data)
+- [Working Directory](#workingdirectory)
+- [Reads Quality Control](#readsQC)
+- [Alignment](#alignment)
+- [Alignment Quality Control](#alignmentQC)
+- [Visualisation](#visualisation)
 
 You will learn to:
+
 - Take the basecalled sequences in FASTQ format and align them to a genome of reference
 - Perform quality control and visualise the alignment
 
@@ -32,8 +33,8 @@ The data we will be using is from Human Coronavirus 229E (HCoV-229E), one of the
 
 In [this](http://www.ncbi.nlm.nih.gov/pubmed/?term=Viehweger+coronavirus) study, RNA sequencing was performed from Huh7 cells infected with serially passaged recombinant human coronaviruses, that we will refer to as:
 
-* **WT RNA** (wild-type HCoV-229E)
-* **SL2 RNA** (pool of recombinant virus, with the stem-loop structrue (SL2) in the 5'UTR replaced with the equivalent SL2 element from SARS-CoV and SARS-BCoV)
+- **WT RNA** (wild-type HCoV-229E)
+- **SL2 RNA** (pool of recombinant virus, with the stem-loop structure (SL2) in the 5'UTR replaced with the equivalent SL2 element from SARS-CoV and SARS-BCoV)
 
 Sequencing was performed with Oxford Nanopore MinION using the Direct RNA Sequencing protocol (SQK-RNA-1) and R9.4 chemistry. The source for the original FAST5 and FASTQ files can be found [here](https://osf.io/up7b4/).
 
@@ -41,13 +42,13 @@ In this practical we will take these FASTQ files and align them to the consensus
 
 First of all, let's explore the FASTQ files!
 
-A FASTQ file normally uses four lines per sequence: 
+A FASTQ file normally uses four lines per sequence:
 
-1. Begins with a '@' and is followed by a sequence identifier 
+1. Begins with a '@' and is followed by a sequence identifier
 2. Is the raw sequence letters
-3. Begins with a '+' character 
+3. Begins with a '+' character
 4. Encodes the quality values for the sequence in Line 2
- 
+
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/fastq.png" alt="img_1" class="inline"/>
 
 To visualise the WT FASTQ file, you can type:
@@ -64,7 +65,7 @@ less -S ~/Course_Materials/data/alignment/fastq/SL2_CoV.fastq.gz
 
 ## Working Directory {#workingdirectory}
 
-Now, we will set up the working directory where we will do the analysis. Open your terminal, go to 
+Now, we will set up the working directory where we will do the analysis. Open your terminal, go to
 
 ```
 cd ~/Course_Materials/wd/day1
@@ -89,7 +90,7 @@ HCoV_ref=~/Course_Materials/data/alignment/reference_genome/HCov-229E.fasta
 
 There are many approaches to assess the quality of the reads. Here we will use [**NanoStat**](https://github.com/wdecoster/nanostat). This calculates various statistics from a long read sequencing dataset in FASTQ, BAM or albacore sequencing summary format.
 
-For FASTQ files, it provides information for the number of reads, the read lenght and quality distrubutions (including mean and median) and the read length [N50](http://www.metagenomics.wiki/pdf/definition/assembly/n50).
+For FASTQ files, it provides information for the number of reads, the read length and quality distributions (including mean and median) and the read length [N50](http://www.metagenomics.wiki/pdf/definition/assembly/n50).
 
 From your wd, run:
 
@@ -99,12 +100,13 @@ NanoStat --fastq $SL2_fastq > stats/SL2_fastq_nanostats.txt
 ```
 
 Obtain for both WT and SL2 samples the:
+
 - Mean and median read length
 - Read length N50
 - How many reads have a quality score (Q) higher than 15? For which sample?
 - Longest read
 
-*Hint:* To visualize the file you can use the command `cat`, or `grep` if you want to search for lines containing a pattern, eg. `grep "Mean read length" stats/*fastq_nanostats.txt`
+_Hint:_ To visualize the file you can use the command `cat`, or `grep` if you want to search for lines containing a pattern, eg. `grep "Mean read length" stats/*fastq_nanostats.txt`
 
 However, you may want to run your customised scripts, to answer your own questions... Here you have some ideas!
 
@@ -150,7 +152,7 @@ readLength <- rbind(WTreadLength, SL2readLength)
 readLength$sample <- factor(readLength$sample, levels = c('WT', 'SL2'))
 
 #Make the plot
-p1 <- ggplot(data=readLength, aes(length, fill = sample)) + 
+p1 <- ggplot(data=readLength, aes(length, fill = sample)) +
     geom_histogram(position = "identity", alpha = 0.6, binwidth = 1) +
     scale_x_sqrt(breaks = trans_breaks("sqrt", function(x) x ^ 2)(c(1, max(readLength$length)))) +
     theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
@@ -181,11 +183,12 @@ SAM files have a header that contains information on alignment and contigs used,
 But because SAM files can be large, they are usually stored in the compressed version of them, [BAM](http://samtools.github.io/hts-specs/SAMv1.pdf) files.
 
 Multiple algorithms have been developed to align long reads to a genome of reference. Some examples are:
--	minimap2: [http://github.com/lh3/minimap2](http://github.com/lh3/minimap2)
--	NGMLR: [http://github.com/philres/ngmlr](http://github.com/philres/ngmlr)
--	LAST: [http://last.cbrc.jp](http://last.cbrc.jp)
--	Graphmap: [http://github.com/isovic/graphmap](http://github.com/isovic/graphmap)
--	bwa mem -x l ont2d: [http://github.com/lh3/bwa](http://github.com/lh3/bwa)
+
+- minimap2: [http://github.com/lh3/minimap2](http://github.com/lh3/minimap2)
+- NGMLR: [http://github.com/philres/ngmlr](http://github.com/philres/ngmlr)
+- LAST: [http://last.cbrc.jp](http://last.cbrc.jp)
+- Graphmap: [http://github.com/isovic/graphmap](http://github.com/isovic/graphmap)
+- bwa mem -x l ont2d: [http://github.com/lh3/bwa](http://github.com/lh3/bwa)
 
 Here we will use **minimap2** to map the reads to the genome of reference. Then we will convert the SAM output to BAM format and sort it by mapping coordinate. For that we will use the following minimap2 options:
 
@@ -206,7 +209,7 @@ minimap2 -x map-ont --MD -u n -k 14 -a $HCoV_ref $WT_fastq > alignment/WT_CoV.sa
 samtools sort alignment/WT_CoV.sam -O BAM -o alignment/WT_CoV.sort.bam
 ```
 
-*Alternatively*, you can run these two steps using only one command line. Below is the alignment for the SL2 sample:
+_Alternatively_, you can run these two steps using only one command line. Below is the alignment for the SL2 sample:
 
 ```
 minimap2 -x map-ont --MD -u n -k 14 -a $HCoV_ref $SL2_fastq | samtools sort - -O BAM -o alignment/SL2_CoV.sort.bam
@@ -235,6 +238,7 @@ NanoStat --bam alignment/SL2_CoV.sort.bam > stats/SL2_bam_nanostats.txt
 ```
 
 Compare the:
+
 - Mean and median aligned read length
 - Number of reads aligned
 - Read length N50
@@ -250,7 +254,8 @@ samtools stats alignment/WT_CoV.sort.bam > stats/WT_samtools_stats.txt
 samtools stats alignment/SL2_CoV.sort.bam > stats/SL2_samtools_stats.txt
 ```
 
-Explore the results obtained from samtools stats, and comprare them with the NanoStat output.
+Explore the results obtained from samtools stats, and compare them with the NanoStat output.
+
 - Which one provides more information?
 - Compare the number of mapped vs unmapped reads. Why do you think there are so many unmapped ones?
 
@@ -288,18 +293,18 @@ SL2cov$sample <- "SL2"
 coverage <- rbind(WTcov, SL2cov)
 
 #Make the plot
-p2 <- ggplot(data=coverage, aes(x = pos, y = cov, colour = sample)) + 
-    geom_line() + 
+p2 <- ggplot(data=coverage, aes(x = pos, y = cov, colour = sample)) +
+    geom_line() +
     scale_y_log10() +
     scale_x_continuous(breaks = seq(0, max(coverage$pos), 1000)) +
     scale_colour_manual(values = c("#FF7F2D", "#0077B1")) +
     theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
     labs(title = "Coverage", x = "Genome position", y = "Coverage")
-    
+
 p2
 ```
 
-You should see a plot like this one. 
+You should see a plot like this one.
 
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/HCoV-coverage.png" alt="cov" class="inline"/>
 
@@ -310,16 +315,16 @@ Additionally, you can also look at the coverage distribution in R:
 ```
 library(dplyr)
 library(purrr)
-percent_cov <- coverage %>% 
-    group_by(sample) %>% 
-    mutate(percent = (map_int(cov, ~ sum(cov >= .x)))/27317) %>% 
-    select(sample, cov, percent) %>% 
+percent_cov <- coverage %>%
+    group_by(sample) %>%
+    mutate(percent = (map_int(cov, ~ sum(cov >= .x)))/27317) %>%
+    select(sample, cov, percent) %>%
     unique
-    
+
 #Make the plot
-p3 <- ggplot(data = percent_cov, aes(x = cov, y = percent*100, colour = sample)) + 
-    geom_line() + 
-    scale_x_continuous(breaks=seq(0,max(coverage$cov), 1000)) + 
+p3 <- ggplot(data = percent_cov, aes(x = cov, y = percent*100, colour = sample)) +
+    geom_line() +
+    scale_x_continuous(breaks=seq(0,max(coverage$cov), 1000)) +
     labs(title = "Coverage distribution", x = "Coverage", y = "Percentage of bases")
 p3
 ```
