@@ -21,7 +21,7 @@ The genomes of most organisms are too big to be sequenced in one long continuous
 
 In order to sequence these massive genomes, **short-read sequencing** was developed. Here DNA is broken into millions of tiny fragments that are amplified (copied) and then sequenced.
 
-This process produces millions of short sequences or "reads" which are typically **75-300bp** in length. Reads are then pieced together computationally.
+This process produces millions of short sequences or "**reads**" which are typically **75-300bp** in length. Reads are then pieced together computationally.
 
 <ins>**Short-read workflow**</ins>
 
@@ -39,7 +39,7 @@ Additionally long-read methodologies typically sequence single molecules of DNA 
   <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.lrs.png" alt="img_2" class="inline"/>
 </p>
 
-The two best known producers of ‘true’ long-read sequencing technologies are Pacific Biosciences (**PacBio**) and Oxford Nanopore Technologies (**Nanopore**). Bother offer systems which sequence single molecules of **DNA or RNA** in **'real-time'** and that can produce **longer reads** than current short-read systems.
+The two best known producers of ‘true’ long-read sequencing technologies are Pacific Biosciences (**PacBio**) and Oxford Nanopore Technologies (**Nanopore**). Bother offer systems which directly sequence single molecules of **DNA or RNA** in '**real-time**' and that produce extremely long reads.
 
 ## 2. SMRT sequencing
 
