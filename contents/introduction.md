@@ -43,4 +43,36 @@ The two best known producers of ‘true’ long-read sequencing technologies are
 
 ## 2. SMRT sequencing
 
+Single Molecule, Real Time (**SMRT**) sequencing the name of **PacBio**'s methodology.
+
+SMRT sequencing workflow:
+
+1. DNA is extracted from the sample using standard methods
+2. DNA is then fragmented
+3. Sequencing adapters are ligated to the fragments creating circular templates.
+
+<p align="center">
+  <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.circular.png" alt="img_2" class="inline"/>
+</p>
+
+4.  Primer and polymerase are then added to the sequencing library.
+5.  The library is then loaded into a "**SMRT cell**" containing millions of 'wells' called Zero Mode Wave-guides (**ZMW**'s).
+6.  A single molecule of DNA is immobilised inside a ZMW.
+7.  Sequencing reaction now takes place. As the DNA polymerase incorporates nuclotides light is emitted and measured.
+
+<p align="center">
+  <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/intro.smrt.png" alt="img_2" class="inline"/>
+</p>
+
+**PacBio** **SMRT** sequencing has two modes:
+
+- **Circular Consensus Sequencing (CCS)**: Sequencies a smaller circular template over and over to produce a high quality read.
+- **Continuous Long Read Sequencing (CLR)**: Produces the longest read by sequencing long templates.
+
+Original Publication: Eid, J., et al. (2009). [Real-time DNA sequencing from single polymerase molecules](http://dx.doi.org/10.1126/science.1162986). Science, 323(5910), 133–138.
+
+**Disclaimer**: We have never actually used or worked with **PacBio** sequencers/data. From now on this course will focus on **Nanopore** sequencing!
+
+If you would like more information about PacBio, I suggest you contact Professor Steven Marsh or Dr. James Robinson who are based at the
+
 ## References
