@@ -32,7 +32,7 @@ But... before we get too technical, lets take a look at how Nanopore's machines 
 All nanopore data is written to a specific run directory. Open up a terminal and change to the example directory below…
 
 ```
-cd /home/participant/Course_Materials/data/quality_control
+cd /home/participant/Course_Materials/data/quality_control/example_runs/1.raw_data/
 ```
 
 ... and check it out using tree!
