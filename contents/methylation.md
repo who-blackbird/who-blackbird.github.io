@@ -15,6 +15,7 @@ You will learn to:
 - Plot methylation profile with R
 - Compare difference methods to call 5mC
 - Visualize the 5mC on IGV
+
 ***
 
 N.B.: Note these scripts use `path/to/Course_Materials/` as working directory (wd). To check what directory you are using as `wd` do `pwd`. If the output is different from `path/to/Course_Materials` please go to `Course_Materials/` with the `cd` command.
