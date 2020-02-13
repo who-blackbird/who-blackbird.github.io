@@ -86,11 +86,33 @@ isec/0003.vcf   for records from short_reads_VCF shared by both
 - How many SNVs have been called by both technologies?
 - How many SNVs have been missed by short and/or long read sequencing?
 
-_Hint:_ to count the number of variants (= number of rows in file excluding header) you can use the command `bcftools view -H variant_calling/snvs/isec/0000.vcf | wc -l`
+_Hint:_ to count the number of variants (= number of rows in file excluding header) you can use the next command:
 
-Now, explore the variants in the **IGV**. Open IGV and load the Homo_sapiens.GRCh38.dna.fasta (`$ref`) reference genome by selecting Genomes>Load from File or Genomes>Load from URL. The new genome will be added to the drop-down menu, and also loaded and displayed in the IGV window.
+```
+for f in variant_calling/snvs/isec/000*.vcf
+do
+    echo $f `bcftools view -H variant_calling/snvs/isec/0000.vcf | wc -l`
+done
+```
+
+Note that most of the variant that are private to short-reads are indels, since longshot does not call them.
+
+To get the number of SNPs called by short-reads, and missed by long-reads, run:
+
+```
+bcftools view -HV indels variant/calling/snvs/isec/0001.vcf | wc -l
+```
+
+Let's explore them in the **IGV**! Open IGV and load the Homo_sapiens.GRCh38.dna.fasta (`$ref`) reference genome by selecting Genomes>Load from File or Genomes>Load from URL. The new genome will be added to the drop-down menu, and also loaded and displayed in the IGV window.
 
 Then, load your BAM files `$LRS_bam` and `$SRS_bam`.
+
+Feel free to look at any of the variants. We also suggest:
+- 7:88782662
+- 7:88867497
+- 7:88874102
+- 7:89194947
+
 
 ## Structural Variant Calling {#svcalling}
 
