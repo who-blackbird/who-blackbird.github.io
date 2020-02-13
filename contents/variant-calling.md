@@ -256,7 +256,7 @@ AnnotSV -SVinputFile variant_calling/svs/LRS_SVs.sort.vcf.gz -SVinputInfo 1 \
      -typeOfAnnotation full
 ```
 
-Now, nspect the calls in _PCDH15_ gene:
+Now, inspect the calls in _PCDH15_ gene:
 
 ```
 grep PCDH15 annotation/LRS_SVs.sort.annotated.tsv
