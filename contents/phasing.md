@@ -21,6 +21,7 @@ mkdir -p wd/day2/phasing/
 IN="data/phasing"
 OUT="wd/day2/phasing"
 ```
+
 ## Phasing - WhatsHap {#Phasing-WA}
 
 For this practical we are going to use the [WhatsHap tool](https://www.biorxiv.org/content/10.1101/085050v2.full.pdf), which uses python and is based on the homonym algorithm. To download [WhatsHap](https://whatshap.readthedocs.io/en/latest/index.html). 
