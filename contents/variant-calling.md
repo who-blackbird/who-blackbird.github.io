@@ -91,7 +91,7 @@ _Hint:_ to count the number of variants (= number of rows in file excluding head
 ```
 for f in variant_calling/snvs/isec/000*.vcf
 do
-    echo $f `bcftools view -H variant_calling/snvs/isec/0000.vcf | wc -l`
+    echo $f `bcftools view -H v$f | wc -l`
 done
 ```
 
