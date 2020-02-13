@@ -51,3 +51,5 @@ After this course you should be able to:
 # Registration
 
 <a href="https://www.training.cam.ac.uk/event/3327123">https://www.training.cam.ac.uk/event/3327123</a>
+
+**We thank Oxford Nanopore Technologies for providing the reagents and flow cells used in this course**
