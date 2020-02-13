@@ -194,16 +194,10 @@ We will now make a report, like the one you made in the Quality Control section,
 
 For that, we will use an already existing [tutorial](https://github.com/nanoporetech/ont_tutorial_sv).
 
-First, go to the directory:
+Open the `config.yaml` file:
 
 ```
-cd ~/Course_Materials/data/variant_calling/ont_tutorial_sv
-```
-
-and open the `config.yaml` file:
-
-```
-cat config.yaml
+cat ~/Course_Materials/data/variant_calling/ont_tutorial_sv/config.yaml
 ```
 
 That should look like this:
@@ -244,7 +238,7 @@ Press the “Knitr” button at the top of the page and wait for magic!
 Again... if magic does not happen, R should have printed a .html file - open it by pasting the below in the terminal!
 
 ```
-open ont_tutorial_sv.html
+open ~/Course_Materials/data/variant_calling/ont_tutorial_sv/ont_tutorial_sv.html
 ```
 
 ## Structural Variant Annotation {#svannotation}
