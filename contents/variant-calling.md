@@ -153,9 +153,9 @@ tabix -p vcf variant_calling/svs/LRS_SVs.sort.vcf.gz
 Do the same for the `s20` VCF
 
 ```
-bgzip variant_calling/svs/LRS_SVs_20.vcf
-vcf-sort variant_calling/svs/LRS_SVs_20.vcf.gz | bgzip -c > variant_calling/svs/LRS_SVs_20.sort.vcf.gz
-tabix -p vcf variant_calling/svs/LRS_SVs_20.sort.vcf.gz
+bgzip variant_calling/svs/LRS_SVs_s20.vcf
+vcf-sort variant_calling/svs/LRS_SVs_s20.vcf.gz | bgzip -c > variant_calling/svs/LRS_SVs_s20.sort.vcf.gz
+tabix -p vcf variant_calling/svs/LRS_SVs_s20.sort.vcf.gz
 ```
 
 Now, we will compare how many SVs called in each VCF:
