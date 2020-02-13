@@ -207,7 +207,7 @@ Here we will use **minimap2** to map the reads to the genome of reference. Then 
 -k 14       K-mer size of 14 (as recommended)
 ```
 
-**Note:** The authors of the paper used the options ```-x map-ont``` (nanopore vs reference mapping), ```--MD``` (output the MD tag), and ```-u n``` (don't match GT-AG) instead of ```-x splice -u f```. However, we updated them, since these are the current recommended optinos for Nanopore Direct RNA-seq.
+**Note:** The authors of the paper used the options ```-x map-ont``` (nanopore vs reference mapping), ```--MD``` (output the MD tag), and ```-u n``` (don't match GT-AG) instead of ```-x splice -u f```. However, we updated them, since these are the current recommended options for Nanopore Direct RNA-seq.
 
 We will start with the WT sample.
 
