@@ -183,8 +183,9 @@ done
 - How many variants were called in both VCF files?
 - Why are there variants in the `s20` VCF file that are not in the default one?
 - Open both VCF files in IGV and inspect the following regions (all of them absent in `s20`)
+  - 10:52936870-53686004
   - 7:89890594-89901123
-  - 7:90462621-90476627
+  - 7:89969558-89969874
 - Do you think that `s20` is too strict or lenient?
 
 ## Make a Report {#report}
