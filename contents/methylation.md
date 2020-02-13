@@ -173,9 +173,9 @@ for i in ${OUT}/Met_frequency_*.tsv; do awk -F "\t" '{ if (NR > 1 ) print $1,$2,
 Then we can calculate the Jaccard score for every pair of methods:
 
 ```{}
-bedtools jaccard -a ${OUT}/Met_frequency_deepsignal.bedgraph -b ${OUT}/res/bisulfite.ENCFF835NTC.example.tsv
-bedtools jaccard -a ${OUT}/Met_frequency_nanopolish.bedgraph -b ${OUT}/res/bisulfite.ENCFF835NTC.example.tsv
-bedtools jaccard -a ${OUT}/Met_frequency_deepsignal.bedgraph -b ${OUT}/Met_frequency_nanopolish.bed
+bedtools jaccard -a ${OUT}/Met_frequency_deepsignal.bedgraph -b ${IN}/res/bisulfite.ENCFF835NTC.example.tsv
+bedtools jaccard -a ${OUT}/Met_frequency_nanopolish.bedgraph -b ${IN}/res/bisulfite.ENCFF835NTC.example.tsv
+bedtools jaccard -a ${OUT}/Met_frequency_deepsignal.bedgraph -b ${OUT}/Met_frequency_nanopolish.bedgraph
 ```
 
 the output is:
