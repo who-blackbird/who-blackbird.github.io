@@ -256,18 +256,18 @@ AnnotSV -SVinputFile variant_calling/svs/LRS_SVs.sort.vcf.gz -SVinputInfo 1 \
      -typeOfAnnotation full
 ```
 
-Now... Inspect the calls in _PCDH15_ gene:
+Now, nspect the calls in _PCDH15_ gene:
 
 ```
-grep PCDH15 annotation/LRD_SVs.anno.vcf.tsv
+grep PCDH15 annotation/LRD_SVs.sort.annotated.tsv
 ```
 
 And visualise them in IGV.
 
-Next, you can also look at the calls overlapping the _PCDH15_ gene.
+Next, you can also look at the calls overlapping the _ZNF804B_ gene.
 
 ```
-grep PCDH15 annotation/LRD_SVs.anno.vcf.tsv
+grep ZNF804B annotation/LRD_SVs.sort.annotated.tsv
 ```
 
 What do you think is happening there? 
