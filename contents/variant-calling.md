@@ -19,9 +19,10 @@ You will learn to:
 
 ## Working directory {#workingdirectory}
 
-Before we start, go to your wd:
+Before we start, set up your wd and go into it:
 
 ```
+mkdir -p ~/Course_Materials/wd/day2
 cd ~/Course_Materials/wd/day2
 ```
 
