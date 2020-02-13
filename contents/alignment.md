@@ -65,7 +65,15 @@ less -S ~/Course_Materials/data/alignment/fastq/SL2_CoV.fastq.gz
 
 ## Working Directory {#workingdirectory}
 
-Now, we will set up the working directory where we will do the analysis. Open your terminal, go to
+Now, we will set up the working directory where we will do the analysis.
+
+Open your terminal, and make the following directory (if it does not exist yet):
+
+```
+mkdir -p ~/Course_Materials/wd/day1
+```
+
+Go to:
 
 ```
 cd ~/Course_Materials/wd/day1
