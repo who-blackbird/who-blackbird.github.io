@@ -193,17 +193,19 @@ Multiple algorithms have been developed to align long reads to a genome of refer
 Here we will use **minimap2** to map the reads to the genome of reference. Then we will convert the SAM output to BAM format and sort it by mapping coordinate. For that we will use the following minimap2 options:
 
 ```
--x map-ont  Nanopore vs reference mapping
---MD        Output the MD tag
--u n        Don't match GT-AG
+-a          Output in the SAM format (PAF by default)
+-x splice   Long-read spliced alignment
+-u f        How to find GT-AG. f:transcript strand
 -k 14       K-mer size of 14 (as recommended)
 ```
+
+**Note:** The authors of this paper used the options ```-x map-ont``` (Nanopore vs reference mapping), ```--MD``` (Output the MD tag), and ```-u n``` (Don't match GT-AG) instead of ```-x splice -u f```.
 
 We will start with the WT sample.
 
 ```
 ##Align to the ref using minimap
-minimap2 -x map-ont --MD -u n -k 14 -a $HCoV_ref $WT_fastq > alignment/WT_CoV.sam
+minimap2 -a -x splice -u f -k 14 $HCoV_ref $WT_fastq > alignment/WT_CoV.sam
 
 ##Sort and output as BAM
 samtools sort alignment/WT_CoV.sam -O BAM -o alignment/WT_CoV.sort.bam
@@ -212,7 +214,7 @@ samtools sort alignment/WT_CoV.sam -O BAM -o alignment/WT_CoV.sort.bam
 _Alternatively_, you can run these two steps using only one command line. Below is the alignment for the SL2 sample:
 
 ```
-minimap2 -x map-ont --MD -u n -k 14 -a $HCoV_ref $SL2_fastq | samtools sort - -O BAM -o alignment/SL2_CoV.sort.bam
+minimap2 -a -x splice -u f -k 14 $HCoV_ref $SL2_fastq | samtools sort - -O BAM -o alignment/SL2_CoV.sort.bam
 ```
 
 Finally we will index the BAM files to run samtools subtools later.
