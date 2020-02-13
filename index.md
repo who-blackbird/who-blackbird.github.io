@@ -48,6 +48,13 @@ After this course you should be able to:
 6. [Haplotype phasing](http://who-blackbird.github.io/contents/phasing)
 7. [Methylation](http://who-blackbird.github.io/contents/methylation)
 
+# Links to nanopore practicals
+
+- [Nanopore learning](https://community.nanoporetech.com/nanopore-learning)
+- [Extraction protocols](https://community.nanoporetech.com/extraction_methods)
+- [Protocols](https://community.nanoporetech.com/protocols) 
+- [Protocol library](https://community.nanoporetech.com/knowledge/protocol_builder/aims?result=2433)
+
 # Registration
 
 <a href="https://www.training.cam.ac.uk/event/3327123">https://www.training.cam.ac.uk/event/3327123</a>
