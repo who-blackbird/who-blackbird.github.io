@@ -252,24 +252,37 @@ To run a basic SV annotation, we will execute the following command:
 ```
 AnnotSV -SVinputFile variant_calling/svs/LRS_SVs.sort.vcf.gz -SVinputInfo 1 \
      -genomeBuild GRCh38 \
-     -outputDir annotation
+     -outputDir annotation \
+     -typeOfAnnotation full
 ```
 
-Now... Inspect the calls in _SGCE_ gene:
+Now... Inspect the calls in _PCDH15_ gene:
 
 ```
-grep SGCE annotation/LRD_SVs.anno.vcf.tsv
+grep PCDH15 annotation/LRD_SVs.anno.vcf.tsv
 ```
 
 And visualise them in IGV.
 
-Mutations in _SGCE_ gene [[MIM:159900]](https://www.omim.org/entry/159900) have previously been associated with Myoclonic Dystonia. As you can see in the IGV plot, there are multiple deletions in this individual overlapping _SGCE_. This data comes from a patient with Myoclonic Dystonia. The deletions you just found have already been seen to be pathogenic. Congratulations, you just called variants from long-read sequencing data and identified a pathogenic one associated with disease! And actually... a very complex one!
+Next, you can also look at the calls overlapping the _PCDH15_ gene.
+
+```
+grep PCDH15 annotation/LRD_SVs.anno.vcf.tsv
+```
+
+What do you think is happening there? 
+
+...
+
+
+Yes! This is a complex SV!
+
 
 ## Represent cxSVs using Circos {#circos}
 
-This is a complex SV, involving multiple breakpoints across different chromosomes. To characterise it, you are going to represent it using [**Circos**](http://circos.ca).
+The previous cxSV involves multiple breakpoints across different chromosomes. To characterise it, you are going to represent it using [**Circos**](http://circos.ca).
 
-Circos needs 
+Circos needs the following input files:
 - Scaffold
 - Links
 - Config file
