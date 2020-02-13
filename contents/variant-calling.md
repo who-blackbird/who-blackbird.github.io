@@ -158,10 +158,11 @@ vcf-sort variant_calling/svs/LRS_SVs_s20.vcf.gz | bgzip -c > variant_calling/svs
 tabix -p vcf variant_calling/svs/LRS_SVs_s20.sort.vcf.gz
 ```
 
-Now, we will compare how many SVs called in each VCF:
+Now, we will compare how many SVs were called in each VCF:
 
 ```
 bcftools view -H variant_calling/svs/LRS_SVs.sort.vcf.gz | wc -l
+bcftools view -H variant_calling/svs/LRS_SVs_s20.sort.vcf.gz | wc -l
 ```
 
 To investigate the differences, we are going to intersect both VCF files:
@@ -170,7 +171,14 @@ To investigate the differences, we are going to intersect both VCF files:
 bcftools isec -p variant_calling/svs/isec variant_calling/svs/LRS_SVs.sort.vcf.gz variant_calling/svs/LRS_SVs_s20.sort.vcf.gz
 ```
 
-Do the same for the `s20` file.
+Run the next command to know how many variants have been identified in each VCF file:
+
+```
+for f in variant_calling/svs/isec/000*.vcf
+do
+    echo $f `bcftools view -H $f | wc -l`
+done
+```
 
 - How many variants were called in both VCF files?
 - Why are there variants in the `s20` VCF file that are not in the default one?
