@@ -352,23 +352,52 @@ This is what a "run" directory looks like when you let the sequencer take care o
 
 You will notice that **.fast5** and **.fastq** files have been automatically separated into **pass** and **fail** directories.
 
-Lets produce the report for this run now. Open up the **config.yaml** file and comment out the first two lines (add a '#' at the beginning) and uncomment lines 3 and 4.
+Lets produce the report for this run now. Open up the **config.yaml** file, you should see the below. 
+
+```
+inputFile: "./RawData/lambda_sequencing_summary.txt.bz2"
+barcodeFile: "./RawData/lambda_barcoding_summary.txt.bz2"
+#inputFile: "../example_runs/2.promethion_run/VWD1108/20191202_1317_1-E11-H11_PAE13924_73938d1f/PCT0099_20191202_131743_PAE13924_promethion_sequencing_run_VWD1108_sequencing_summary.txt"
+#barcodeFile: ""
+basecaller: "Guppy 2.1.3"
+flowcellId: "PAE24233"
+tutorialText: FALSE
+# **inputFile** - this should be the sequencing_summary.txt from Guppy etc
+# move your own sequence_summary.txt file (or concatenation thereof) to the
+# RawData folder to run analysis on your own sequence collection
+
+# **barcodeFile** - if Guppy_barcoder has been used to demultiplex library,
+# move the barcoding_summary.txt file to the RawData folder and update variable
+
+# **basecaller** and **flowcellId** - are used for presentation in report
+# please update to correspond to your sequence analysis
+
+# change the **tutorialText** value to FALSE to mask  tutorial instructions
+```
+
+Delete the entire contents, copy the below in, and save the file.
 
 The file should now read:
 
 ```
-#inputFile: "./RawData/lambda_sequencing_summary.txt.bz2"
-#barcodeFile: "./RawData/lambda_barcoding_summary.txt.bz2"
-inputFile: "../example_runs/2.promethion_run/VWD1108/20191202_1317_1-E11-H11_PAE13924_73938d1f/PCT0099_20191202_131743_PAE13924_promethion_sequencing_run_VWD1108_sequencing_summary.txt"
+inputFile: "rl ../example_runs/2.promethion_run/real_vwd/20191202_1317_1-E11-H11_PAE13924_73938d1f/PCT0099_20191202_131743_PAE13924_promethion_sequencing_run_real_vwd_sequencing_summary.txt"
 barcodeFile: ""
 basecaller: "Guppy 2.1.3"
 flowcellId: "PAE24233"
 tutorialText: FALSE
+# **inputFile** - this should be the sequencing_summary.txt from Guppy etc
+# move your own sequence_summary.txt file (or concatenation thereof) to the
+# RawData folder to run analysis on your own sequence collection
+
+# **barcodeFile** - if Guppy_barcoder has been used to demultiplex library,
+# move the barcoding_summary.txt file to the RawData folder and update variable
+
+# **basecaller** and **flowcellId** - are used for presentation in report
+# please update to correspond to your sequence analysis
+
+# change the **tutorialText** value to FALSE to mask  tutorial instructions
+
 ```
-
-_**Hint**: copy and paste._
-
-Save the file.
 
 Now press the "**Knitr**" button again the top of the page and wait for some _...slightly slow..._ magic!
 
