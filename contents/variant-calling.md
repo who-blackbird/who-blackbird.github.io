@@ -100,7 +100,13 @@ Note that most of the variant that are private to short-reads are indels, since 
 To get the number of SNPs called by short-reads, and missed by long-reads, run:
 
 ```
-bcftools view -HV indels variant/calling/snvs/isec/0001.vcf | wc -l
+bcftools view -HV indels variant_calling/snvs/isec/0001.vcf | wc -l
+```
+
+And to get how many of those are only PASS variants:
+
+```
+bcftools view -f PASS -HV indels variant_calling/snvs/isec/0001.vcf | wc -l
 ```
 
 Let's explore them in the **IGV**! Open IGV and load the Homo_sapiens.GRCh38.dna.fasta (`$ref`) reference genome by selecting Genomes>Load from File or Genomes>Load from URL. The new genome will be added to the drop-down menu, and also loaded and displayed in the IGV window.
