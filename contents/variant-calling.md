@@ -5,7 +5,7 @@ In this section we will cover:
 - [Working directory](#workingdirectory)
 - [Single Nucleotide Variant Calling](#snvcalling)
 - [Structural Variant Calling](#svcalling)
-- [Report](#report)
+- [Make a Report](#report)
 - [Structural Variant Annotation](#svannotation)
 - [Represent cxSVs using Circos](#circos)
 
@@ -149,7 +149,7 @@ Do the same for the `s20` file.
   - 7:90462621-90476627
 - Do you think that `s20` is too strict or lenient?
 
-## Report {#report}
+## Make a Report {#report}
 
 We will now make a report, like the one you made in the Quality Control section, but for the SVs you just called.
 
