@@ -19,7 +19,7 @@
 
 ## 1. Signal to sequence workflow
 
-The below image represents the process of translating raw electrical signal data from an ON sequencer to DNA sequence.
+The below image represents the process of translating raw electrical signal data from an ONT sequencer to DNA sequence.
 
 <img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/qc.basecalling.png" alt="img_2" class="inline"/>
 
@@ -58,7 +58,7 @@ You should see something like this:
 5 directories
 ```
 
-This is what a raw directory structure will look like if you **don't** let the ONT software cal it for you!
+This is what a raw directory structure will look like if you **don't** let the ONT software call it for you!
 
 Lets take a closer look at the **reads/** directory. This is where the sequencer writes raw data:
 
@@ -68,7 +68,7 @@ ls 20180830_PAD01151/data/reads/
 
 You should see two directories: **0/** and **1/**.
 
-ON machines write reads in batches, here batch size is **100** files. Normally, batch size would be around **5000** to **8000**. This is to keep the number of files in each directory reasonable for the computers filesystem.
+ONT machines write reads in batches, here batch size is **100** files. Normally, batch size would be around **5000** to **8000**. This is to keep the number of files in each directory reasonable for the computers filesystem.
 
 Take a look into read directory **0/**:
 
@@ -131,7 +131,7 @@ We can also dump and view the entire contents of a **.fast5** to text:
 h5dump ./20180830_PAD01151/data/reads/0/PCT0045_20180830_0004A30B002402F4_2_E3_H3_sequencing_run_Cam_6_90217_read_106_ch_731_strand.fast5 | less -S
 ```
 
-(**Hint 1**: use the up and down arrows to scroll through the file)  
+(**Hint**: use the up and down arrows to scroll through the file)  
 (**Hint 2**: press **q** to exit less, a text reading program)
 
 ## 4. Basecalling
@@ -147,6 +147,8 @@ To see all the combinations which Guppy can handle use:
 ```
 guppy_basecaller --print_workflows | head -n 10
 ```
+
+(**Hint**: the "**| head -n 10** part of the command shows just the top 10 combinations, there are many more.)
 
 This will list all the supported combinations of **flowcell** and **library prep kit** that Guppy can basecall.
 
@@ -230,11 +232,13 @@ Another important file is **sequencing_summary.txt**. This contains **A LOT** of
 less -S 20180830_PAD01151/data/basecalled/sequencing_summary.txt
 ```
 
+(_**Hint**: again, q to quit less!_)
+
 ## Quick breather!!!
 
 What **should** I know at this point?:
 
-- We are now at the point where we understand how raw squiggle data is converted into to A's T's C's and G's.
+- We now understand how raw squiggle data is converted into to A's T's C's and G's.
 
 - We can take some .fast5 files, run a basecaller, and find the results.
 
@@ -266,9 +270,8 @@ We can then open up a file browser to make things easy.
 open .
 ```
 
-This should open up a directory, and we can see that there are multiple files in this "package".
+This should open up a directory, and we can see that there are multiple files in this "package". The first file we are interested in is the **config.yaml** file.
 
-The first file we are interested in is the **config.yaml** file.
 _**Hint**: don't worry .yaml is just a fancy text file!_
 
 This file contains the configuration for the QC plotting tool.
@@ -315,7 +318,7 @@ Tree the following directory:
 tree ../example_runs/2.promethion_run
 ```
 
-_Hint: "**..** is a shortcut for "one directory up"_
+_Hint: "**..**" is a shortcut for "one directory up"_
 
 You should see:
 
@@ -348,8 +351,6 @@ You should see:
 This is what a "run" directory looks like when you let the sequencer take care of data processing.
 
 You will notice that **.fast5** and **.fastq** files have been automatically separated into **pass** and **fail** directories.
-
-There is also a "report.pdf" which the sequencer prints off, however the R script we used before gives us much more information (feel free to take a look though!).
 
 Lets produce the report for this run now. Open up the **config.yaml** file and comment out the first two lines (add a '#' at the beginning) and uncomment lines 3 and 4.
 
