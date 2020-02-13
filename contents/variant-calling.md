@@ -247,6 +247,8 @@ In order to perform annotation of the SVs from multiple sources, we will use [**
 
 AnnotSV annotates SVs with information about the genes (OMIM, ClinGen), regulatory elements (enhancers, promoters), pathogenicity (known from dbVar), frequencies (gnomAD, internal) and breakpoints (GC content, repeats) they overlap.
 
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/annotsv.jpg" alt="help" class="inline"/>
+
 To run a basic SV annotation, we will execute the following command:
 
 ```
