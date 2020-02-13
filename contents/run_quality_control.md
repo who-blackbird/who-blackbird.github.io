@@ -377,10 +377,8 @@ tutorialText: FALSE
 
 Delete the entire contents, copy the below in, and save the file.
 
-The file should now read:
-
 ```
-inputFile: "rl ../example_runs/2.promethion_run/real_vwd/20191202_1317_1-E11-H11_PAE13924_73938d1f/PCT0099_20191202_131743_PAE13924_promethion_sequencing_run_real_vwd_sequencing_summary.txt"
+inputFile: "../example_runs/2.promethion_run/real_vwd/20191202_1317_1-E11-H11_PAE13924_73938d1f/PCT0099_20191202_131743_PAE13924_promethion_sequencing_run_real_vwd_sequencing_summary.txt"
 barcodeFile: ""
 basecaller: "Guppy 2.1.3"
 flowcellId: "PAE24233"
