@@ -259,7 +259,7 @@ AnnotSV -SVinputFile variant_calling/svs/LRS_SVs.sort.vcf.gz -SVinputInfo 1 \
 Now, nspect the calls in _PCDH15_ gene:
 
 ```
-grep PCDH15 annotation/LRD_SVs.sort.annotated.tsv
+grep PCDH15 annotation/LRS_SVs.sort.annotated.tsv
 ```
 
 And visualise them in IGV.
@@ -267,7 +267,7 @@ And visualise them in IGV.
 Next, you can also look at the calls overlapping the _ZNF804B_ gene.
 
 ```
-grep ZNF804B annotation/LRD_SVs.sort.annotated.tsv
+grep ZNF804B annotation/LRS_SVs.sort.annotated.tsv
 ```
 
 What do you think is happening there? 
