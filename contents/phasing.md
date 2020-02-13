@@ -1,4 +1,4 @@
-#  6. Methylation
+#  6. Phasing
 
 In this section we will cover:
 
