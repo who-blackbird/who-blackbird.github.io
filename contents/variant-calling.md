@@ -5,6 +5,7 @@ In this section we will cover:
 - [Working directory](#workingdirectory)
 - [Single Nucleotide Variant Calling](#snvcalling)
 - [Structural Variant Calling](#svcalling)
+- [Report](#report)
 - [Structural Variant Annotation](#svannotation)
 - [Represent cxSVs using Circos](#circos)
 
@@ -12,6 +13,7 @@ You will learn to:
 
 - Call SNVs from nanopore data and compare them to short-read sequencing SNVs
 - Call SVs and interpret the results
+- Make a report with the results form the variant calling
 - Annotate SVs with gene information
 - Make a super cool Circos plot
 
@@ -146,6 +148,65 @@ Do the same for the `s20` file.
   - 7:89890594-89901123
   - 7:90462621-90476627
 - Do you think that `s20` is too strict or lenient?
+
+## Report {#report}
+
+We will now make a report, like the one you made in the Quality Control section, but for the SVs you just called.
+
+For that, we will use an already existing [tutorial](https://github.com/nanoporetech/ont_tutorial_sv).
+
+First, go to the directory:
+
+```
+cd ~/Course_Materials/data/variant_calling/ont_tutorial_sv
+```
+
+and open the `config.yaml` file:
+
+```
+cat config.yaml
+```
+
+That should look like this:
+
+```
+---
+# this config.yaml is passed to Snakefile in pipeline-structural-variation subfolder.
+# Snakemake is run from this pipeline-structural-variation folder; it is necessary to
+# pass an appropriate path to the input-files (the ../ prefix is sufficient for this demo)
+
+# FASTA file containing the reference genome
+reference_fasta: "~/Course_Materials/data/variant_calling/reference_genome/Homo_sapiens.GRCh38.dna.fasta"
+# Sample name
+sample_name: "SAMPLE"
+
+##################################
+## Tutorial specific parameters ##
+##################################
+tutorialText: FALSE
+biocGenome: "hg38"
+GeneIdMappings: "org.Hs.eg.db"
+GenomeAnnotation: "TxDb.Hsapiens.UCSC.hg38.knownGene"
+RepeatDB: "~/Course_Materials/data/variant_calling/repeatmasker/hg38.fa.out.gz"
+bamFile: "~/Course_Materials/data/variant_calling/bams/LRS_alignment.bam"
+vcfFile: "~/Course_Materials/wd/day2/variant_calling/svs/LRS_SVs.vcf.gz"
+```
+
+This is the config file that points to the path of the files that it requires.
+
+To make the report, we are interested in the `ont_tutorial_sv.Rmd` file. 
+
+Open Rstudio and open it.
+
+Press the “Knitr” button at the top of the page and wait for magic!
+
+<img src="//raw.githubusercontent.com/who-blackbird/who-blackbird.github.io/master/images/qc.rhelp.png" alt="help" class="inline"/>
+
+Again... if magic does not happen, R should have printed a .html file - open it by pasting the below in the terminal!
+
+```
+open ont_tutorial_sv.html
+```
 
 ## Structural Variant Annotation {#svannotation}
 
