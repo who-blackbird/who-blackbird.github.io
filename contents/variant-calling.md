@@ -258,6 +258,8 @@ AnnotSV -SVinputFile variant_calling/svs/LRS_SVs.sort.vcf.gz -SVinputInfo 1 \
      -typeOfAnnotation full
 ```
 
+Information about the output from AnnotSV can be found [here](http://lbgi.fr/AnnotSV/Documentation/README.AnnotSV_latest.pdf).
+
 Now, inspect the calls in _PCDH15_ gene:
 
 ```
@@ -276,9 +278,7 @@ What do you think is happening there?
 
 ...
 
-
 Yes! This is a complex SV!
-
 
 ## Represent cxSVs using Circos {#circos}
 
