@@ -62,7 +62,7 @@ bcftools view -H ${OUT}/sample1_phased.vcf | grep -c "1/0"
 bcftools view -H ${OUT}/sample1_phased.vcf | grep -c "1|0"
 ```
 
-There are 2 different genotype separators (i.e. `|` or `/`) because different variant callers use different separators, but both are equally good in the VCF grammar. Please note that now the SNVs and indels are roughly 50% on allele 1 (a.k.a. `1|0`) and 50% on allele 2 (a.k.a `0|1`), while before the pahsing the were mostly on allele 2.
+There are 2 different genotype separators (i.e. `|` or `/`). They refer to phased ("|") and unphased ("|") reads. 
 
 ## Phasing - Visualization {#Phasing-Visualization}
 
