@@ -44,11 +44,13 @@ bcftools stats ${IN}/res/sample1_short_reads.vcf.gz  | grep -w "ST"
 
 It is extrimely helpful to know where and what are the variants in my sample. However, as important as the variants is their allele frequency (AF). There is a widely used tool that can annotate VCF files with AF: [VEP](https://www.ensembl.org/info/docs/tools/vep/index.html). VEP has a command line tool but also a web interface. If you go (here)[https://www.ensembl.org/Tools/VEP] you can annotate your VCF via a browser submission.
 
-There is a simple `VEP` command line to use. Which can be something like `vep -i file.vcf --cache`
-
 ```{}
-cat Desktop/ihwe4983D2MLOobO.vcf | sed -e 's/||/ /g' | tail | less -S
+(bcftools view -h ${IN}/res/sample1_short_reads.vcf.gz  | tail -n 1 | cut -f 1-7 ; bcftools view -H ${IN}/res/sample1_short_reads.vcf.gz | head | cut -f 1-7) > ${OUT}/dummy_file.vcf
+
+#view the dummy vcf we made
+cat ${OUT}/dummy_file.vcf | less -S
 ```
+There is a simple `VEP` command line to use. Which can be something like `vep -i file.vcf --cache`. But you could also use the web interface, specially if you need to annotate a few files.
 
 ## Phasing - WhatsHap {#Phasing-WA}
 
