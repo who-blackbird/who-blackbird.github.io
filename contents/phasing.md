@@ -22,6 +22,34 @@ IN="data/phasing"
 OUT="wd/day2/phasing"
 ```
 
+#### VCF files
+
+Let's have another quick look at the VCF file structure:
+```{}
+bcftools view -H ${IN}/res/sample1_short_reads.vcf.gz  | head | less -S
+```
+For info on the VCF structure go [here](https://www.internationalgenome.org/wiki/Analysis/Variant%20Call%20Format/vcf-variant-call-format-version-40/)
+
+#### VCF stats
+
+As we always do let's have a look at the VCF stats report, as a quick quality check.
+```{}
+# Print some stats about the VCF file
+bcftools stats ${IN}/res/sample1_short_reads.vcf.gz 
+# Select the stats information you want to visualise
+bcftools stats ${IN}/res/sample1_short_reads.vcf.gz  | grep -w "ST"
+```
+
+#### Annotate VCF files VEP
+
+It is extrimely helpful to know where and what are the variants in my sample. However, as important as the variants is their allele frequency (AF). There is a widely used tool that can annotate VCF files with AF: [VEP](https://www.ensembl.org/info/docs/tools/vep/index.html). VEP has a command line tool but also a web interface. If you go (here)[https://www.ensembl.org/Tools/VEP] you can annotate your VCF via a browser submission.
+
+There is a simple `VEP` command line to use. Which can be something like `vep -i file.vcf --cache`
+
+```{}
+cat Desktop/ihwe4983D2MLOobO.vcf | sed -e 's/||/ /g' | tail | less -S
+```
+
 ## Phasing - WhatsHap {#Phasing-WA}
 
 For this practical we are going to use the [WhatsHap tool](https://www.biorxiv.org/content/10.1101/085050v2.full.pdf), which uses python and is based on the homonym algorithm. To download [WhatsHap](https://whatshap.readthedocs.io/en/latest/index.html). 
@@ -62,7 +90,7 @@ bcftools view -H ${OUT}/sample1_phased.vcf | grep -c "1/0"
 bcftools view -H ${OUT}/sample1_phased.vcf | grep -c "1|0"
 ```
 
-There are 2 different genotype separators (i.e. `|` or `/`). They refer to phased ("|") and unphased ("|") reads. 
+There are 2 different genotype separators (i.e. `|` or `/`). They refer to phased ("|") and unphased ("|") reads. After the whatshap phasing you'll see that the majority of variants have been assigned to one allele or the other. 
 
 ## Phasing - Visualization {#Phasing-Visualization}
 
