@@ -92,7 +92,7 @@ bcftools view -H ${OUT}/sample1_phased.vcf | grep -c "1/0"
 bcftools view -H ${OUT}/sample1_phased.vcf | grep -c "1|0"
 ```
 
-There are 2 different genotype separators (i.e. `|` or `/`). They refer to phased ("|") and unphased ("|") reads. After the whatshap phasing you'll see that the majority of variants have been assigned to one allele or the other. 
+There are 2 different genotype separators (i.e. `|` or `/`). They refer to phased ('|') and unphased ('/') reads. After the whatshap phasing you'll see that the majority of variants have been assigned to one allele or the other. 
 
 ## Phasing - Visualization {#Phasing-Visualization}
 
