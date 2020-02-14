@@ -48,7 +48,7 @@ After this course you should be able to:
 6. [Haplotype phasing](http://who-blackbird.github.io/contents/phasing)
 7. [Methylation](http://who-blackbird.github.io/contents/methylation)
 
-The data used in this course can be found (here)[https://www.dropbox.com/sh/w0su53l414o3gex/AAD31FW6TA_hAQPnNcFeGHOqa].
+The data used in this course can be found [here](https://www.dropbox.com/sh/w0su53l414o3gex/AAD31FW6TA_hAQPnNcFeGHOqa).
 
 # Links to nanopore practicals
 
